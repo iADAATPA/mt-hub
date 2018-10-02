@@ -1,0 +1,500 @@
+Tvåvägskommunikation med skrivarenheter för klienter, med användning av HTTP / IPP; GET - och POST - mekanismen.
+Persiska (Iran)
+Skriv metadata till obehandlade filer (experimentellt)
+SÃ¶k efter bilder placerade i
+Layoutkommando
+Spanska (Dominikanska Republiken)
+Kan inte skapa katalogen '% 1' som behövs för demonstrationen.
+Samla
+Visa ikon i systembrickan
+Mitt grannskap
+För enastående dvd+rw- verktyg och det trevliga samarbetet.
+Det externa programmet normalize är inte installerat. K3b använder normalize (http: // normalize. nongnu. org /) för att normalisera ljudspår. För att använda funktionen, installera det först.
+Zooma till 150%
+Hoppa över datakontroll om befintliga filer hittas
+Ingen filändelse angiven för grafikfil. Använder.
+NamnNoun, as in commercial balance
+Redigera monteringsplats@ info: status
+Återställ partition fråm% 1 till% 2 @ info/ plain
+Förstör partition% 1 (% 2,% 3) @ info/ plain
+Vissa indatafiler verkar inte vara rena textfiler. Observera att Kdiff3: s sammanfogning inte är avsedd för binärdata. Fortsätt på egen risk.
+Antal jämförda kataloger:% 1
+Filerna kommer att analyseras för att visa X. org- loggen.
+Visar ACPI- loggen.
+Blinkande låda
+Linjetjocklek
+Stor dirombikosidodekakron
+Jack- RackGenericName
+WebbläsningName
+Angolanska kwanzaName
+Javascript- mediaspelareName
+Misslyckades registrera nytt konto: Angiven e- postadressen är redan använd.
+Byt till ett skrivbord uppåt
+Signalerade målavbrytning
+Aktiveradstate of PCI item
+Serienummer:
+Anpassa stavningskontroll.
+Naturligt
+Kwrite
+Kan inte hitta multimediagränssnitt
+% (volym)
+eV (elektronvolt)
+Markeringsläge:
+Jaroslavlrussia_ subjects. kgm
+Ávilaspain_ provinces. kgm
+Al- Ubayyidsudan. kgm
+Välj segmentet att förflytta på cirkeln.
+BahreinCountry name (optional, but should be translated)
+Går ner: 08: 22
+Dina val
+Starta med lätt svårighetsnivå
+Välj kortlek.
+Inget certifikat överlämnades.
+Ytterst svårGame difficulty level 8 out of 8
+LågsachsiskaName
+Gå till nästa bokmärke.
+Inga förslag för% 1
+turkos 4color
+Visa information om cachefil
+Säkra servrar, sidskript
+Europa/ Zürich
+Visa historikverb, copy the playlist
+Synkronisera
+Varaktigheten för en repetition av alarm inom upprepningen måste vara mindre än upprepningsintervallet minus eventuell påminnelseperiod@ info
+Export av hemliga nycklar klar
+Normala ikoner@ info: status
+Användarnamn för att publicera ledig- upptagen information
+Egen
+Produkt '% 1', komponent '% 2'
+ny_ katalog
+2006 Gael de Chalendar (alias Kleag), 2002- 2006 Upphovsmän till Umbrello UML- modellering
+Stäng när det sista programmet slutar använda den
+ArgumentnamnThe value of an argument
+Vill du importera filen% 1 till din nyckelring?
+Justera vid slutet@ info: whatsthis
+KformulaGenericName
+Geometriskt - kvartscirkelStencils
+Annan:
+Nästa: Skapa ett enkelt projekt
+Linearisering av ogenomskinlighet
+Välj teckensnittets vikt för cellerna som för närvarande är markerade. När du markerar flera celler med olika vikter, ställs den visade vikten in till Varierade (ingen ändring) och genom att lämna den sådan behålls alla de nuvarande viktinställningarna för varje cell. Att till exempel ändra till Fet ändrar alla markerade cellers textvikt till Fet.
+Funktionen MDURATION () beräknar modifierad räntebindningstid för ett värdepapper med fast räntesats i år.
+Tillämpa en fördefinierad stil för markerade celler
+Utskriftsjobb
+Filtrerar utskriftsdata
+54 punkter
+- 90 grader
+Glansigt/ foto
+5 Mibyte
+m_ addButtons
+***% 1 tog bort operatörsstatus från dig
+FiltermÃ¶nster:
+Någon förmedlingsnod för profilen "% 1" har inte matats in. Stoppar.
+FEL: Misslyckades hämta alternativt ämnesnamn
+VPN- anslutning avslutades
+Vilka funktioner tycker du inte om?
+Val av behörighetskontroll: använd hybrid.
+Använd inte protokollet Microsoft Point- to- Point Compression (MPPC). Dvs. för att fungera ihop med Watchguard Firebox (normalt inaktiverat).
+KMyMoney har beräknat slutbetalningen% 1 för lånet.
+Var tredje vecka
+MS- Money Plus
+Kom ihåg teckenstorlek när programmet avslutas om ändrad manuellt med mushjulet
+Ingen automatisk momstilldelning
+Namn på databasen att använda.
+Demon startad.
+Felaktigt val. Du kan inte blanda filer och kataloger med samma namnbytesfunktion
+Kunde inte hÃ¤mta nÃ¤sta objektQIBaseResult
+HÃ¤rledd egenskap% 1 motsvarar inte jokertecknen i basdefinitionen.
+Det finns ett felspårningssystem tillgängligt på http: // bugs. kde. org. Systemet har en guide för att skicka in nya felrapporter och en lista på alla kända fel.
+Den här modulen används för att ställa in hur enskilda grafikkomponenter ritas av kde;.
+Fråga efter åtgärd när brev har dragits till en annan korg
+Om UML;
+Komponentdiagram visar programmeringskomponenter på hög nivå (som Kparts eller Java Beans).
+Ställ in det här till 0 för att stänga av utgående sändningar så att de lokala skrivarna inte syns, men du fortfarande kan se skrivare från andra värddatorer.
+2009 Red Hat, Inc.
+Inga senast tilldelade etiketter
+Ilford Delta 400 Pro 3200: Simulera Ilford Delta 400 Pro svartvit film med ISO- värde 3200.
+Spara bildernas tidsstämplar som metadata inbäddad i filer
+Kan inte avkoda obehandlad bild för "% 1"
+Ange en plats dÃ¤r du vill lagra dina bilder. Du kan vÃ¤lja vilken lokal katalog som helst, till och med en som redan innehÃ¥ller bilder. Fler kataloger kan lÃ¤ggas till senare med menyn InstÃ¤llningar.
+AnvÃ¤nd knappen fÃ¶r att gÃ¶ra om det senast ritade pÃ¥ skissen.
+Klump
+Öst- väst exponenten måste vara större än 0, 001.
+Den nuvarande inställningen stöder inte equalizer- funktionenEqualizer state, as in, disabled
+25 bilder/ s
+Spela dvd med KaffeineName
+Utgivar- id:
+Utgivare:
+Svar@ info: tooltip
+När trafik under en månad eller faktureringsperiod överskrider gränsen, visar Knemo en underrättelse. Underrättelsen visas en gång per session.
+Uppladdningar
+,% 1 (port% 2)
+Skriver ut den fullständiga bibliografin
+Laddar projektComment
+utf- 16
+Sök A
+Inköpslista@ title: window
+Säkerhetskopieringslogg:
+Anger gruppskuggfil (oftast / etc/ gshadow). Lämna det tomt om systemet inte använder en gruppskuggfil.
+Lätt stil, tredje revisionenComment
+Ljudkort
+Max paketstorlek% 1
+VARNING: Identiteten fÃ¶r vÃ¤rddatorn "% 1" har Ã¤ndrats. NÃ¥gon kan tjuvlyssna pÃ¥ anslutningen, eller sÃ¥ har administratÃ¶ren just Ã¤ndrat datorns nyckel. Hur som helst, bÃ¶r du verifiera datorns nyckelavtryck med datorns administratÃ¶r innan du ansluter. Nyckelavtrycket Ã¤r:% 2 Vill du acceptera vÃ¤rddatorns nya nyckel och ansluta Ã¤ndÃ¥?
+Stäng av datorn
+Det här är rutan använd för att ange mängden löst ämne i lösningen.
+Rutan används för att ändra sätt som mängden lösningsmedel anges, dvs. massa, mol, volym.
+GradTranslators: Radians
+SKÄRMConstellation name (optional)
+Kan inte skriva till användarens loggfil
+Kräver tre rätta svar i följd för att räknas som rätt
+Mätare: visa vilken egenskap som helst i rummet
+Lista med kontinenter att erövra för ett mål av typen Kontinenter. Du kan ändra listan genom att klicka på knappen "Välj kontinenter" ovan.
+Ã„ndringar i den hÃ¤r modulen krÃ¤ver Ã¥tkomst som systemadministratÃ¶r. NÃ¤r du verkstÃ¤ller dina Ã¤ndringar mÃ¥ste du ange systemadministratÃ¶rens lÃ¶senord.
+Ångra: Byt namn
+Certifikatet är ogiltigt.
+Optisk enhetStorage Volume device type
+Lägger till specialeffekter till din textComment
+Drivrutiner
+Visa stängningsknappar på flikar istället för ikoner
+femte sista@ item: inlistbox Every (Monday.) in month
+Klistra in enkel text
+Namnet på organisationen där du arbetar. Till exempel Knode AB.
+Förnamn efternamn@ item: intext sample attendee email name
+Skriv in inloggningsinformationen i förhållande till ditt konto på servern här. Särskilt för Kolab2- servrar: Registrera din UID (unika identifierare). Normalt är din UID din e- postadress på Kolab2- servern, men den kan också vara annorlunda. I det senare fallet, skriv in din UID. login name on the Kolab server
+Lägg till en kanal:
+Infrastruktur
+Redigera ändringslogg
+Lilla maskenAbout
+Skapa% 1
+Insticksprogram med sideffekter för KPresenterComment
+Port att lyssna på
+Visa formelindikering
+Nepomuk grafiskt användargränssnittsobjekt för kontaktresurserName
+KBFX- temapaketName
+% av naturlig bildstorlek
+översättning
+Nepomuks aktivitetshanterare
+Last:
+Koppla ner alla anslutna klienter från den lokala servern.
+Ljud
+Automatiska meddelanden
+Ett fel uppstod vid försök att skriva till% 1.
+Lokala standardvärden.
+*** Du ställde in kanalen till synlig
+Socketinställningar:
+Keep- demonName
+PDF Återställ riktningsformatering
+Artikel 2
+Artikel 1
+EXPERTUTVÄRDERING
+Ledare för FEC (La Fédération des Entreprises du Congo) i Aru-området.
+Verkan
+HÄRIGENOM FÖRESKRIVS FÖLJANDE.
+Exempel på surrning av traktor (islag från sidan)
+Renhetsgrad [1]
+De åtgärder som föreskrivs i detta direktiv är förenliga med yttrandet från ständiga kommittén för livsmedelskedjan och djurhälsa.
+Artikel 2.1
+.3 Brandfarliga delar av förbränningsanläggningar.
+den period då andelsägarna ska kunna fortsätta att teckna och begära inlösen av andelar i det överlåtande fondföretaget,
+Vallmo
+Berörda medlemsstater ska begära in ytterligare studier för att färdigställa riskbedömningen för vattenlevande organismer och ytterligare studier för att slutföra identifikationen av ämnets nedbrytningsprodukter vid fotolys i vatten.
+Gällande nationell lagstiftning om införskaffande av djur, djurhållning, skötsel och användning av djur för vetenskapliga ändamål.
+om ändring av direktiv 2003/71/EG om de prospekt som ska offentliggöras när värdepapper erbjuds till allmänheten eller tas upp till handel och av direktiv 2004/109/EG om harmonisering av insynskraven angående upplysningar om emittenter vars värdepapper är upptagna till handel på en reglerad marknad
+Medlemsstaterna ska sätta i kraft de bestämmelser i lagar och andra författningar som är nödvändiga för att följa detta direktiv senast den 1 juli 2012.
+CIPAC-nr 594
+artikel 2.11 i syfte att specificera tillämpningen av artikel 17 i rådets direktiv 78/660/EEG inom ramen för detta direktiv,
+Kommissionen ska genom delegerade akter i enlighet med artikel 27.2a, 27.2b och 27.2c, och med förbehåll för de villkor som anges i artiklarna 27a och 27b, anta åtgärder i syfte att beakta den tekniska utvecklingen på finansmarknaderna och för att specificera de krav som föreskrivs i punkterna 2, 4 och 5.”
+med beaktande av fördraget om Europeiska unionens funktionssätt,
+”Emittentens hemvist: Emittenten ska vara etablerad i euroområdet.”
+Ledamöternas skyldigheter och ämbetsutövning
+Den träder i kraft dagen efter det att den har offentliggjorts.
+Löpnumret ska tilldelas av den behöriga myndigheten eller det delegerade organet när förarbeviset utfärdas.
+Muskel
+För MRL-värde för mjölk ska ytterligare bestämmelser i kommissionens direktiv 98/82/EG beaktas. Antiparasitmedel/Medel mot ektoparasiter Alfakalcidol Ej tillämpligt Nötkreatur MRL-värde krävs inte Ej tillämpligt Endast för kalvande kor. Ingen uppgift Alfaprostol Ej tillämpligt Nötkreatur, svin, kanin, hästdjur MRL-värde krävs inte Ej tillämpligt Ingen uppgift Ingen uppgift Alkyldimetylbetainer från kokos Ej tillämpligt Alla livsmedelsproducerande djurslag MRL-värde krävs inte Ej tillämpligt Användning som hjälpämne. Ingen uppgift Allantoin Ej tillämpligt Alla livsmedelsproducerande djurslag MRL-värde krävs inte Ej tillämpligt Endast för utvärtes bruk. Ingen uppgift Allium cepa Ej tillämpligt Alla livsmedelsproducerande djurslag MRL-värde krävs inte
+I artikel 162.1 b i förordning (EG) nr 1234/2007 föreskrivs att skillnaden mellan priserna inom den internationella handeln för de produkter som avses i artikel 1.1 s och som förtecknas i del XIX i bilaga I i nämnda förordning och priserna inom unionens får täckas av ett exportbidrag då produkterna exporteras i form av varor som förtecknas i del V i bilaga XX till samma förordning.
+1 Övre panel med högst 50 öppna diagonalmaskor
+Hönsfåglar Cracidae
+Timorrisfågel
+Grön arassari
+Gurkväxter – oätligt skal
+HÄRIGENOM FÖRESKRIVS FÖLJANDE.
+Användning av mobila enheter för tillgång till Internet från andra platser än hemmet eller arbetsplatsen: bärbar dator via USB-modem eller datakort (med minst 3G mobilt bredband, t.ex. UMTS).
+EUROPEISKA KOMMISSIONEN HAR ANTAGIT DENNA FÖRORDNING
+Artikel 3
+Bifoga en kortfattad tidsplan för de viktigaste kategorierna av arbeten (t.ex. ett Ganttdiagram).
+Avsvavling
+Därtill kom att endast ett av de företag som den iranska exportören nämnde ingick i stickprovet och att denna unionstillverkares tekniska problem, som var begränsade till tidsperioden mellan september och mitten av oktober 2008, inte hade någon väsentlig betydelse för den övergripande skadesituationen.
+CPA 13.92.13: Bordslinne
+CPA 24.31.20: Kalldragna stänger och massiva profiler av annat legerat stål än rostfritt stål
+Andra verktyg för arborrning el. brotschning
+Elektriska stryk- och pressjärn
+NACE 30.30: Tillverkning av luftfartyg, rymdfarkoster o.d.
+Installation av ånggeneratorer, utom varmvattenpannor för centraluppvärmning, inklusive installation av rörledningssystem av metall i industrianläggningar
+CPA 25.93.12: Taggtråd av järn eller stål; tvinnad tråd, flätade band o.d., av koppar eller aluminium, utan elektrisk isolering
+”1 €/ % vol/hl” = € 1 × 40, vilket ger en tull på 40 € per hektoliter, eller
+Heptadekansyra
+Växtalkaloider, naturliga eller syntetiskt reproducerade, samt salter, etrar, estrar och andra derivat av växtalkaloider
+Omnämnanden i kapitlen 73–76 och 78–82 (med undantag av nr 7315) av delar till varor avser inte delar med allmän användning enligt ovanstående definition.
+Insprutningspumpar
+Keramiska kondensatorer med två eller flera lager
+För en strömstyrka av mer än 125 A
+Mindre än 42,8 €
+ronidazol
+nemonaprid
+Mono- och diglycerider av ätliga fettsyror med minst fyra kolatomer som förestrats med följande syror: ättiksyra, mjölksyra, citronsyra, vinsyra, mono- och diacetylvinsyra
+FRUKT, FÄRSK ELLER FRYST; NÖTTER
+Artikel 19
+Enligt artikel 3d.1 i direktiv 2003/87/EG ska 15 % av de utsläppsrätter som omfattas av kapitel II i det direktivet fördelas genom auktionering för perioden 1 januari 2012–31 december 2012, och enligt artikel 3d.2 ska samma procentandel av de utsläppsrätter som omfattas av kapitel II i direktiv 2003/87/EG fördelas genom auktion från och med den 1 januari 2013.
+Vid användning av uppgifter som rör unionstillverkarna som helhet baseras informationen i nedanstående tabeller på makroekonomiska uppgifter.
+Medlemsstat: …
+Energilogotyp
+G (minst effektiv)
+Kod för tredjeland [1]
+Tekniska standarder för genomförande
+Gemensamma metoder för att utvärdera hur specifika produkter eller distributionsprocesser inverkar på ett instituts finansiella ställning och på försäkringstagare, personer som omfattas av pensionssystem, förmånstagare och kundinformation.
+EUT C 184 E, 8.7.2010, s. 292.
+Referenshyperkubens nr [2], [3]
+Det finns förfaranden för att identifiera och hantera andra ledningsaktiviteters påverkan på säkerhetsstyrningssystemet.
+Kommissionens förordning (EG) nr 596/2004
+Duty Entitlement Passbook Scheme, DEPBS (tullkreditsystemet).
+Slutgiltig tull
+derkvantel
+lås anordning som brukas för att hålla dörren i stängt läge i förhållande till fordonskarossen med möjlighet till avsiktlig frigöring (öppning eller stängning).
+Ta bort säten och alla inre komponenter som kan påverka montering och användning av provningsutrustningen och alla detaljer på stolpar och alla delar som inte är konstruktionsdelar som överlappar dörren och orsakar felaktig placering av kraftappliceringsplattorna.
+Minsta horisontella vinklar, SM2:
+är den spektrala vägningsfunktionen,
+Tillverkaren får dock samla ihop uppgifter för samma typ från flera fabriker om dessa sköts med samma kvalitetssystem och har samma kvalitetsstyrning.
+Strålkastare som är konstruerade för att klara kraven både för höger- och vänstertrafik ska ha märkningar som anger de två inställningarna för fordonets optiska enhet eller för glödlampan i reflektorn.
+DEFINITIONER
+Vändskivekopplingar
+Styrkilar
+roteras vertikalt 10° upp eller ner (α = 10°, se figur 25),
+Schematiskt exempel på starten av WNTE-provningscykeln
+Mätningarna ska utföras då fällbara passagerarsittplatser och inställbara förarsäten med sina ryggstöd och andra sittplatsinställningar är i det normala användningsläge som angivits av tillverkaren.
+Särskilda föreskrifter för kopplingskraftkontroll
+Högst 20
+Gemensamma EES-kommitténs beslut
+Artikel 4
+Artikel 2
+EUT L 75, 23.3.2010, s. 25.
+Upptagande av verksamma ämnen i bilaga I, IA eller IB
+Inga konstitutionella krav angivna.
+Europaparlamentet godkänner avslutandet av räkenskaperna för det gemensamma företaget Sesar för budgetåret 2009.
+Se domstolens dom av den 6 september 2006 i mål C-88/03, Portugal mot kommissionen, punkt 81, som det hänvisas till i fotnot 49. Se förstainstansrättens dom av den 9 september 2009 i mål T-227/01, Diputación Foral de Álava m.fl. mot kommissionen, ännu ej offentliggjord, punkt 179 och av den 9 september 2009 i mål T-230/01, Diputación Foral de Álava m.fl. mot kommissionen, ännu ej offentliggjord, punkt 190.
+Den bestämmelsen är knuten till nedskrivning av det teoretiska redovisningsvärdet och inte till finansiellt mervärde.
+Om det förekommer diskrepanser mellan detta beslut och den allmänna dokumentationen ska den förra ges tolkningsföreträde.
+Inget av de undersökta företagen omfattades av detta system under undersökningsperioden.
+Eftersom NorthLink 2 transporterade 295913 passagerare 2008, står rabattsystemet för endast 1,6 % av passagerartransporterna med NorthLink 2.
+Utfärdat i Bryssel den 22 februari 2011.
+Dessutom framgår det att det avgörande kriteriet för att fastställa budgetbidragets årliga belopp, kumulerat med det belopp som enligt planerna ska avsättas från resurserna från tv-licensavgiften, kommer att vara nettokostnaderna för utförandet av de public servicetjänster som ålagts France Télévisions och inte intäkterna från de nya skatterna.
+Domstolen förklarade i sin dom [12] som avkunnades den 22 december 2008 att 1997 års beslut var ogiltigt då kommissionen hade underlåtit att bedöma finansieringen för den granskade åtgärden.
+Bilaga XI ska ersättas med följande:
+Artikel 3
+Förslaget ogiltigförklaras i den ursprungliga ansökningsomgången.
+eller [De fjäderfän, dagsgamla kycklingar eller kläckägg som beskriv ovan uppfyller bestämmelserna i artikel 14.1, 14.2 a–d och 14.2 andra stycket i rådets direktiv 2009/158/EG.]
+HÄRIGENOM FÖRESKRIVS FÖLJANDE:
+Rällutningen för en given järnvägslinje ska väljas i intervallet 1/20 till 1/40.
+Har släppts på EU-marknaden före ikraftträdandet av denna TSD
+Sintrad dolime
+Parternas trovärdighet ifrågasattes också eftersom det påstods att de vid import redovisade den berörda produkten enligt olika KN-nummer.
+en beskrivning av gränssnitt för lyftning och uppallning.
+Uppskattat värde (efter prov och omberäkning om tillämpligt)
+Effektfaktor mellan 0,85 och 1.
+Infrastrukturförvaltaren måste för järnvägsföretaget ange den faktiska prestanda som krävs.
+Denna skattebefrielse är avsedd att gälla alla institutioner som ingår sådana avtal, nämligen ömsesidiga försäkringsbolag (mutuelles) och dessas sammanslutningar, vilka regleras genom lagen om ömsesidiga försäkringsbolag (Code de la mutualité), pensionsinstitutioner (institutions de prévoyance), vilka regleras genom bok IX, avdelning III, i sjukförsäkringslagen (Code de la sécurité sociale) eller bok VII i landsbygdslagen (Code rural), och alla ordinära försäkringsbolag (entreprises d’assurance), vilka regleras genom försäkringslagen (Code des assurances).
+Försäkringsinstitutionen erbjuder skydd mot risken i utbyte mot de avgifter som den tar in.
+Metallkomplexfärgämnen eller pigment
+Bedömning och kontroll: Sökanden ska intyga att produkten uppfyller dessa krav och ska lämna ett exemplar av bruksanvisningen till det behöriga organet.
+Som nämndes i skälen 109, 108 och 111 kan överföringen av tillgångar från Parex banka till Citadele banka anses utgöra ett övertagande av osäkra tillgångar.
+EUT L 379, 28.12.2006, s. 5.
+Med hänsyn till omständigheterna kring försvinnandet vidarebefordra formuläret M till alla behöriga Sirenekontor, i syfte att snabbt tillhandahålla alla tillgängliga uppgifter om den försvunna personen.
+Uppgifter om växtföljder och jordbruksmetoder på gårdar som omfattas av enskilda undantag ska samlas in och uppdateras varje år.
+1049 BRUXELLES/BRUSSEL
+Västra befälsområdet – An (delstaterna Rakhine och Chin)
+De åtgärder som föreskrivs i detta beslut är förenliga med yttrandet från förvaltningskommittén för den samlade marknadsordningen inom jordbruket.
+Denna begränsade möjlighet till substitution verkar bero på de differentierade slutanvändningarna och de stora prisskillnaderna (285 euro/m3 för OSB-skivor och 117 euro/m3 för spånskivor).
+Genom denna regel begränsades möjligheten till förlustöverföring till företag som i juridiskt och ekonomiskt hänseende är liktydiga med det företag inom vilket förlusten uppstod.
+Kommissionen påpekar att enligt fast rättspraxis i domstolen måste den berörda medlemsstaten lägga fram bevis för att åtgärden är berättigad i detta hänseende [32].
+I denna ursprungliga värdering uppskattades i övrigt värdet på fastigheter för höghus till 60–75 euro per kvadratmeter.
+tillåten/endast tillåten för nödbroms/ej tillåten.
+EUT C 228, 17.9.2005, s. 13.
+EUT L 37, 11.2.2011, s. 25.
+I beslut 2009/470/EG fastställs förfaranden för finansiellt stöd från unionen för särskilda veterinäråtgärder, inbegripet nödåtgärder.
+Artikel 3
+Avtalet genom skriftväxling mellan Europeiska gemenskapen och Konungariket Norge om ett samarbetsprogram för ekonomisk tillväxt och hållbar utveckling i Rumänien.
+Savennières-Roche-aux-Moines, eventuellt följt av Val de Loire
+Detta beslut bör genomföras och tillämpas i full överensstämmelse med de principer om skydd av personuppgifter som finns i Europaparlamentets och rådets direktiv nr 45/2001/EG av den 18 december 2000 (om skydd för enskilda personer med avseende på behandling av personuppgifter och om det fria flödet av sådana uppgifter) [5].
+Eftersom innehavare av en resehandling kan få problem om en medlemsstat inte har meddelat sitt ställningstagande beträffande denna resehandling, bör det införas en mekanism som gör det obligatoriskt för medlemsstaterna att ta ställning till om de erkänner handlingarna eller inte.
+Varje integritetsmeddelande bör överensstämma med den informationsplikt som föreskrivs i dataskyddsdirektivet, innehålla en länk till kommissionens integritetsmeddelande och fler upplysningar, bl.a. kontaktuppgifter, om den behöriga myndigheten i fråga och om eventuella nationella begränsningar i rätten till tillgång till uppgifter eller rätten till information.
+Hänvisningar till det upphävda direktivet ska anses som hänvisningar till det här direktivet och ska läsas i enlighet med jämförelsetabellen som anges i bilagan.
+Under förutsättning att oryzalin i enlighet med Europaparlamentets och rådets förordning (EG) nr 1272/2008 [7] klassificeras som ett ämne som ”misstänks kunna orsaka cancer” ska de berörda medlemsstaterna begära att ytterligare bekräftande uppgifter lämnas om relevansen av metaboliterna OR13 [8] och OR15 [9] och den motsvarande riskbedömningen avseende grundvattnet.
+DEL A
+Förvaringsinstitutet bör ha sitt stadgeenliga säte eller en filial i samma land som AIF-fonden.
+allvarligt eller systematiskt har överträtt de bestämmelser som har antagits enligt detta direktiv, eller
+Eventuella ändringar i den högsta nivå av finansiell hävstång som AIF-förvaltaren får använda för en AIF-fonds räkning samt eventuell rätt att förfoga över säkerheter eller andra garantier som lämnats enligt ordningen för finansiell hävstång.
+Den institution som invänder mot den delegerade akten ska ange skälen för detta.
+Artikel 1.1 första till fjärde strecksatserna
+Garantin måste uppfylla följande kriterier:
+Information om hur man går tillväga för att avgöra sannolikheten för att en gäldenär ställer in betalningarna, liksom data om ratingkategorierna och därtill hörande sannolikheter för betalningsinställelse på ett års sikt som används för att bestämma godtagbara ratingkategorier.
+KOMPLETTERANDE MINSTA GEMENSAMMA GRUNDELEMENT
+ECB Europeiska centralbanken
+Denna statistik bidrar i synnerhet till sammanställningen av sektorsvisa räkenskaper och finansräkenskaper för euroområdet och till den gemensamma redovisningen av unionens och euroområdets betalningsbalans i samarbete med Europeiska kommissionen (Eurostat).
+Investeringsbidrag
+Ämnet ska uppfylla renhetskriterierna i kommissionens direktiv 2008/84/EG [3]
+Utanför kontorstid ska nätverksmedlemmarna, genom ett samtal till ett nödtelefonnummer vid kommissionens kontaktpunkt, meddela att ett varningsmeddelande eller ett uppföljningsmeddelande till ett varningsmeddelande har vidarebefordrats.
+Medborgarskap a) tunisiskt, b) belgiskt (sedan den 8 november 1993).
+Dag som avses i artikel 2a.4 b: den 17 oktober 2001.”
+Avsnitt 2
+Genom rådets beslut 2010/36/EG [2] godkändes interimsavtalet om handel och handelsrelaterade frågor mellan Europeiska gemenskaperna, å ena sidan, och Republiken Serbien, å andra sidan [3] (nedan kallat interimsavtalet) den 29 april 2008. I detta anges att de bestämmelser i stabiliserings- och associeringsavtalet som rör handel och handelsrelaterade frågor och som ska genomföras tidigare.
+Fordonsegenskaper.
+Ingen av de berörda parterna kommenterade valet av Turkiet trots att de gavs tillfälle till detta.
+Operatör med kod TAIL NB:N177EL
+Operatör med kod TAIL NB:N245US
+Deras synpunkter kommer att analyseras och, om det är motiverat, beaktas innan några slutgiltiga avgöranden träffas.
+konserverats genom någon annan metod än garvning,
+Salmonella: inga fynd i 25 g: n = 5, c = 0, m = 0, M = 0
+HÄRIGENOM FÖRESKRIVS FÖLJANDE.
+Genom Europaparlamentets och rådets förordning (EG) nr 850/2004 av den 29 april 2004 om långlivade organiska föroreningar och om ändring av direktiv 79/117/EEG [2] införlivas i unionens lagstiftning de åtaganden som ingår i Stockholmskonventionen om långlivade organiska föroreningar (nedan kallad konventionen), godkänd genom rådets beslut 2006/507/EG [3], och i 1998 års protokoll till 1979 års konvention om långväga gränsöverskridande luftföroreningar om långlivade organiska föreningar (nedan kallat protokollet), godkänt genom rådets beslut 2004/259/EG [4].
+Verkningar av den dumpade importen
+Koden ”ZZ” betecknar ”övrigt ursprung”.
+Radio- och televisionssändningar.
+Namnförtydligande
+Tillverkaren/leverantören ska specificera typ av utrustning.
+Om ingen M-faktor anges i tabell 3.1 ska tillverkaren, importören eller nedströmsanvändaren fastställa en eller flera M-faktorer utifrån de uppgifter om ämnet som finns tillgängliga.
+Mer än 60
+paritet antalet tidigare födslar eller dödfödslar (0, 1, 2, 3 eller fler tidigare födslar eller dödfödslar). f)
+Kvalitet på skrot som härrör från återvinning
+Förordning (EG) nr 1831/2003 innehåller bestämmelser om godkännande av fodertillsatser samt de skäl och förfaranden som gäller för sådana godkännanden.
+EUT L 396, 30.12.2006, s. 1.
+Den föreslagna ändringen av villkoren i godkännandet rörande namnet på innehavaren av godkännandet är av rent administrativ natur och kräver inte någon ny utvärdering av de berörda tillsatserna.
+(euro/ton)
+Maka till Zin Maung Lun
+Operatör med kod ICAO_CODE:KTM
+Befälhavarens namn (ev. ändring under fiskeresan ska sändas i följande LOG-överföring)
+CIF om lämpligt
+STICKPROVSVÄGNING
+FISKELOGGBOK FÖR DET FARTYG SOM FISKERIPRODUKTERNA KOMMER IFRÅN HAR SKICKATS ELEKTRONISKT TILL MEDLEMSSTATENS BEHÖRIGA MYNDIGHETER
+Ursprung
+Löpnummer
+EUT C 222, 17.8.2010, s. 14.
+I avsnitt 3.1 om bly ska punkterna 3.1.6, 3.1.9, 3.1.10 och 3.1.11 ersättas med följande:
+Särskilt resthalter av karbendazim, cyflutrin, cyprodinil, diazinon, dimetoat, etion, fenitrotion, fenpropatrin, fludioxonil, hexaflumuron, lambda-cyhalotrin, metiokarb, metomyl, ometoat, oxamyl, fentoat och tiofanatmetyl.
+Det bör också noteras att rådet genom förordning (EG) nr 599/2009 [4] införde en slutgiltig antidumpningstull på 0–198 EUR per ton på import av den berörda produkten.
+bekräftelse av bokningsbegäran,
+Globalpriståg
+Överföring av kontroll från ett järnvägsföretag till ett annat av praktiska driftsmässiga, säkerhets- eller ansvarsrelaterade skäl. Exempel:
+Denna förordning bör börja tillämpas sex månader efter ikraftträdandet, så att aktörerna ges möjlighet att se till att bestämmelserna i förordningen följs.
+Företagsregistrering nr 111999 C
+arrowrot
+Artikel 2
+2- tiazol-4-yl-1H-benzimidazol
+ta särskild hänsyn till att metaboliter av dimetenamid-p kan orsaka förorening av grundvattnet när det verksamma ämnet används i områden med känsliga mark- och/eller klimatförhållanden,
+Produkter som återtagits från marknaden.
+Förväntade resultat och effekter i förhållande till utgångsläget och hur de bidrar till att uppnå EU-målen.
+Det är inte nödvändigt att utföra ett kroniskt toxicitetstest på ung fisk när ett test av toxicitet för fisk i tidiga livsstadier eller ett livscykeltest på fisk har utförts. Det är inte heller nödvändigt att utföra ett test av toxiciteten för fisk i tidiga livsstadier om ett livscykeltest på fisk har utförts.
+Där så är lämpligt ska ytterligare en uppskattning göras med hjälp av de uppgifter som erhållits om mängden restsubstanser som lätt kan avges (dislodgeable residues) under de föreslagna användningsförhållandena.
+Tillverkaren ska lägga fram relevant teknisk dokumentation för typgodkännandemyndigheterna.
+Namn
+Vattenhalt, om < 45 % eller > 65 %
+Foderhavremjöl
+De åtgärder som föreskrivs i denna förordning är förenliga med yttrandet från förvaltningskommittén för den samlade marknadsordningen inom jordbruket.
+Det är också viktigt att se till att aktörerna inte drabbas när spannmål fraktas till unionen för import.
+Fysiologiska tillväxtreglerande medel för växter
+Fordon som är avsett för skydd av personer eller varor ombord och har skottsäker pansarplåt.
+Mätning av främre och bakre infallsvinkel och rampvinkel
+De gavs även möjlighet att inom en viss tid efter detta slutgiltiga meddelande av uppgifter inkomma med synpunkter.
+CAS-nr 72459-58-6
+Myndigheten gjorde även bedömningsrapporten tillgänglig för allmänheten.
+Frukt och bär
+CPA 10.11.60: Andra djurdelar, inte ätliga, inte beredda
+Borrmaskiner, andra än arborrmaskiner, numeriskt styrda
+Självgående skrapor
+Maskiner för vattentvätt, blekning eller färgning
+Delar till bågar och infattningar
+DEFINITION AV UNIONSINDUSTRIN
+I så fall ska uppgifterna om en ACC3 tas bort från unionens databas över säkerhetsgodkända speditörer och kända avsändare.
+av följande skäl:
+Icke återbetalbar mervärdesskatt (moms) som erläggs av laboratorierna ska betraktas som en stödberättigande utgift enligt den här förordningen, förutsatt att laboratorierna tillsammans med den ekonomiska rapport som nämns i artikel 11.1 lämnar ett intyg från den berörda medlemsstatens finansministerium eller likvärdig myndighet om att laboratoriet är helt eller delvis momsbefriat och att dess verksamhet inte är momspliktig.
+Regleringsåret 2010/11
+Utfärdad i Bryssel den 23 september 2011.
+Dessutom stred styrkor som stöder Somalias federala övergångsregering mot rebeller från al-Shabaab och Hizbul Islam den 11 - 12 juli 2009 vilket ledde till att över 60 människor miste livet.
+Den ska tillämpas från och med den 1 januari 2012.
+valnötter
+linser
+Kommissionen underrättade officiellt de sökande företagen, exporterande tillverkare, importörer och användare som den visste var berörda samt företrädarna för exportlandet om inledandet av en översyn vid giltighetstidens utgång.
+Aktivitet/kg helfoder med en vattenhalt på 12 %
+Artikel 2
+Utom jungfruoljor och olivoljor
+EGT L 183, 12.7.2002, s. 51.
+Europeiska kommissionen
+Dioxiner (summan av polyklorerade dibenso-para-dioxiner (PCDD) och polyklorerade dibensofuraner (PCDF) uttryckt i toxiska ekvivalenter (TEQ) enligt Världshälsoorganisationen (WHO) med användning av WHO:s toxiska ekvivalensfaktorer (WHO-TEF).
+”Ströbröd” eller ”skorpsmulor”
+Genom undantag från punkt 1 får medlemsstaterna besluta att inte konvertera icke JAR-förenliga flygplans- och helikoptercertifikat som de har utfärdat till och med den 8 april 2014.
+När en medlemsstat använder sig av bestämmelserna i punkterna 2–6 ska den meddela kommissionen och byrån.
+En sökande till ett BPL, SPL eller PPL ska ha uppvisat en teoretisk kunskapsnivå som är lämplig för de befogenheter som tilldelas genom prov i följande:
+Undertecknarna ska bara ha åtkomst till de uppgifter som lämnats under den session då de fyller i stödförklaringsblanketten.
+När tillträdesrätten till ett externt plattformskonto har stängts av ska administratören också stänga av den externa plattformens tillträdesrätt till användarkonton enligt artikel 21.4.
+I fråga om lufttrafikföretaget Zorex S.A hade Aesa inlett åtgärder för att dra in tillståndet och tillfälliga åtgärder för att stoppa dess verksamhet i maj 2011.
+Den ansökan som avses i punkt 1 ska innehålla följande upplysningar:
+EGT L 8, 12.1.2001, s. 1.
+HÄRIGENOM FÖRESKRIVS FÖLJANDE.
+med beaktande av rådets förordning (EG) nr 1234/2007 av den 22 oktober 2007 om upprättande av en gemensam organisation av jordbruksmarknaderna och om särskilda bestämmelser för vissa jordbruksprodukter (”förordningen om en samlad marknadsordning”) [1], särskilt artiklarna 144.1 och 148 jämförda med artikel 4, och
+Om medlemsstaternas behöriga myndigheter beslutar att ett anbud inte är giltigt ska de informera anbudsgivaren om detta.
+med beaktande av fördraget om Europeiska unionens funktionssätt,
+När det hänvisas till denna punkt, ska artikel 5 i förordning (EU) nr 182/2011 tillämpas.
+Dessutom bör dessa medlemsstater, av förenklingsskäl, kunna ersätta inlämnande av en ansökan som föreskrivs i artikel 62 i den förordningen med inlämnandet av en anmälan om deltagande.
+I fråga om kontroller av stödsystemen för nötkreatur och när en medlemsstat använder sig av den möjlighet som föreskrivs i artikel 16.3 ska även potentiellt stödberättigande nötkreatur kontrolleras.
+I enlighet med artikel 6.2 första stycket i förordning (EG) nr 510/2006 har Italiens ansökan om registrering av beteckningen ”Salva Cremasco” offentliggjorts i Europeiska unionens officiella tidning [2].
+Jämförelse
+Antal battericeller: …
+Strömregistreringssystemets noggrannhet ska ligga inom ± 0,5 A och strömmen ska ha en upplösning av ± 0,05 A.
+Det särskilda numret för det land som beviljat/utökat typgodkännandet (se typgodkännandebestämmelserna i föreskrifterna).
+Definitioner
+Bilaga 2C — Typgodkännandemärkets utformning
+Bilaga 5N — Prov för motståndskraft mot vibrationer
+hållbarhet.
+Provning av bandens hållfasthet efter konditionering
+Följande ska läggas till i anpassningen i del 1.1 punkt 10 (Europaparlamentets och rådets förordning (EG) nr 998/2003):
+Artikel 1
+”28e.
+Artikel 4
+EUT L 181, 15.7.2010, s. 12.
+av den 11 juni 2010
+Bestämmelserna i förordning (EG) nr 471/2009 ska inom ramen för detta avtal tillämpas med följande anpassningar:
+Schweiz undantas från att göra uppdelningen för kapitaltransfereringar D.9 på D.91 och D.9N.
+Vissa företag, särskilt fasta driftsställen/filialer och dotterbolag till EU- och EES-företag med juridisk hemvist (Sitz) utanför Tyskland, skulle inte omfattas av åtgärden.
+Om en kontanthanterare har lagt ut äkthets- och kvalitetskontrollen på entreprenad till en annan kontanthanterare, ska uppgifterna lämnas av den kontanthanterare som har utsetts enligt artikel 3.2.
+De ekologiska kriterierna liksom de tillhörande bedömnings- och kontrollkraven bör gälla i fyra år från och med den dag då detta beslut delges.
+av följande skäl:
+Tillväxten av Listeria monocytogenes i en ätfärdig produkt påverkas starkt av produktens pH, vattenaktivitet och förvaringstemperatur.
+Vice ordförande
+Artikel 3
+Tillståndet ska uteslutande gälla för sorter som anges i Finlands nationella sortlista och som odlas endast i Finland.
+Immunitet och privilegier för den särskilda representanten och hans stab
+Kommissionens beslut
+Kommentarer: Detta har alltid varit en nationell bestämmelse i Förenade kungariket.
+För det fjärde noterar kommissionen att även om den polska tonnageskatteordningen endast kommer att vara tillämplig på ”fullständiga” fartygsförvaltare, dvs. de som samtidigt ansvarar för förvaltning av besättning och teknisk förvaltning, eftersom sådana förvaltare även ansvarar för förvaltning av besättningar, bör de särskilda kraven i avsnitt 6 i riktlinjerna för fartygsförvaltare ändå vara tillämpliga även på dessa förvaltare.
+Genom detta beslut inrättas den europeiska databasen för medicintekniska produkter (Eudamed) som databas i enlighet med artikel 10b.3 i direktiv 90/385/EEG, artikel 14a.3 i direktiv 93/42/EEG och artikel 12.3 i direktiv 98/79/EC.
+MILITÄRA BEFÄLHAVARE ANSVARIGA FÖR FÄNGELSER OCH POLIS
+Kommissionen ska utse en säkerhetsansvarig för systemet bland sina tjänstemän.
+Den 8 januari, 24 januari, 6 februari, 13 februari och10 mars 2008 hölls möten mellan företrädare för Förenade kungariket och kommissionen.
+Irland
+Mängden CO2-utsläpp [t CO2] från CO2 som transporteras i transportnätverket, inklusive från förseglingar, ventiler, mellanliggande kompressorstationer och mellanliggande lagringsanläggningar,
+Det andra huvudavtalet om det gemensamma företaget (MJVA2)
+Rödspov
+FÖRMÅGAN ATT ÅTERSTÄLLA LÖNSAMHETEN I BAS- OCH STRESSCENARIER
+I en bilaga till skrivelsen av den 30 oktober 2009 lämnade Nederländerna uppgifter om import och export, vilka visade att importen från Tyskland till Nederländerna hade ökat under senare år och att exporten från Nederländerna till Tyskland och Belgien hade minskat [32].
+FINANSSEKTORN
+Övriga upplysningar: Ingår i forskningsavdelningen vid Irans atomenergiorgan.
+Efter en allsidig bedömning fastslås härmed att det föreligger ett alltför stort underskott i Bulgarien.
+av den 26 juli 2010
+EGT L 130, 15.5.1992, s. 67.
+Detta beslut avser de granskade stödåtgärderna och ska genomföras omgående, särskilt vad beträffar återkravet av alla de individuella stöd som beviljats på grundval av dessa stödundantag, med undantag för stöd som har beviljats för särskilda projekt och som när det beviljades uppfyllde samtliga villkor i förordningen om stöd av mindre betydelse [63], eller samtliga villkor för ett tillämpligt undantag eller i en stödordning som godkänts av kommissionen.
+I samband med beslut 2008/448/EG har kommissionen redan bedömt de strängare regler som Danmark tillämpar när det gäller E249 och E250.
+Ny struktur
+Ingen begränsning av användningen fram till den 31 december 2011. 5 mg per lampa får användas efter den 31 december 2011
+Förmögenhetsförvaltning erbjuds i Nederländerna, Belgien, Luxemburg, Schweiz och olika länder i Asien, Central- och Östeuropa.
+Agerar för IRISL och utför bulktjänster.
+Eftersom det brådskar att genomföra den utökade vaccinationsplanen för att förhindra spridning till andra medlemsstater är det motiverat att det finansiella stödet från unionen görs tillgängligt från och med den 9 december 2009, då ansökan om finansiering av planen förelades kommissionen.
+Från detta besluts ikraftträdande och fram till avtalets ikraftträdande ska ändringarna av bilaga IV E och bilaga IV F tillämpas provisoriskt.
+Fotografitjänster (CPC 87501–87507)

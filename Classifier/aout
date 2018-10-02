@@ -1,0 +1,164 @@
+#################################################################################
+##                                                                             ##
+##                   Unit tests for Language Detection                         ##
+##                                                                             ##
+#################################################################################
+
+----------------------------------------------------------------------------------------------------------------------------------------
+Language : [af]
+String   : [Die oortreder moet al die lotto nommer kombinasies vanaf elke trekking sedert die lotto ingestel is memoriseer....]
+Result   : [da]
+Status   : [ERROR : Classifier failure!!!]
+----------------------------------------------------------------------------------------------------------------------------------------
+Language : [ar]
+String   : [وحتى حزيران/يونيه 2005، كان لدى 68 بلداً شركة واحدة على الأقل معتمدة �...]
+Result   : [ar]
+Status   : [OK]
+----------------------------------------------------------------------------------------------------------------------------------------
+Language : [bg]
+String   : [Тъй като измененията на условията за разрешителното не се дължат ...]
+Result   : [bg]
+Status   : [OK]
+----------------------------------------------------------------------------------------------------------------------------------------
+Language : [es-ES]
+String   : [Les conclusions d'aquesta tesi posen en manifest la necessitat de una millor estratègia de comunicació que permeti als...]
+Result   : [es-ES]
+Status   : [OK]
+----------------------------------------------------------------------------------------------------------------------------------------
+Language : [zh-CN]
+String   : [本 演示 的 目标 观众 是 任何 使用 商业 或 企业 exchange 基础 结构 的 公司 中 的 “ 重要 �...]
+Result   : [zh-CN]
+Status   : [OK]
+----------------------------------------------------------------------------------------------------------------------------------------
+Language : [cs]
+String   : [Do přizpůsobených materiálů partner nezahrne žádné duševní vlastnictví třetí strany, aniž by byl oprávně...]
+Result   : [cs]
+Status   : [OK]
+----------------------------------------------------------------------------------------------------------------------------------------
+Language : [da]
+String   : [ImageDirect – Onlineselvbetjeningstjeneste til udvikling og vedligeholdelse af systemafbildninger...]
+Result   : [da]
+Status   : [OK]
+----------------------------------------------------------------------------------------------------------------------------------------
+Language : [nl]
+String   : [De conventionele niet-klinische studies werden niet uitgevoerd, maar buiten de gegevens die in andere rubrieken van de s...]
+Result   : [nl]
+Status   : [OK]
+----------------------------------------------------------------------------------------------------------------------------------------
+Language : [en]
+String   : [Furthermore, the subcommittee recommends that the federal government, in collaboration with the provinces, establish tho...]
+Result   : [en]
+Status   : [OK]
+----------------------------------------------------------------------------------------------------------------------------------------
+Language : [et]
+String   : [Selleks et väidet võiks uue koostisega happeliste jookide kohta kasutada, peavad need vastama selle toidu kirjeldusele...]
+Result   : [et]
+Status   : [OK]
+----------------------------------------------------------------------------------------------------------------------------------------
+Language : [fi]
+String   : [levykuvan vakaus ja pitkän käyttöiän (15 kuukautta) tuki osana Dellin globaalit vakioalustat -ohjelmaa auttavat väh...]
+Result   : [fi]
+Status   : [OK]
+----------------------------------------------------------------------------------------------------------------------------------------
+Language : [fr]
+String   : [Honorables sénateurs, que le sénateur Taylor me permette de le rassurer un tant soit peu....]
+Result   : [fr]
+Status   : [OK]
+----------------------------------------------------------------------------------------------------------------------------------------
+Language : [gl-ES]
+String   : [Mentres que algunhas formas son capaces de realizar movementos independentes e poden nadar verticalmente centos de metro...]
+Result   : [gl-ES]
+Status   : [OK]
+----------------------------------------------------------------------------------------------------------------------------------------
+Language : [de]
+String   : [Die Rahmenrichtlinie besagt, dass keine Wasserbewegung ohne vorheriges strenges Abwägen ihrer Notwendigkeit und nicht v...]
+Result   : [de]
+Status   : [OK]
+----------------------------------------------------------------------------------------------------------------------------------------
+Language : [el]
+String   : [Ως «έγκριση οχήματος» νοείται η έγκριση ενός τύπου οχήματος κατη�...]
+Result   : [el]
+Status   : [OK]
+----------------------------------------------------------------------------------------------------------------------------------------
+Language : [hu]
+String   : [felhívja a közös vállalkozást, hogy nyújtson be jelentést a mentesítésért felelős hatóság részére a már ...]
+Result   : [hu]
+Status   : [OK]
+----------------------------------------------------------------------------------------------------------------------------------------
+Language : [gd-IE]
+String   : [Ina theannta sin, glacadh an cur chuige sin i gcás dhá thionscnamh earnála i réimse an oideachais thríú leibhéil ...]
+Result   : [gd-IE]
+Status   : [OK]
+----------------------------------------------------------------------------------------------------------------------------------------
+Language : [it]
+String   : [La remunerazione deve poter essere pagata a partire dalla data in cui la BCN che parteciperà all’Eurosistema sarà in...]
+Result   : [it]
+Status   : [OK]
+----------------------------------------------------------------------------------------------------------------------------------------
+Language : [lv]
+String   : [Attiecībā uz katru no saraksta 7.1. punktā izvēlētajiem atbalsta instrumentu veidiem, lūdzu, aprakstiet atbalsta ...]
+Result   : [lv]
+Status   : [OK]
+----------------------------------------------------------------------------------------------------------------------------------------
+Language : [lt]
+String   : [Pareiškėjas toliau teigė, kad visiškai tikėtina kad eksportuojantys Indijos gamintojai eksportavo į Sąjungą nedi...]
+Result   : [lt]
+Status   : [OK]
+----------------------------------------------------------------------------------------------------------------------------------------
+Language : [mt]
+String   : [Min għandu l-kariżma biex jgħin kreaturi bħal ma huma l-annimali, ara kemm iktar ikollu l-kariżma biex jgħin lill-...]
+Result   : [mt]
+Status   : [OK]
+----------------------------------------------------------------------------------------------------------------------------------------
+Language : [ja-JP]
+String   : [指定 し た 設定 オプション の 値 を 設定 し ます 。 成功 時 に 元 の 値 を 、 失敗 し �...]
+Result   : [ja-JP]
+Status   : [OK]
+----------------------------------------------------------------------------------------------------------------------------------------
+Language : [ko]
+String   : [현재 페인트 레이어의 수정자 스택에서 종료 결과 표시 버튼을 사용하면 오버레이 페인트 ...]
+Result   : [ko]
+Status   : [OK]
+----------------------------------------------------------------------------------------------------------------------------------------
+Language : [pl]
+String   : [EMEA/ 202973/ 2009 Pytania i odpowiedzi dotyczące procedury arbitrażu dla preparatu Tritace, tabletki i kapsułki twar...]
+Result   : [pl]
+Status   : [OK]
+----------------------------------------------------------------------------------------------------------------------------------------
+Language : [pt-PT]
+String   : [Use esta opção para mudar a pasta que irá conter os ficheiros de registo gerados pelo programa. Esta opção poderá ...]
+Result   : [pt-PT]
+Status   : [OK]
+----------------------------------------------------------------------------------------------------------------------------------------
+Language : [ro]
+String   : [Privilegiile acordate personalului EUAM și imunitatea față de jurisdicția penală a Ucrainei nu îl exceptează de l...]
+Result   : [ro]
+Status   : [OK]
+----------------------------------------------------------------------------------------------------------------------------------------
+Language : [ru]
+String   : [Если две CMTS установлены с одними и теми же параметрами частоты во�...]
+Result   : [ru]
+Status   : [OK]
+----------------------------------------------------------------------------------------------------------------------------------------
+Language : [sk]
+String   : [Pokrok sa dosahuje aj pri posilňovaní hospodárenia s verejnými financiami prostredníctvom zlepšeného systému pre...]
+Result   : [sk]
+Status   : [OK]
+----------------------------------------------------------------------------------------------------------------------------------------
+Language : [sl]
+String   : [Izračunana je bila z uporabo serije podatkov, ki temelji na Uredbi Evropskega parlamenta in Sveta (ES) št. 91/2003 z ...]
+Result   : [sl]
+Status   : [OK]
+----------------------------------------------------------------------------------------------------------------------------------------
+Language : [es]
+String   : [Su médico le realizará un análisis de sangre antes de que reciba RoActemra, para determinar si tiene un recuento bajo...]
+Result   : [es]
+Status   : [OK]
+----------------------------------------------------------------------------------------------------------------------------------------
+Language : [sv]
+String   : [För det fjärde noterar kommissionen att även om den polska tonnageskatteordningen endast kommer att vara tillämplig ...]
+Result   : [sv]
+Status   : [OK]
+
+
+Done!

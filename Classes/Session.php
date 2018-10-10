@@ -45,7 +45,10 @@ class Session
         $domainWhiteList = [
             'iadaatpa.com',
             'iadaatpa.org',
-            'iadaatpa.eu'
+            'iadaatpa.eu',
+            'app.iadaatpa.com',
+            'app.iadaatpa.org',
+            'app.iadaatpa.eu'
         ];
 
         $currentDomain = $_SERVER['SERVER_NAME'];

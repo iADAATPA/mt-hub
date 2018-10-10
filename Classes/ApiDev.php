@@ -1033,7 +1033,7 @@ class ApiDev
         // Validate segments
         if ($validateSegments) {
             if (!is_array($segments)) {
-                $segments[] = $segments;
+                $segments = [$segments];
             }
 
             $response = $this->validateSegments($segments);

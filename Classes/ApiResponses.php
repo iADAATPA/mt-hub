@@ -63,6 +63,7 @@ class ApiResponses
     const FILE_NOT_BASE64_ENCODED = 31;
     const ERROR_CONTENT = 27;
     const ERROR_ACCESSING_FILE = 28;
+    const INVALID_SUPPLIER_ID = 29;
 
     private $data = null;
     private $message = null;

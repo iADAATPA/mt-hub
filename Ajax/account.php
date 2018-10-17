@@ -12,13 +12,29 @@ $id = empty($_POST['id']) ? null : $_POST['id'];
 $accounts = new Accounts($id);
 $accountsInitial = clone($accounts);
 $adminId = empty($_POST['adminid']) ? $accounts->getAdminId() : $_POST['adminid'];
+$cache = empty($_POST['cache']) ? false : true;
+$activiaTm = empty($_POST['activiaTm']) ? false : true;
+$activiaTmUserName = empty($_POST['activiaTmUserName']) ? $accounts->getActiviaTmUserName() : $_POST['activiaTmUserName'];
+$activiaTmPassword = empty($_POST['activiaTmPassword']) ? $accounts->getActiviaTmPassword() : $_POST['activiaTmPassword'];
+
+if ($activiaTm && !empty($activiaTmUserName) && !empty($activiaTmPassword)) {
+    $token = Encryption::generateKey();
+    $activiaTmPassword = Encryption::encrypt($activiaTmPassword, $token);
+} else {
+    $activiaTmPassword = null;
+    $activiaTmUserName = null;
+    $token = null;
+}
+
 $active = empty($_POST['active']) ? false : true;
 $groupId = empty($_POST['groupid']) ? $accounts->getGroupId() : $_POST['groupid'];
 $name = empty($_POST['name']) ? $accounts->getName() : $_POST['name'];
 $adminEmail = empty($_POST['adminEmail']) ? null : $_POST['adminEmail'];
 $userName = empty($_POST['userName']) ? null : $_POST['userName'];
 
-if ($adminEmail && !Mail::isValidEmail($adminEmail)) {
+if ($activiaTm && empty($activiaTmPassword) && empty($activiaTmUserName)) {
+    $returnCalls->setMessage(Session::t('Please enter a ActiviaTM Password and User Name'));
+} elseif ($adminEmail && !Mail::isValidEmail($adminEmail)) {
     $returnCalls->setMessage(Session::t('Please enter a valid Admin Email.'));
 } elseif (empty($name)) {
     $returnCalls->setMessage(Session::t('Please enter an account Name.'));
@@ -47,13 +63,18 @@ if ($adminEmail && !Mail::isValidEmail($adminEmail)) {
                 );
             }
         } else {
-            $returnCalls->setMessage(Session::t('Please choose another Username.'));
+            $returnCalls->setMessage(Session::t('Please choose another User Name.'));
         }
     }
 
     if ($adminId) {
         $accounts->setName($name);
         $accounts->setGroupId($groupId);
+        $accounts->setCache($cache);
+        $accounts->setActiviaTm($activiaTm);
+        $accounts->setActiviaTmUserName($activiaTmUserName);
+        $accounts->setActiviaTmPassword($activiaTmPassword);
+        $accounts->setToken($token);
         $accounts->setActive($active);
         $accounts->setApiToken(Users::generateToken(16));
         $accounts->setAdminId($adminId);
@@ -71,7 +92,7 @@ if ($adminEmail && !Mail::isValidEmail($adminEmail)) {
                 Log::save(Log::ACCOUNT_UPDATED, $id, Log::getObjectDifferences($accountsInitial, $accounts));
             }
 
-            $message = $id ? Session::t('Account') . ' [#' . $id . '] ' . Session::t('has been updated.') : Session::t('Account has been created.');
+            $message = $id ? Session::t('Account has been updated.') : Session::t('Account has been created.');
             $returnCalls->setMessage($message);
             $returnCalls->setData($response);
             $returnCalls->setStatusId(ReturnCalls::STATUSID_SUCCESS);

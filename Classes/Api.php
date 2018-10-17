@@ -29,6 +29,11 @@ class Api
     private $userName = null;
     private $password = null;
     private $callBackUrl = null;
+    private $cache = null;
+    private $activiaTm = null;
+    private $activiaTmUserName = null;
+    private $activiaTmPassword = null;
+    private $token = null;
 
     /**
      * @var ApiResponses
@@ -603,20 +608,38 @@ class Api
             return $response;
         }
 
-        // Check if the segments are cached
-        $cache = new Cache();
-        $cache->setEngineId($this->getEngineId());
-        $cache->setSupplierAccountId($this->getSupplierAccountId());
-        $cache->setSegments($this->getSegments());
-        $translatedSegments = $cache->getCachedTranslatedSegments();
+        // Check if local cache enabled and the segments are cached
+        if ($this->getCache()) {
+            $cache = new Cache();
+            $cache->setEngineId($this->getEngineId());
+            $cache->setSupplierAccountId($this->getSupplierAccountId());
+            $cache->setSegments($this->getSegments());
+            $translatedSegments = $cache->getCachedTranslatedSegments();
+        }
+
+        // Check for ActiviaTM. We use ActiviaTM only for a single segments.
+        if ($this->getActiviaTm()) {
+            $activiaTm = new ActviaTM($this->getActiviaTmUserName(), $this->getActiviaTmPassword());
+            $activiaTm->setDomain($this->getDomainName());
+            $activiaTm->setSrc($this->getSource());
+            $activiaTm->setTrg($this->getTarget());
+
+            if (is_array($this->getSegments()) && count($this->getSegments()) == 1) {
+                $segmetns = $this->getSegments();
+                $activiaTm->setSegment(reset($segmetns));
+                $translatedSegments = $activiaTm->getTM();
+            }
+        }
 
         if (empty($translatedSegments)) {
             //Translate the segments with all the options
             $translatedSegments = $this->makeRequest(UrlConfig::METHOD_TRANSLATE_ID);
 
             // store the segments in a cache
-            $cache->setTranslatedSegments($translatedSegments);
-            $cache->insert();
+            if ($this->getCache()) {
+                $cache->setTranslatedSegments($translatedSegments);
+                $cache->insert();
+            }
         }
 
         if (is_object($translatedSegments)) {
@@ -633,10 +656,17 @@ class Api
 
             if (is_array($this->getSegments())) {
                 foreach ($this->getSegments() as $key => $segment) {
+                    $translation = array_shift($translatedSegments);
                     $translationResponse[$key] = [
                         'segment' => $segment,
-                        'translation' => array_shift($translatedSegments),
+                        'translation' => $translation,
                     ];
+
+                    if ($this->getActiviaTm()) {
+                        $activiaTm->setSegment($segment);
+                        $activiaTm->setTranslation($translation);
+                        $activiaTm->addTM();
+                    }
                 }
             }
 
@@ -1127,6 +1157,12 @@ class Api
                     $supplierIds[] = $supplier['supplieraccountid'];
                 }
             };
+        } elseif (!is_numeric($this->getSupplierAccountId())) {
+            $this->apiResponses()->setStatusCode(ApiResponses::HTTP_400_CODE);
+            $this->apiResponses()->setCode(ApiResponses::INVALID_SUPPLIER_ID);
+            $this->apiResponses()->setMessage('Invalid <supplierId>');
+
+            return $this->apiResponses()->get();
         } else {
             $supplierIds[] = $this->getSupplierAccountId();
         }
@@ -1168,6 +1204,11 @@ class Api
                     $this->setPassword($password);
                     $supplierAccountId = $supplier['supplieraccountid'];
                     $this->setSupplierAccountId($supplierAccountId);
+                    $this->setCache($supplier['cache']);
+                    $this->setActiviaTm($supplier['activiatm']);
+                    $this->setActiviaTmUserName($supplier['activiatmusername']);
+                    $this->setActiviaTmPassword(Encryption::decrypt($supplier['activiatmpassword'], $supplier['activiatmtoken']));
+
                     break;
                 }
             }
@@ -1513,8 +1554,8 @@ class Api
             }
 
             $response = curl_exec($ch);
-            $httpStatus = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 
+            $httpStatus = curl_getinfo($ch, CURLINFO_HTTP_CODE);
             curl_close($ch);
 
             if ($httpStatus == ApiResponses::HTTP_200_CODE) {
@@ -1769,10 +1810,8 @@ class Api
      */
     public function setSupplierAccountId($supplierAccountId)
     {
-        if (is_numeric($supplierAccountId)) {
-            $this->getRequestLog()->setSupplierAccountId($supplierAccountId);
-            $this->supplierAccountId = $supplierAccountId;
-        }
+        $this->getRequestLog()->setSupplierAccountId($supplierAccountId);
+        $this->supplierAccountId = $supplierAccountId;
     }
 
     /**
@@ -1983,5 +2022,85 @@ class Api
     public function setCallBackUrl($callBackUrl)
     {
         $this->callBackUrl = $callBackUrl;
+    }
+
+    /**
+     * @return null
+     */
+    public function getCache()
+    {
+        return $this->cache;
+    }
+
+    /**
+     * @param null $cache
+     */
+    public function setCache($cache)
+    {
+        $this->cache = $cache;
+    }
+
+    /**
+     * @return null
+     */
+    public function getActiviaTm()
+    {
+        return $this->activiaTm;
+    }
+
+    /**
+     * @param null $activiaTm
+     */
+    public function setActiviaTm($activiaTm)
+    {
+        $this->activiaTm = $activiaTm;
+    }
+
+    /**
+     * @return null
+     */
+    public function getActiviaTmUserName()
+    {
+        return $this->activiaTmUserName;
+    }
+
+    /**
+     * @param null $activiaTmUserName
+     */
+    public function setActiviaTmUserName($activiaTmUserName)
+    {
+        $this->activiaTmUserName = $activiaTmUserName;
+    }
+
+    /**
+     * @return null
+     */
+    public function getActiviaTmPassword()
+    {
+        return $this->activiaTmPassword;
+    }
+
+    /**
+     * @param null $activiaTmPassword
+     */
+    public function setActiviaTmPassword($activiaTmPassword)
+    {
+        $this->activiaTmPassword = $activiaTmPassword;
+    }
+
+    /**
+     * @return null
+     */
+    public function getToken()
+    {
+        return $this->token;
+    }
+
+    /**
+     * @param null $token
+     */
+    public function setToken($token)
+    {
+        $this->token = $token;
     }
 }

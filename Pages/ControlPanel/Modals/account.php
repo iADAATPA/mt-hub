@@ -6,7 +6,7 @@ Session::authenticateUser(Groups::GROUP_ADMINISTRATOR);
 
 $id = empty($_GET['id']) || !is_numeric($_GET['id']) ? null : (int)$_GET['id'];
 
-$accounts = new Accounts($id);
+$account = new Accounts($id);
 
 $groups = new Groups();
 $groupList = $groups->getAll();
@@ -24,7 +24,7 @@ $usersList = $users->getAll();
         <div class="col-sm-6 col-xs-12">
         	<div class="form-group">
         		<label class="control-label" for="company"><?php echo Session::t('Name'); ?></label>
-				<input id="name" class="form-control" type="text" name="name" autofocus="autofocus" onfocus="cleanError()" value="<?php echo $accounts->getName(); ?>"/>
+				<input id="name" class="form-control" type="text" name="name" autofocus="autofocus" onfocus="cleanError()" value="<?php echo $account->getName(); ?>"/>
         	</div>
        	</div>
         <div class="col-sm-3 col-xs-12">
@@ -33,7 +33,7 @@ $usersList = $users->getAll();
 				<select id="groupid" class="form-control" name="groupid" onchange="cleanError()">
 				
 				<?php foreach ($groupList AS $group) {
-					$selected = ($group['id'] == $accounts->getGroupId()) ? 'selected' : '';
+					$selected = ($group['id'] == $account->getGroupId()) ? 'selected' : '';
 					echo '<option id="' . $group['id'] . '"' . $selected . '  value="' . $group['id'] . '">' . $group['name'] . '</option>';
 				} ?>
 				
@@ -43,7 +43,7 @@ $usersList = $users->getAll();
         <div class="col-sm-3 col-xs-12">
             <div class="form-group">
                 <label class="control-label" for="active"><?php echo Session::t('Active'); ?></label>
-                <?php Helper::printenableDisableOptions("active", $accounts->getActive(), "active"); ?>
+                <?php Helper::printenableDisableOptions("active", $account->getActive(), "active"); ?>
             </div>
         </div>
     </div>
@@ -55,7 +55,7 @@ $usersList = $users->getAll();
 				<select id="adminid" class="form-control" name="adminid" onchange="cleanError()">
 				
 				<?php foreach ($usersList AS $user) {
-					$selected = ($accounts->getAdminId() == $user['id']) ? 'selected' : '';
+					$selected = ($account->getAdminId() == $user['id']) ? 'selected' : '';
 					if ($user['accountid'] == Session::getAccountId()) {
 						echo '<option id="' . $user['id'] . '"' . $selected . '  value="' . $user['id'] . '">' . $user['name'] . ' [' . $user['email'] . ']</option>';
 					}
@@ -74,7 +74,7 @@ $usersList = $users->getAll();
             <?php if ($id) { ?>
             <div class="form-group">
                 <label class="control-label"><?php echo Session::t('Created'); ?></label>
-                <input disabled="disabled" class="form-control" type="text"  value="<?php echo $accounts->getCreated(); ?>"/>
+                <input disabled="disabled" class="form-control" type="text"  value="<?php echo $account->getCreated(); ?>"/>
             </div>
             <?php } else { ?>
                 <div class="form-group">
@@ -84,6 +84,43 @@ $usersList = $users->getAll();
             <?php } ?>
         </div>
     </div>
+    <?php if (($id && in_array($account->getGroupId(), [Groups::GROUP_SUPPLIER])) || empty($id)) { ?>
+    <div class="row">
+        <div class="col-sm-3 col-xs-12">
+            <div class="form-group">
+                <label class="control-label" for="cache"><?php echo Session::t('Local cache'); ?></label>
+                <?php Helper::printenableDisableOptions("cache", $account->getCache(), "cache"); ?>
+            </div>
+        </div>
+        <div class="col-sm-3 col-xs-12">
+            <div class="form-group">
+                <label class="control-label" for="activiaTm"><?php echo Session::t('ActiviaTM'); ?></label>
+                <?php Helper::printenableDisableOptions("activiaTm", $account->getActiviaTm(), "activiaTm"); ?>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label class="control-label"><?php echo Session::t('ActiviaTM User Name'); ?></label>
+                <input class="form-control"
+                       id="activiaTmUserName" <?php echo $account->getActiviaTm() ? '' : 'disabled="disabled"'; ?>
+                       name="activiaTmUserName" type="text"
+                       value="<?php echo htmlentities($account->getActiviaTmUserName()); ?>"/>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label class="control-label"><?php echo Session::t('ActiviaTM Password'); ?></label>
+                <input class="form-control"
+                       id="activiaTmPassword" <?php echo $account->getActiviaTm() ? '' : 'disabled="disabled"'; ?>
+                       name="activiaTmPassword" type="password"
+                       value="<?php echo empty($account->getActiviaTmPassword()) ? '' : Encryption::decrypt($account->getActiviaTmPassword(),
+                           $account->getToken()); ?>"/>
+            </div>
+        </div>
+    </div>
+    <?php } ?>
     <div class="row">
         <div class="col-xs-12">
         	<span id="accountError" class="formError error">&nbsp;</span>
@@ -110,6 +147,22 @@ $usersList = $users->getAll();
             onstyle: 'success',
             offstyle: 'danger'
         });
+
+        $("#cache, #activiaTm").bootstrapToggle({
+            on: "<?php echo Session::t('Enabled'); ?>",
+            off: "<?php echo Session::t('Disabled'); ?>",
+            onstyle: 'success',
+            offstyle: 'danger'
+        });
+
+        $("#groupid").change(function () {
+            if ($(this).val() == <?php echo Groups::GROUP_SUPPLIER; ?>) {
+                $("#activiaTmUserName, #activiaTmPassword, #cache, #activiaTm").prop("disabled", false);
+            } else {
+                $("#activiaTm, #cache").prop('checked', false).change();
+                $("#activiaTmUserName, #activiaTmPassword").val("").prop("disabled", true);
+            }
+        })
 
         $('#buttonSaveAccount').click(function() {
             var name = $('#name').val().trim();

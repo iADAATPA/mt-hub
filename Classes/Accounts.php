@@ -16,6 +16,11 @@ class Accounts extends Database
     private $expired = null;
     private $deleted = null;
     private $apiToken = null;
+    private $token = null;
+    private $activiaTmUserName = null;
+    private $activiaTmPassword = null;
+    private $activiaTm = null;
+    private $cache = null;
 
     /**
      * Accounts constructor.
@@ -44,7 +49,12 @@ class Accounts extends Database
 								created,
 							    expired,
 			                    deleted,
-			                    apitoken
+			                    apitoken,
+			                    cache,
+			                    activiatm,
+			                    activiatmusername,
+			                    activiatmpassword,
+			                    token
 						)
 						VALUES (
 							:groupid,
@@ -55,7 +65,12 @@ class Accounts extends Database
                             NOW(),
                             :expired,
                             :deleted,
-                            :apitoken
+                            :apitoken,
+                            :cache,
+                            :activiatm,
+                            :activiatmusername,
+                            :activiatmpassword,
+                            :token
 						)';
 
             $this->startTransaction();
@@ -68,6 +83,11 @@ class Accounts extends Database
             $this->bindValue(':expired', $this->getExpired(), PDO::PARAM_INT);
             $this->bindValue(':deleted', $this->getDeleted(), PDO::PARAM_INT);
             $this->bindValue(':apitoken', $this->getApiToken(), PDO::PARAM_STR);
+            $this->bindValue(':cache', $this->getCache(), PDO::PARAM_INT);
+            $this->bindValue(':activiatm', $this->getActiviaTm(), PDO::PARAM_INT);
+            $this->bindValue(':activiatmusername', $this->getActiviaTmUserName(), PDO::PARAM_STR);
+            $this->bindValue(':activiatmpassword', $this->getActiviaTmPassword(), PDO::PARAM_STR);
+            $this->bindValue(':token', $this->getToken(), PDO::PARAM_STR);
             $this->execute();
             $id = $this->lastInsertId();
             $this->endTransaction();
@@ -94,7 +114,12 @@ class Accounts extends Database
                         created,
                         expired,
                         deleted,
-                        apitoken
+                        apitoken,
+                        cache,
+                        activiatm,
+                        activiatmusername,
+                        activiatmpassword,
+                        token
 					FROM
 						accounts
 					WHERE 
@@ -130,7 +155,12 @@ class Accounts extends Database
                     created,
                     expired,
                     deleted,
-                    apitoken
+                    apitoken,
+                    cache,
+                    activiatm,
+                    activiatmusername,
+                    activiatmpassword,
+                    token
                 FROM
                     accounts';
 
@@ -249,16 +279,21 @@ class Accounts extends Database
             $query = 'UPDATE
 							accounts
 						SET
-							groupid		= :groupid,
-							active		= :active,
-							name		= :name,
-			                logo        = :logo,
-							adminid	    = :adminid,	
-							expired     = :expired,
-			                deleted     = :deleted,
-			                apitoken    = :apitoken
+							groupid		        = :groupid,
+							active		        = :active,
+							name		        = :name,
+			                logo                = :logo,
+							adminid	            = :adminid,	
+							expired             = :expired,
+			                deleted             = :deleted,
+			                apitoken            = :apitoken,
+			                cache               = :cache,
+                            activiatm           = :activiatm,
+                            activiatmusername   = :activiatmusername,
+                            activiatmpassword   = :activiatmpassword,
+                            token               = :token
 						WHERE
-							id			= :id';
+							id			        = :id';
 
             $this->startTransaction();
             $this->query($query);
@@ -271,6 +306,11 @@ class Accounts extends Database
             $this->bindValue(':expired', $this->getExpired(), PDO::PARAM_STR);
             $this->bindValue(':deleted', $this->getDeleted(), PDO::PARAM_STR);
             $this->bindValue(':apitoken', $this->getApiToken(), PDO::PARAM_STR);
+            $this->bindValue(':cache', $this->getCache(), PDO::PARAM_INT);
+            $this->bindValue(':activiatm', $this->getActiviaTm(), PDO::PARAM_INT);
+            $this->bindValue(':activiatmusername', $this->getActiviaTmUserName(), PDO::PARAM_STR);
+            $this->bindValue(':activiatmpassword', $this->getActiviaTmPassword(), PDO::PARAM_STR);
+            $this->bindValue(':token', $this->getToken(), PDO::PARAM_STR);
             $result = $this->execute();
             $this->endTransaction();
 
@@ -297,6 +337,11 @@ class Accounts extends Database
             $this->setExpired($details['expired'] ? $details['expired'] : null);
             $this->setDeleted($details['deleted'] ? $details['deleted'] : null);
             $this->setApiToken($details['apitoken'] ? $details['apitoken'] : null);
+            $this->setCache($details['cache'] ? $details['cache'] : null);
+            $this->setActiviaTm($details['activiatm'] ? $details['activiatm'] : null);
+            $this->setActiviaTmUserName($details['activiatmusername'] ? $details['activiatmusername'] : null);
+            $this->setActiviaTmPassword($details['activiatmpassword'] ? $details['activiatmpassword'] : null);
+            $this->setToken($details['token'] ? $details['token'] : null);
 
             return true;
         }
@@ -462,5 +507,85 @@ class Accounts extends Database
     public function setApiToken($apiToken)
     {
         $this->apiToken = $apiToken;
+    }
+
+    /**
+     * @return null
+     */
+    public function getToken()
+    {
+        return $this->token;
+    }
+
+    /**
+     * @param null $token
+     */
+    public function setToken($token)
+    {
+        $this->token = $token;
+    }
+
+    /**
+     * @return null
+     */
+    public function getActiviaTmUserName()
+    {
+        return $this->activiaTmUserName;
+    }
+
+    /**
+     * @param null $activiaTmUserName
+     */
+    public function setActiviaTmUserName($activiaTmUserName)
+    {
+        $this->activiaTmUserName = $activiaTmUserName;
+    }
+
+    /**
+     * @return null
+     */
+    public function getActiviaTmPassword()
+    {
+        return $this->activiaTmPassword;
+    }
+
+    /**
+     * @param null $activiaTmPassword
+     */
+    public function setActiviaTmPassword($activiaTmPassword)
+    {
+        $this->activiaTmPassword = $activiaTmPassword;
+    }
+
+    /**
+     * @return null
+     */
+    public function getActiviaTm()
+    {
+        return $this->activiaTm;
+    }
+
+    /**
+     * @param null $activiaTm
+     */
+    public function setActiviaTm($activiaTm)
+    {
+        $this->activiaTm = $activiaTm;
+    }
+
+    /**
+     * @return null
+     */
+    public function getCache()
+    {
+        return $this->cache;
+    }
+
+    /**
+     * @param null $cache
+     */
+    public function setCache($cache)
+    {
+        $this->cache = $cache;
     }
 }

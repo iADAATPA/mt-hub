@@ -220,12 +220,9 @@ if ($admin && Session::isAdministrator()) {
     <div class="row">
         <div class="col-xs-12 form-footer">
             <div class="btn-group">
-                <div class="btn btn-default" data-bb-handler="cancel" data-dismiss="modal"><i class="fa fa-times fa-fw"
-                                                                                              aria-hidden="true"></i>&nbsp;&nbsp;<?php echo Session::t('Cancel'); ?>
+                <div class="btn btn-default" data-bb-handler="cancel" data-dismiss="modal"><i class="fa fa-times fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;<?php echo Session::t('Cancel'); ?>
                 </div>
-                <div id="btnSaveEngine" class="btn btn-info"><span id="formEditEngineLoadingEnd"><i
-                            class="fa fa-floppy-o fa-fw"
-                            aria-hidden="true"></i></span>&nbsp;&nbsp;<?php echo Session::t('Save'); ?></div>
+                <div id="btnSaveEngine" class="btn btn-info"><i class="fa fa-floppy-o fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;<?php echo Session::t('Save'); ?></div>
             </div>
         </div>
     </div>

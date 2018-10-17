@@ -314,7 +314,12 @@ class Relations extends Database
                     relations.username,
                     relations.password,
                     relations.description,
-                    relations.added
+                    relations.added,
+                    accounts.cache,
+                    accounts.activiatm,
+                    accounts.activiatmusername,
+                    accounts.activiatmpassword,
+                    accounts.token AS activiatmtoken
                 FROM
                     relations
                 LEFT JOIN 

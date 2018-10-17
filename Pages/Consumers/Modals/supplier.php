@@ -24,7 +24,6 @@ $adminEmail = !empty($supplierList[$relations->getSupplierAccountId()]['email'])
     <?php Csrf::printFormInputs("Consumer"); ?>
     <?php if ($id) { ?>
         <input id="id" class="form-control tab0" type="hidden" name="id" value="<?php echo $id; ?>"/>
-        <input class="form-control" type="hidden" name="supplierTokenCheck"  value="<?php echo Helper::maskToken(Encryption::decrypt($relations->getApiToken(), $relations->getToken())); ?>"/>
     <?php } ?>
     <div class="row">
         <div class="col-sm-6 col-xs-12">
@@ -45,7 +44,11 @@ $adminEmail = !empty($supplierList[$relations->getSupplierAccountId()]['email'])
         <div class="col-sm-6 col-xs-12">
             <div class="form-group">
                 <label class="control-label"><?php echo Session::t('Access Token'); Helper::printPopoverButton(Session::t('Access Token'), Session::t('Leave blank if not applicable.')); ?></label>
-                <input class="form-control" id="token" type="text" name="token" onfocus="cleanError()" value="<?php echo Helper::maskToken(Encryption::decrypt($relations->getApiToken(), $relations->getToken())); ?>"/>
+                <div class="input-group">
+                    <input id="apiToken" class="form-control" type="password" name="apiToken"
+                           value="<?php echo Encryption::decrypt($relations->getApiToken(), $relations->getToken()); ?>" />
+                    <span id="showApiToken" class='input-group-addon fa-pointer' title='<?php echo Session::t('Show/Hide'); ?>'><i class='fa fa-eye-slash'></i></span>
+                </div>
             </div>
         </div>
     </div>
@@ -59,7 +62,11 @@ $adminEmail = !empty($supplierList[$relations->getSupplierAccountId()]['email'])
         <div class="col-sm-6 col-xs-12">
             <div class="form-group">
                 <label class="control-label"><?php echo Session::t('Access Password'); Helper::printPopoverButton(Session::t('Access Password'), Session::t('Leave blank if not applicable.')); ?></label>
-                <input class="form-control" type="password" id="password" name="password" onfocus="cleanError()" value="<?php echo Helper::maskToken(Encryption::decrypt($relations->getPassword(), $relations->getToken())); ?>"/>
+                <div class="input-group">
+                    <input id="password" class="form-control" type="password" name="password"
+                           value="<?php echo Encryption::decrypt($relations->getPassword(), $relations->getToken()); ?>" />
+                    <span id="showPassword" class='input-group-addon fa-pointer' title='<?php echo Session::t('Show/Hide'); ?>'><i class='fa fa-eye-slash'></i></span>
+                </div>
             </div>
         </div>
     </div>
@@ -79,15 +86,27 @@ $adminEmail = !empty($supplierList[$relations->getSupplierAccountId()]['email'])
     $(document).ready(function() {
         $("#supplierId").select2();
 
-        $('#supplierToken').on('click focusin', function() {
-            this.value = '';
+        $("#showApiToken").click(function() {
+            if ($("#apiToken").attr("type") == "text") {
+                $("#apiToken").attr("type", "password");
+            } else {
+                $("#apiToken").attr("type", "text");
+            }
+        });
+
+        $("#showPassword").click(function() {
+            if ($("#password").attr("type") == "text") {
+                $("#password").attr("type", "password");
+            } else {
+                $("#password").attr("type", "text");
+            }
         });
 
         $("#btnSaveSupplier").click(function() {
             $('.btn').prop('disabled', true);
             $('#btnSaveSupplier').find($('.fa')).removeClass('fa-floppy-o').addClass('fa-refresh fa-spin');
             var supplierId = $('#supplierId').val();
-            var token = $('#token').val();
+            var apiToken = $('#apiToken').val();
             var userName = $('#userName').val();
             var password = $('#password').val();
 
@@ -95,7 +114,7 @@ $adminEmail = !empty($supplierList[$relations->getSupplierAccountId()]['email'])
                 $('#error').html('<?php echo Session::t('Select Supplier.'); ?>');
                 $('.btn').prop('disabled', false);
                 $('#btnSaveSupplier').find($('.fa')).removeClass('fa-refresh fa-spin').addClass('fa-floppy-o');
-            } else if ((token == "" || token == undefined) && (userName == "" || userName == undefined)) {
+            } else if ((apiToken == "" || apiToken == undefined) && (userName == "" || userName == undefined)) {
                 $('#error').html('<?php echo Session::t('Enter Access Api Token or Username and Password.'); ?>');
                 $('.btn').prop('disabled', false);
                 $('#btnSaveSupplier').find($('.fa')).removeClass('fa-refresh fa-spin').addClass('fa-floppy-o');

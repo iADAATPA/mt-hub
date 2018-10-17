@@ -45,7 +45,6 @@ $consumerAdminEmail = !empty($consumerList[$relations->getConsumerAccountId()]['
                     <?php Csrf::printFormInputs("Consumer"); ?>
                     <?php if ($id) { ?>
                         <input id="id" class="form-control tab0" type="hidden" name="id" value="<?php echo $id; ?>"/>
-                        <input class="form-control" type="hidden" name="supplierTokenCheck"  value="<?php echo Helper::maskToken($relations->getSupplierApiToken()); ?>"/>
                     <?php } ?>
                     <div class="row">
                         <div class="col-sm-6 col-xs-12">
@@ -66,8 +65,12 @@ $consumerAdminEmail = !empty($consumerList[$relations->getConsumerAccountId()]['
                         </div>
                         <div class="col-sm-6 col-xs-12">
                             <div class="form-group">
-                                <label class="control-label"><?php echo Session::t('Access Token'); Helper::printPopoverButton(Session::t('Access Password'), Session::t('Leave blank if not applicable.')); ?></label>
-                                <input class="form-control" id="supplierToken" type="text" name="supplierToken" onfocus="cleanError()" value="<?php echo Helper::maskToken($relations->getSupplierApiToken()); ?>"/>
+                                <label class="control-label"><?php echo Session::t('Access Token'); Helper::printPopoverButton(Session::t('Access Token'), Session::t('Leave blank if not applicable.')); ?></label>
+                                <div class="input-group">
+                                    <input id="apiToken" class="form-control" type="password" name="apiToken"
+                                           value="<?php echo Encryption::decrypt($relations->getApiToken(), $relations->getToken()); ?>" />
+                                    <span id="showApiToken" class='input-group-addon fa-pointer' title='<?php echo Session::t('Show/Hide'); ?>'><i class='fa fa-eye-slash'></i></span>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -81,7 +84,11 @@ $consumerAdminEmail = !empty($consumerList[$relations->getConsumerAccountId()]['
                         <div class="col-sm-6 col-xs-12">
                             <div class="form-group">
                                 <label class="control-label"><?php echo Session::t('Access Password'); Helper::printPopoverButton(Session::t('Access Password'), Session::t('Leave blank if not applicable.')); ?></label>
-                                <input class="form-control" type="password" id="password" name="password" onfocus="cleanError()" value="<?php echo Encryption::decrypt($relations->getPassword(), $relations->getToken()); ?>"/>
+                                <div class="input-group">
+                                    <input id="password" class="form-control" type="password" name="password"
+                                           value="<?php echo Encryption::decrypt($relations->getPassword(), $relations->getToken()); ?>" />
+                                    <span id="showPassword" class='input-group-addon fa-pointer' title='<?php echo Session::t('Show/Hide'); ?>'><i class='fa fa-eye-slash'></i></span>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -124,8 +131,20 @@ $consumerAdminEmail = !empty($consumerList[$relations->getConsumerAccountId()]['
     $(document).ready(function() {
         $("#consumerId").select2({templateResult: formatConsumer});
 
-        $("#supplierToken").on("click focusin", function() {
-            this.value = "";
+        $("#showApiToken").click(function() {
+            if ($("#apiToken").attr("type") == "text") {
+                $("#apiToken").attr("type", "password");
+            } else {
+                $("#apiToken").attr("type", "text");
+            }
+        });
+
+        $("#showPassword").click(function() {
+            if ($("#password").attr("type") == "text") {
+                $("#password").attr("type", "password");
+            } else {
+                $("#password").attr("type", "text");
+            }
         });
     });
 
@@ -164,7 +183,7 @@ $consumerAdminEmail = !empty($consumerList[$relations->getConsumerAccountId()]['
         $('.btn').prop('disabled', true);
 
         var consumerId = $('#consumerId').val();
-        var supplierToken = $('#supplierToken').val();
+        var apiToken = $('#apiToken').val();
         var userName = $('#userName').val();
         var password = $('#password').val();
         var consumerName = $('#consumerName').val();
@@ -179,7 +198,7 @@ $consumerAdminEmail = !empty($consumerList[$relations->getConsumerAccountId()]['
         } else if (consumerId == "" || consumerId == undefined) {
             $('#error').html('<?php echo Session::t('Select Consumer.'); ?>');
             $('.btn').prop('disabled', false);
-        } else if ((supplierToken == "" || supplierToken == undefined) && (userName == "" || userName == undefined)) {
+        } else if ((apiToken == "" || apiToken == undefined) && (userName == "" || userName == undefined)) {
             $('#error').html('<?php echo Session::t('Enter Access Api Token or Username and Password.'); ?>');
             $('.btn').prop('disabled', false);
         } else {

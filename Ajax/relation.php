@@ -13,14 +13,10 @@ $consumerAccountId = empty($consumerAccountId) ? Session::getAccountId() : $cons
 $supplierAccountId = empty($_POST['supplierId']) ? $relations->getSupplierAccountId() : $_POST['supplierId'];
 $supplierAccountId = empty($supplierAccountId) ? Session::getAccountId() : $supplierAccountId;
 $supplierApiToken = isset($_POST['supplierToken']) ? $_POST['supplierToken'] : $relations->getSupplierApiToken();
-$token = empty($_POST['token']) ? null : $_POST['token'];
+$token = empty($_POST['apiToken']) ? null : $_POST['apiToken'];
 $userName = empty($_POST['userName']) ? null : $_POST['userName'];
 $password = empty($_POST['password']) ? null : $_POST['password'];
-$supplierApiTokenCheck = empty($_POST['supplierTokenCheck']) ? null : $_POST['supplierTokenCheck'];
 
-if ($supplierApiToken == $supplierApiTokenCheck) {
-    $supplierApiToken = $relations->getSupplierApiToken();
-}
 
 $key = Encryption::generateKey();
 $relations->setToken($key);

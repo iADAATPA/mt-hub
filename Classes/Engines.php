@@ -320,6 +320,8 @@ class Engines extends Database
             WHERE
                 accountid IN (' . $supplierIds . ')
             AND
+                deleted IS NULL
+            AND
                 src = :src
             AND 
                 trg = :trg ' . $and;

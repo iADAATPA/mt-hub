@@ -47,7 +47,7 @@ $app->group('/api', function () {
     });
 
     $this->get('/aretrievetranslation/{token}/{guid}', 'Api:aRetrieveTranslation');
-    $this->get('/retrievetranslation/{token}/{guid}', 'ApiDev:aRetrieveTranslation');
+    $this->get('/retrievetranslation/{token}/{guid}', 'Api:aRetrieveTranslation');
     $this->post('/atranslate', 'Api:aTranslate');
     $this->post('/atranslatewithqes', 'Api:aTranslateWithQes');
     $this->get('/describesuppliers/{token}', 'Api:describeSuppliers');

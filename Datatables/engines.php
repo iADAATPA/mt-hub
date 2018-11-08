@@ -144,7 +144,7 @@ $table->drawTable();
         $('#btnCopyEngine').find($('.fa')).removeClass('fa-files-o fa-palegray').addClass('fa-refresh fa-spin');
 
         if (selectedRows.length === 0) {
-            selectedRows.push(<?php echo Session::getActiveEngineId(); ?>);
+            selectedRows.push(activeEngineId);
         }
 
         $.each(selectedRows, function (index, id) {
@@ -180,7 +180,7 @@ $table->drawTable();
         var selectedRows = getSelectedCheckboxValues('tableEngines');
 
         if (selectedRows.length === 0) {
-            selectedRows.push(<?php echo Session::getActiveEngineId(); ?>);
+            selectedRows.push(activeEngineId);
         }
 
         $('.btn').attr('disabled', 'disabled');

@@ -660,4 +660,16 @@ class Helper
         <?php
     }
 
+    /**
+     * Removes all special characters
+     *
+     * @param string $string
+     */
+    public static function removeSpecialCharacters($string)
+    {
+        $special_chars = ["/", "\\", "=", "<", ">", "≥", ";", "'", "\"", "&", "$", "#", "*", "(", ")", "|", "~", "`", "!", "{", "}"];
+        $string = str_replace($special_chars, '', $string);
+
+        return $string;
+    }
 }

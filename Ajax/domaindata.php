@@ -7,7 +7,7 @@ Csrf::validateToken();
 $returnCalls = new ReturnCalls();
 
 $domainId = empty($_POST['id']) ? null : $_POST['id'];
-$segments = empty($_POST['segments']) ? null : Helper::sanitizeString($_POST['segments']);
+$segments = empty($_POST['segments']) ? null : Helper::removeSpecialCharacters($_POST['segments']);
 
 if (!$domainId || !$segments || !Session::getAccountId()) {
     $returnCalls->setStatusId(ReturnCalls::STATUSID_ERROR);

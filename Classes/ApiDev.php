@@ -337,7 +337,7 @@ class ApiDev
             $this->apiResponses()->setData($data);
         } else {
             $this->apiResponses()->setStatusCode(ApiResponses::HTTP_400_CODE);
-            $this->apiResponses()->setMessage('Unknown domain');
+            $this->apiResponses()->setMessage('No domain available');
         }
 
         $this->getRequestLog()->setResponse($this->apiResponses()->getToJsonArray());

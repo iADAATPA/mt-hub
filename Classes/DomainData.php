@@ -295,21 +295,6 @@ class DomainData extends Database
     }
 
     /**
-     * @param $segments
-     * @return array
-     */
-    public function convertSegmentsStringToArray($segments)
-    {
-        // Check if passed variable is not string
-        if (!is_array($segments)) {
-            // Convert the string to array using regular expresion
-            $segments = preg_split('/$\R?^/m', $segments);
-        }
-
-        return array_filter($segments);
-    }
-
-    /**
      * @return null
      */
     public function getId()
@@ -370,11 +355,6 @@ class DomainData extends Database
      */
     public function setSegments($segments)
     {
-        $segmentsArray = $this->convertSegmentsStringToArray($segments);
-        $segmentsArray = count($segmentsArray) > 4000 ? array_slice($segmentsArray, 0, 4000) : $segmentsArray;
-        $segments = implode("\R", $segmentsArray);
-
-        $segments = substr($segments, 0, 1000000);
         $this->segments = $segments;
     }
 

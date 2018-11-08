@@ -45,6 +45,20 @@ if ($method && $apiToken) {
                 'domain' => $domain
             ];
             break;
+        case "aTranslate":
+            $url = "https://www.iadaatpa.eu/api/dev/atranslate";
+            $data = [
+                'segments[0]' => $segments,
+                'token' => $apiToken,
+                'source' => $source,
+                'target' => $target,
+                'domain' => $domain
+            ];
+            break;
+        case "aRetrieveTranslation":
+            $url = "https://www.iadaatpa.eu/api/dev/aretrievetranslation/" . $apiToken . '/' . $segments;
+            $data = null;
+            break;
     }
 
     if (!empty($url)) {
@@ -52,8 +66,14 @@ if ($method && $apiToken) {
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_HEADER, false);
-        curl_setopt($ch, CURLOPT_POST, true);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+
+        if ($data) {
+            curl_setopt($ch, CURLOPT_POST, true);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+        } else {
+            curl_setopt($ch, CURLOPT_POST, false);
+        }
+
         $response = curl_exec($ch);
         $curlInfo = curl_getinfo($ch);
         curl_close($ch);

@@ -93,6 +93,8 @@ $domainList = is_array($domainList) ? $domainList : [];
                     <div class="col-sm-2 col-xs-12 center-content">
                         <div class="btn-group padding-top-20">
                             <div class="btn btn-warning btn-block" id="btnTranslate"><i class="fa fa-language fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;<?php echo Session::t('Translate'); ?></div>
+                            <div class="btn btn-default btn-block" id="btnATranslate"><i class="fa fa-hourglass-start fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;<?php echo Session::t('aTranslate'); ?></div>
+                            <div class="btn btn-default btn-block" id="btnARetrieveTranslation"><i class="fa fa-hourglass-end fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;<?php echo Session::t('Retrieve Translation'); ?></div>
                         </div>
                     </div>
                     <div class="col-sm-5 col-xs-12">
@@ -280,6 +282,98 @@ $domainList = is_array($domainList) ? $domainList : [];
                     }
 
                     $('#btnTranslate').find($('.fa')).removeClass('fa-refresh fa-spin').addClass('fa-language').prop('disabled', false);
+
+                    if (response.statusId == '<?php echo ReturnCalls::STATUSID_SUCCESS; ?>') {
+                        message = JSON.parse(message);
+
+                        if(!message.success) {
+                            message = JSON.stringify(message.error.message);
+                        } else {
+                            message = message.data.segments[0].translation;
+                        }
+
+                        $("#responseText").val(message);
+                    } else {
+                        $("#responseText").val('<?php echo Session::t('An unexpected error occurred'); ?>');
+                    }
+                }
+            );
+        });
+
+        $("#btnATranslate").click(function () {
+            cleanForm();
+            var sourceText = $("#sourceText").val();
+            var target = $("#target").val();
+            var source = $("#source").val();
+
+            $('#btnATranslate').find($('.fa')).removeClass('fa-hourglass-start').addClass('fa-refresh fa-spin').prop('disabled', true);
+
+            $.post(
+                "Ajax/testapi.php",
+                {
+                    segments: sourceText,
+                    method: "aTranslate",
+                    source: source,
+                    target: target,
+                    customerId: <?php echo Session::getAccountId(); ?>,
+                    <?php Csrf::printParameters("ATranslate"); ?>
+                },
+                function(response) {
+                    response = JSON.parse(response);
+                    message = response.message;
+                    $("#responseRaw").val(message);
+                    if (response.data) {
+                        $("#curlInfo").val(response.data);
+                        processCurlInfo(response.data);
+                    }
+
+                    $('#btnATranslate').find($('.fa')).removeClass('fa-refresh fa-spin').addClass('fa-hourglass-start').prop('disabled', false);
+
+                    if (response.statusId == '<?php echo ReturnCalls::STATUSID_SUCCESS; ?>') {
+                        message = JSON.parse(message);
+
+                        if(!message.success) {
+                            message = JSON.stringify(message.error.message);
+                        } else {
+                            message = message.data.guid;
+                        }
+
+                        $("#responseText").val(message);
+                    } else {
+                        $("#responseText").val('<?php echo Session::t('An unexpected error occurred'); ?>');
+                    }
+                }
+            );
+        });
+
+        $("#btnARetrieveTranslation").click(function () {
+            cleanForm();
+            var sourceText = $("#sourceText").val();
+            var target = $("#target").val();
+            var source = $("#source").val();
+
+            $('#btnARetrieveTranslation').find($('.fa')).removeClass('fa-hourglass-end').addClass('fa-refresh fa-spin').prop('disabled', true);
+
+            $.post(
+                "Ajax/testapi.php",
+                {
+                    segments: sourceText,
+                    method: "aRetrieveTranslation",
+                    source: source,
+                    target: target,
+                    customerId: <?php echo Session::getAccountId(); ?>,
+                    <?php Csrf::printParameters("aRetrieveTranslation"); ?>
+                },
+                function(response) {
+                    response = JSON.parse(response);
+                    message = response.message;
+                    $("#responseRaw").val(message);
+                    if (response.data) {
+                        $("#curlInfo").val(response.data);
+                        processCurlInfo(response.data);
+                    }
+
+                    $('#btnARetrieveTranslation').find($('.fa')).removeClass('fa-refresh fa-spin').addClass('fa-hourglass-end').prop('disabled', false);
 
                     if (response.statusId == '<?php echo ReturnCalls::STATUSID_SUCCESS; ?>') {
                         message = JSON.parse(message);

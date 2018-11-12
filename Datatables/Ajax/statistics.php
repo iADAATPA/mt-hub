@@ -7,7 +7,7 @@ Csrf::validateToken();
 
 $dataTables = new DataTables();
 
-$type = empty($_GET['type']) ? StatisticsSummary::TYPE_SUPPLIER : $_GET['type'];
+$type = empty($_REQUEST['type']) ? StatisticsSummary::TYPE_SUPPLIER : $_REQUEST['type'];
 $type = in_array($type,
     [StatisticsSummary::TYPE_SUPPLIER, StatisticsSummary::TYPE_CONSUMER]) ? $type : StatisticsSummary::TYPE_SUPPLIER;
 
@@ -26,7 +26,10 @@ $engineList = $engines->getAll();
 $columns = [
     ['db' => 'statisticssummary.id', 'dt' => 0],
     ['db' => 'statisticssummary.time', 'dt' => 1],
-    ['db' => 'statisticssummary.consumeraccountid', 'dt' => 2],
+    [
+        'db' => $type == StatisticsSummary::TYPE_SUPPLIER ? 'statisticssummary.consumeraccountid' : 'statisticssummary.supplieraccountid',
+        'dt' => 2,
+    ],
     [
         'db' => $type == StatisticsSummary::TYPE_SUPPLIER ? 'statisticssummary.consumeraccountid' : 'statisticssummary.supplieraccountid',
         'dt' => 3,

@@ -72,63 +72,187 @@ class ApiDev
             return $response;
         }
 
-        if (empty($guid)) {
+        return $this->retrieveTranslation($guid);
+    }
+
+    /**
+     * @param Request $request
+     * @param Response $response
+     * @param $args
+     * @return array|bool|Response|static
+     * @throws Exception
+     */
+    public function aRetrieveTranslationWithQes(Request $request, Response $response, $args)
+    {
+        // Pass the response to the apiResponses class
+        $this->apiResponses()->setResponse($response);
+        // Check if token is set
+        $guid = isset($args['guid']) ? trim($args['guid']) : null;
+        $token = isset($args['token']) ? trim($args['token']) : null;
+
+        $response = $this->validateAccount($token);
+        if (is_object($response)) {
+            return $response;
+        }
+
+        return $this->retrieveTranslation($guid, UrlConfig::METHOD_ATRANSLATE_WITH_QES_ID);
+    }
+
+    /**
+     * @param Request $request
+     * @param Response $response
+     * @param $args
+     * @return array|bool|Response|static
+     * @throws Exception
+     */
+    private function retrieveTranslation($guId, $methodId = null)
+    {
+        if (empty($guId)) {
             $this->apiResponses()->setStatusCode(ApiResponses::HTTP_400_CODE);
             $this->apiResponses()->setCode(ApiResponses::MISSING_GUID_CODE);
             $this->apiResponses()->setMessage('Missing <guid>');
         } else {
-            $asynchronousRequests = new AsynchronousRequests($guid);
+            $asynchronousRequests = new AsynchronousRequests(null, $guId);
+            // If there is more than one translation we deal with the translatebestof method
+            if ($asynchronousRequests->getMultipleTranslation()) {
+                // Based on the consumer token or supplierId select supplier
+                $relations = new Relations();
+                $relations->setConsumerAccountId($this->getAccount()->getId());
+                $allSuppliers = $relations->getConsumerSuppliers();
 
-            if ($asynchronousRequests->getStatus() == ApiResponses::HTTP_200_CODE) {
-                $segments = json_decode($asynchronousRequests->getText(), true);
-                $methodId = $asynchronousRequests->getMethodId();
-                $translatedSegments = json_decode($asynchronousRequests->getTranslation(), true);
+                $requests = $asynchronousRequests->get();
 
-                // If the request segments have been translated
-                if (!empty($translatedSegments)) {
+                if (is_array($requests)) {
+                    $tranlsatedRequests = 0;
                     $translationResponse = null;
+                    $segments = null;
+                    $segmentsForRank = null;
 
-                    if (is_array($segments)) {
-                        foreach ($segments as $key => $segment) {
-                            $translation = array_shift($translatedSegments);
+                    // Prepare segments for ranking
+                    foreach ($requests as $request) {
+                        if (!empty($request['status'])) {
+                            $translatedSegments = json_decode($request['translation'], true);
+                            $segments = empty($segments) ? json_decode($request['text'], true) : $segments;
 
-                            $translationResponse[$key] = [
-                                'segment' => $segment,
-                                'translation' => $translation,
-                            ];
+                            // If the request segments have been translated
+                            if (!empty($translatedSegments)) {
+                                foreach ($translatedSegments as $key => $translation) {
+                                    reset($segments);
+                                    $segmentsKey = key($segments);
+                                    $segment = empty($segments[$segmentsKey]) ? '' : $segments[$segmentsKey];
+                                    unset($segments[$segmentsKey]);
+                                    $supplierId = empty($request['supplieraccountid']) ? '' : $request['supplieraccountid'];
+                                    $supplierName = empty($allSuppliers[$supplierId]['name']) ? '' : $allSuppliers[$supplierId]['name'];
 
-                            // If the asynchronous request was for translation with QES, calculate and return the QES
-                            if ($methodId == UrlConfig::METHOD_ATRANSLATE_WITH_QES_ID) {
-                                $translationResponse[$key]['qes'] = $this->calculateQes($segment, $translation);
+                                    $translationResponse[$segmentsKey][$tranlsatedRequests] = [
+                                        'segment' => $segment,
+                                        'translation' => $translation,
+                                        'supplierId' => $supplierId,
+                                        'supplierName' => $supplierName
+                                    ];
+
+                                    $segmentsForRank[$segmentsKey][$tranlsatedRequests] = $translation;
+                                }
                             }
+
+                            $tranlsatedRequests++;
+                        } else {
+                            // Defualt response
+                            $this->apiResponses()->setStatusCode(ApiResponses::HTTP_201_CODE);
+                            $this->apiResponses()->setCode(ApiResponses::AWAITING_TRANSLATION);
+                            $this->apiResponses()->setMessage('Awaiting translation');
+
+                            break;
                         }
                     }
 
-                    $data = [
-                        "segments" => $translationResponse
-                    ];
+                    if ($tranlsatedRequests == count($requests)) {
+                        $segmentsData = null;
 
-                    // Lets update the request time
-                    $asynchronousRequests->setRequestTime(date('Y-m-d H:i:s'));
-                    $asynchronousRequests->update();
+                        // Rank the segments and return the best one
+                        if (!empty($segmentsForRank) && is_array($segmentsForRank)) {
+                            // Load model for scoring
+                            $source = explode( '-', $asynchronousRequests->getSource());
+                            $source = empty($source[0]) ? '' : $source[0];
+                            $classifier = new Classifier('Classifier/qes-' . $source . '.svm');
+                            foreach ($segmentsForRank as $key => $segments) {
+                                $theBestSegmentKey = $classifier->rankTexts($segments);
+                                $segmentsData[$key] = $translationResponse[$key][$theBestSegmentKey];
+                            }
+                        }
 
-                    $this->apiResponses()->setData($data);
-                }
-            } else {
-                if (empty($asynchronousRequests->getStatus()) && empty($asynchronousRequests->getText())) {
+                        $data = [
+                            "segments" => $segmentsData
+                        ];
+
+                        // Lets update the request time
+                        $asynchronousRequests->setRequestTime(date('Y-m-d H:i:s'));
+                        $asynchronousRequests->updateMultipleTranslationRequestTime();
+
+                        $this->apiResponses()->setData($data);
+                    }
+                } else {
                     $this->apiResponses()->setStatusCode(ApiResponses::HTTP_400_CODE);
                     $this->apiResponses()->setCode(ApiResponses::INVALID_GUID_CODE);
                     $this->apiResponses()->setMessage('Invalid <guid>');
+                }
+            } else {
+                if ($asynchronousRequests->getStatus() == ApiResponses::HTTP_200_CODE) {
+                    $segments = json_decode($asynchronousRequests->getText(), true);
+                    $methodId = empty($methodId) ? $asynchronousRequests->getMethodId() : $methodId;
+                    $translatedSegments = json_decode($asynchronousRequests->getTranslation(), true);
+
+                    // If the request segments have been translated
+                    if (!empty($translatedSegments)) {
+                        $translationResponse = null;
+
+                        if (is_array($segments)) {
+                            foreach ($segments as $key => $segment) {
+                                $translation = array_shift($translatedSegments);
+
+                                $translationResponse[$key] = [
+                                    'segment' => $segment,
+                                    'translation' => $translation,
+                                ];
+
+                                // If the asynchronous request was for translation with QES, calculate and return the QES
+                                if ($methodId == UrlConfig::METHOD_ATRANSLATE_WITH_QES_ID) {
+                                    // Load model for scoring
+                                    $source = explode( '-', $asynchronousRequests->getSource());
+                                    $source = empty($source[0]) ? '' : $source[0];
+                                    $classifier = new Classifier('Classifier/qes-' . $source . '.svm');
+
+                                    $translationResponse[$key]['qes'] = $classifier->generateQESScore($translation);
+                                }
+                            }
+                        }
+
+                        $data = [
+                            "segments" => $translationResponse
+                        ];
+
+                        // Lets update the request time
+                        $asynchronousRequests->setRequestTime(date('Y-m-d H:i:s'));
+                        $asynchronousRequests->update();
+
+                        $this->apiResponses()->setData($data);
+                    }
                 } else {
-                    if (!empty($asynchronousRequests->getStatus())) {
-                        $this->apiResponses()->setStatusCode($asynchronousRequests->getStatus());
-                        $this->apiResponses()->setCode(ApiResponses::UNDEFINED_ERROR);
-                        $this->apiResponses()->setMessage($asynchronousRequests->getError());
+                    if (empty($asynchronousRequests->getStatus()) && empty($asynchronousRequests->getText())) {
+                        $this->apiResponses()->setStatusCode(ApiResponses::HTTP_400_CODE);
+                        $this->apiResponses()->setCode(ApiResponses::INVALID_GUID_CODE);
+                        $this->apiResponses()->setMessage('Invalid <guid>');
                     } else {
-                        // Defualt response
-                        $this->apiResponses()->setStatusCode(ApiResponses::HTTP_201_CODE);
-                        $this->apiResponses()->setCode(ApiResponses::AWAITING_TRANSLATION);
-                        $this->apiResponses()->setMessage('Awaiting translation');
+                        if (!empty($asynchronousRequests->getStatus())) {
+                            $this->apiResponses()->setStatusCode($asynchronousRequests->getStatus());
+                            $this->apiResponses()->setCode(ApiResponses::UNDEFINED_ERROR);
+                            $this->apiResponses()->setMessage($asynchronousRequests->getError());
+                        } else {
+                            // Defualt response
+                            $this->apiResponses()->setStatusCode(ApiResponses::HTTP_201_CODE);
+                            $this->apiResponses()->setCode(ApiResponses::AWAITING_TRANSLATION);
+                            $this->apiResponses()->setMessage('Awaiting translation');
+                        }
                     }
                 }
             }
@@ -173,7 +297,7 @@ class ApiDev
 
         // Store the request in the db and return a unique id
         $asynchronousRequests = new AsynchronousRequests();
-        $asynchronousRequests->setId($guId);
+        $asynchronousRequests->setGuId($guId);
         $asynchronousRequests->setConsumerAccountid($this->getAccount()->getId());
         $asynchronousRequests->setSupplierAccountId($this->getSupplierAccountId());
         $asynchronousRequests->setEngineName($this->getEngineName());
@@ -182,10 +306,10 @@ class ApiDev
         $asynchronousRequests->setSource($this->getSource());
         $asynchronousRequests->setTarget($this->getTarget());
         $asynchronousRequests->setDomain($this->getDomainId());
-        $asynchronousRequests->setSupplierGuid($supplierGuId);
+        $asynchronousRequests->setSupplierGuId($supplierGuId);
         $asynchronousRequests->setMethodId($methodId);
-        $guId = $asynchronousRequests->insert();
-        $asynchronousRequests->setId($guId);
+        $id = $asynchronousRequests->insert();
+        $asynchronousRequests->setId($id);
         // Set the guid
         $this->setGuId($guId);
 
@@ -211,11 +335,11 @@ class ApiDev
 
         // Update asycnhrounus request table
         $asynchronousRequests->setMethodId($methodId);
-        $asynchronousRequests->setSupplierGuid($supplierGuId);
+        $asynchronousRequests->setSupplierGuId($supplierGuId);
         $asynchronousRequests->update();
 
         // If the request segments have been translated
-        if (!empty($guId)) {
+        if (!empty($guId) && !empty($id)) {
             $data = [
                 "guid" => $guId
             ];
@@ -226,6 +350,72 @@ class ApiDev
             $this->apiResponses()->setStatusCode(ApiResponses::HTTP_500_CODE);
             $this->apiResponses()->setCode(ApiResponses::UNDEFINED_ERROR);
             $this->apiResponses()->setMessage('Unexpected error occured');
+        }
+
+        return $this->apiResponses()->get();
+    }
+
+    /**
+     * @param Request $request
+     * @param Response $response
+     * @param $args
+     * @return Api|ApiDev|array|bool|Response|static
+     * @throws Exception
+     */
+    public function translateWithQes(Request $request, Response $response, $args)
+    {
+        // Pass the response to the apiResponses class
+        $this->apiResponses()->setResponse($response);
+        // Get post data
+        $postData = $request->getParams();
+        $response = $this->validateRequest($postData);
+
+        if (is_object($response)) {
+            return $response;
+        }
+
+        $response = $this->setSupplierAndEngine();
+        if (is_object($response)) {
+            return $response;
+        }
+
+        //Translate the segments with all the options
+        $translatedSegments = $this->makeRequest(UrlConfig::METHOD_TRANSLATE_ID);
+
+        if (is_object($translatedSegments)) {
+            return $translatedSegments;
+        }
+
+        // If the request segments have been translated
+        if (!empty($translatedSegments)) {
+            $translationResponse = null;
+
+            if (is_array($this->getSegments())) {
+                // Load model for scoring
+                $classifier = new Classifier('Classifier/qes-' . $this->getSource() . '.svm');
+
+                foreach ($this->getSegments() as $key => $segment) {
+                    $translation = array_shift($translatedSegments);
+
+                    $translationResponse[$key] = [
+                        'segment' => $segment,
+                        'translation' => $translation,
+                        'qes' => $classifier->generateQESScore($translation)
+                    ];
+                }
+            }
+
+            $data = [
+                "segments" => $translationResponse,
+                "debug" => [
+                    "supplierId" => $this->getSupplierAccountId(),
+                    "engineName" => $this->getEngineName()
+                ]
+            ];
+
+            $this->apiResponses()->setData($data);
+
+            $this->storeStatistics(UrlConfig::METHOD_TRANSLATE_ID);
         }
 
         return $this->apiResponses()->get();
@@ -482,9 +672,9 @@ class ApiDev
         }
 
         // Check the guid
-        $asynchronousRequests = new AsynchronousRequests($this->getGuId());
+        $asynchronousRequests = new AsynchronousRequests(null, $this->getGuId());
 
-        if (empty($asynchronousRequests->getId())) {
+        if (empty($asynchronousRequests->getGuId())) {
             $this->apiResponses()->setStatusCode(ApiResponses::HTTP_400_CODE);
             $this->apiResponses()->setCode(ApiResponses::MISSING_GUID_CODE);
             $this->apiResponses()->setMessage('Missing <guid>');
@@ -501,7 +691,7 @@ class ApiDev
                     // If the request segments have been translated
                     if (!empty($translatedSegments)) {
                         $data = [
-                            "guid" => $asynchronousRequests->getId(),
+                            "guid" => $asynchronousRequests->getGuId(),
                             "fileType" => $asynchronousRequests->getFileType(),
                             "file" => is_array($translatedSegments) ? $translatedSegments [0] : $translatedSegments
                         ];
@@ -539,7 +729,7 @@ class ApiDev
                     $this->setDomainName($asynchronousRequests->getDomain());
                     $this->setFile($this->getFile());
                     $this->setFileType($asynchronousRequests->getFileType());
-                    $this->setGuId($asynchronousRequests->getSupplierGuid());
+                    $this->setGuId($asynchronousRequests->getSupplierGuId());
 
                     $response = $this->makeRequest(UrlConfig::METHOD_RETRIEVE_FILE_TRANSLATION_ID);
 
@@ -555,7 +745,7 @@ class ApiDev
                     // If the request segments have been translated
                     if ($response) {
                         $data = [
-                            "guid" => $asynchronousRequests->getId(),
+                            "guid" => $asynchronousRequests->getGuId(),
                             "fileType" => $asynchronousRequests->getFileType(),
                             "file" => is_array($response) ? $response[0] : $response
                         ];
@@ -614,6 +804,9 @@ class ApiDev
             $cache->setEngineId($this->getEngineId());
             $cache->setSupplierAccountId($this->getSupplierAccountId());
             $cache->setSegments($this->getSegments());
+            $cache->setDomainId($this->getDomainId());
+            $cache->setSrc($this->getSource());
+            $cache->setTrg($this->getTarget());
             $translatedSegments = $cache->getCachedTranslatedSegments();
         }
 
@@ -751,23 +944,24 @@ class ApiDev
 
             // Store the request in the db and return a unique id
             $asynchronousRequests = new AsynchronousRequests();
-            $asynchronousRequests->setId($guId);
+            $asynchronousRequests->setGuId($guId);
             $asynchronousRequests->setConsumerAccountid($this->getAccount()->getId());
             $asynchronousRequests->setSupplierAccountId($this->getSupplierAccountId());
             $asynchronousRequests->setEngineName($this->getEngineName());
             $asynchronousRequests->setEngineCustomId($this->getEngineCustomId());
-            $asynchronousRequests->setSupplierGuid(is_array($response) ? $response[0] : $response);
+            $asynchronousRequests->setSupplierGuId(is_array($response) ? $response[0] : $response);
             $asynchronousRequests->setFileType($this->getFileType());
             $asynchronousRequests->setRequestTime(date("Y-m-d H:i:s"));
             $asynchronousRequests->setSource($this->getSource());
             $asynchronousRequests->setTarget($this->getTarget());
             $asynchronousRequests->setDomain($this->getDomainId());
             $asynchronousRequests->setMethodId($methodId);
-            $asynchronousRequests->setSupplierGuid(empty($supplierGuId) ? null : $supplierGuId);
-            $guId = $asynchronousRequests->insert();
+            $asynchronousRequests->setSupplierGuId(empty($supplierGuId) ? null : $supplierGuId);
+            $id = $asynchronousRequests->insert();
+            $asynchronousRequests->setId($id);
 
             // If the request segments have been translated
-            if (!empty($guId)) {
+            if (!empty($guId) && !empty($id)) {
                 $data = [
                     "guid" => $guId
                 ];
@@ -840,170 +1034,60 @@ class ApiDev
         }
 
         $translatedSegmentsBySupplier = null;
+        $guId = UUID::v4();
 
         if (is_array($engineList)) {
             foreach ($engineList as $engineDetails) {
+                $methodId = UrlConfig::METHOD_ATRANSLATE_ID;
+                $supplierGuId = null;
+
                 $this->setEngineCustomId($engineDetails['customid']);
                 $this->setEngineName($engineDetails['name']);
                 $this->setSupplierAccountId($allSuppliers[$engineDetails['accountid']]['supplieraccountid']);
                 $this->setSupplierToken($allSuppliers[$engineDetails['accountid']]['supplierapitoken']);
 
+                // Store the request in the db and return a unique id
+                $asynchronousRequests = new AsynchronousRequests();
+                $asynchronousRequests->setGuId($guId);
+                $asynchronousRequests->setConsumerAccountid($this->getAccount()->getId());
+                $asynchronousRequests->setSupplierAccountId($allSuppliers[$engineDetails['accountid']]['supplieraccountid']);
+                $asynchronousRequests->setEngineName($engineDetails['name']);
+                $asynchronousRequests->setEngineCustomId($engineDetails['customid']);
+                $asynchronousRequests->setText(json_encode($this->getSegments()));
+                $asynchronousRequests->setSource($this->getSource());
+                $asynchronousRequests->setTarget($this->getTarget());
+                $asynchronousRequests->setDomain($this->getDomainId());
+                $asynchronousRequests->setSupplierGuId($supplierGuId);
+                $asynchronousRequests->setMethodId($methodId);
+                $id = $asynchronousRequests->insert();
+                $asynchronousRequests->setId($id);
+                // Set the guid
+                $this->setGuId($guId);
+
                 //Translate the segments with all the options
-                $translatedSegments = $this->makeRequest(UrlConfig::METHOD_TRANSLATE_ID);
+                $supplierGuId = $this->makeRequest(UrlConfig::METHOD_ATRANSLATE_ID);
 
-                if (!is_object($translatedSegments) && empty($translatedSegmentsBySupplier[$allSuppliers[$engineDetails['accountid']]['supplieraccountid']])) {
-                    $translatedSegmentsBySupplier[$allSuppliers[$engineDetails['accountid']]['supplieraccountid']] = $translatedSegments;
-
-                    // Store statistics
-                    $this->setSupplierAccountId($allSuppliers[$engineDetails['accountid']]['supplieraccountid']);
-                    $this->setEngineId($engineDetails['id']);
-                    $this->storeStatistics(UrlConfig::METHOD_TRANSLATE_ID);
+                if (is_object($supplierGuId)) {
+                    $methodId = UrlConfig::METHOD_TRANSLATE_ID;
+                    $supplierGuId = null;
+                } elseif (is_numeric($supplierGuId) && $supplierGuId < 0) {
+                    $asynchronousRequests->delete();
                 }
+
+                // Reset response
+                $this->apiResponses()->setStatusCode(null);
+                $this->apiResponses()->setCode(null);
+                $this->apiResponses()->setMessage(null);
+
+                // Update asycnhrounus request table
+                $asynchronousRequests->setMethodId($methodId);
+                $asynchronousRequests->setSupplierGuId($supplierGuId);
+                $asynchronousRequests->update();
             }
         }
 
         // If the request segments have been translated
-        if (!empty($translatedSegmentsBySupplier)) {
-            $translationResponse = null;
-
-            if (is_array($this->getSegments())) {
-                foreach ($this->getSegments() as $key => $segment) {
-                    foreach ($translatedSegmentsBySupplier as $id => $translatedSegments) {
-                        $translation = array_shift($translatedSegmentsBySupplier[$id]);
-
-                        $translationResponse[$key][] = [
-                            "segment" => $segment,
-                            "translation" => $translation,
-                            "qes" => $this->calculateQes($segment, $translation),
-                            "supplierId" => $id,
-                            "supplierName" => $allSuppliers[$id]['name']
-                        ];
-                    }
-                }
-            }
-
-            $data = [
-                "segments" => $translationResponse
-            ];
-
-            // Just in case there was an error from some Supplier lets reset it
-            $this->apiResponses()->setStatusCode(ApiResponses::HTTP_200_CODE);
-            $this->apiResponses()->setCode(null);
-            $this->apiResponses()->setMessage(null);
-            $this->apiResponses()->setData($data);
-        }
-
-        return $this->apiResponses()->get();
-    }
-
-    /**
-     * @param Request $request
-     * @param Response $response
-     * @param $args
-     * @return Api|ApiDev|array|bool|Response|static
-     * @throws Exception
-     */
-    public function translateWithQes(Request $request, Response $response, $args)
-    {
-        // Pass the response to the apiResponses class
-        $this->apiResponses()->setResponse($response);
-        // Get post data
-        $postData = $request->getParams();
-        $response = $this->validateRequest($postData);
-
-        if (is_object($response)) {
-            return $response;
-        }
-
-        $response = $this->setSupplierAndEngine();
-        if (is_object($response)) {
-            return $response;
-        }
-
-        //Translate the segments with all the options
-        $translatedSegments = $this->makeRequest(UrlConfig::METHOD_TRANSLATE_ID);
-
-        if (is_object($translatedSegments)) {
-            return $translatedSegments;
-        }
-
-        // If the request segments have been translated
-        if (!empty($translatedSegments)) {
-            $translationResponse = null;
-
-            if (is_array($this->getSegments())) {
-                foreach ($this->getSegments() as $key => $segment) {
-                    $translation = array_shift($translatedSegments);
-
-                    $translationResponse[$key] = [
-                        'segment' => $segment,
-                        'translation' => $translation,
-                        'qes' => $this->calculateQes($segment, $translation)
-                    ];
-                }
-            }
-
-            $data = [
-                "segments" => $translationResponse,
-                "debug" => [
-                    "supplierId" => $this->getSupplierAccountId(),
-                    "engineName" => $this->getEngineName()
-                ]
-            ];
-
-            $this->apiResponses()->setData($data);
-
-            $this->storeStatistics(UrlConfig::METHOD_TRANSLATE_ID);
-        }
-
-        return $this->apiResponses()->get();
-    }
-
-    /**
-     * @param Request $request
-     * @param Response $response
-     * @param $args
-     * @return ApiDev|array|bool|Response|static
-     */
-    public function aTranslateWithQes(Request $request, Response $response, $args)
-    {
-        // Pass the response to the apiResponses class
-        $this->apiResponses()->setResponse($response);
-        // Get post data
-        $postData = $request->getParams();
-        $response = $this->validateRequest($postData);
-
-        if (is_object($response)) {
-            return $response;
-        }
-
-        $response = $this->setSupplierAndEngine();
-        if (is_object($response)) {
-            return $response;
-        }
-
-        // Store the request in the db and return a unique id
-        $asynchronousRequests = new AsynchronousRequests();
-        $asynchronousRequests->setId(UUID::v4());
-        $asynchronousRequests->setConsumerAccountid($this->getAccount()->getId());
-        $asynchronousRequests->setSupplierAccountId($this->getSupplierAccountId());
-        $asynchronousRequests->setEngineName($this->getEngineName());
-        $asynchronousRequests->setEngineCustomId($this->getEngineCustomId());
-        $asynchronousRequests->setText(json_encode($this->getSegments()));
-        $asynchronousRequests->setSource($this->getSource());
-        $asynchronousRequests->setTarget($this->getTarget());
-        $asynchronousRequests->setDomain($this->getDomainId());
-        $asynchronousRequests->setMethodId(UrlConfig::METHOD_ATRANSLATE_WITH_QES_ID);
-        $guId = $asynchronousRequests->insert();
-
-        // If the request qoundt be stored try again with a different uuid.We try only once
-        if (!$guId) {
-            $asynchronousRequests->setId(UUID::v4());
-            $guId = $asynchronousRequests->insert();
-        }
-
-        // If the request segments have been translated
-        if (!empty($guId)) {
+        if (!empty($guId) && !empty($id)) {
             $data = [
                 "guid" => $guId
             ];
@@ -1239,20 +1323,6 @@ class ApiDev
         $statisticsTemporary->insert();
 
         return;
-    }
-
-    /**
-     * Calcualte QES based on the source and target
-     * For now we return a dummy score
-     *
-     * @param $source
-     * @param $target
-     * @return int
-     * @throws Exception
-     */
-    private function calculateQes($source, $target)
-    {
-        return random_int(1, 99);
     }
 
     /**

@@ -3,7 +3,7 @@
 include_once '../functions.php';
 
 // Make sure you have a cron job set on the server to run the script
-// */6 * * * * curl https://iadaatpa.ie/CronJob/cacheprocessor.php &> /tmp/croncache.out
+// */6 * * * * curl https://mt-hub.eu/CronJob/cacheprocessor.php &> /tmp/croncache.out
 
 // Get all the requests form the db
 $cache = new Cache();

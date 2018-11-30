@@ -295,7 +295,7 @@ class Engines extends Database
     {
         $supplierIds = is_array($supplierIds) ? implode(',', $supplierIds) : $supplierIds;
         $supplierIds = empty($supplierIds) ? '0' : $supplierIds;
-        $and = $domainId ? ' AND id IN (SELECT engineid FROM enginedomains WHERE domainid = :domainid)' : '';
+        $and = $domainId ? ' AND domainid = :domainid' : '';
 
         $query = 'SELECT
                 id,
@@ -334,6 +334,47 @@ class Engines extends Database
             $this->bindValue(':domainid', $domainId, PDO::PARAM_INT);
         }
         $result = $this->resultSet();
+
+
+        // TODO; remove that if we decide to remove the fallback
+        if (empty($result)) {
+            $query = 'SELECT
+                id,
+                name,
+                accountid,
+                trg,
+                src,
+                domainid,
+                online,
+                type,
+                created,
+                deleted,
+                customid,
+                ter,
+                bleu,
+                fmeasure,
+                trainingwordcount,
+                costperword,
+                description
+            FROM
+                engines
+            WHERE
+                accountid IN (' . $supplierIds . ')
+            AND
+                deleted IS NULL
+            AND
+                src = :src
+            AND 
+                trg = :trg ';
+
+
+            $this->query($query);
+            $this->bindValue(':trg', $this->getTarget(), PDO::PARAM_STR);
+            $this->bindValue(':src', $this->getSource(), PDO::PARAM_STR);
+
+            $result = $this->resultSet();
+        }
+
         $this->endTransaction();
 
         return $result;
@@ -672,9 +713,7 @@ class Engines extends Database
      */
     public function setDomainId($domainId)
     {
-        if (is_numeric($domainId)) {
-            $this->domainId = $domainId;
-        }
+        $this->domainId = $domainId;
     }
 
     /**

@@ -3,7 +3,7 @@
 include_once '../functions.php';
 
 // Make sure you have a cron job set on the server to run the script
-// */5 * * * * curl https://iadaatpa.ie/CronJob/asynchronousprocessor.php &> /tmp/cron.out
+// */5 * * * * curl https://mt-hub.eu/CronJob/asynchronousprocessor.php &> /tmp/cron.out
 
 // Get all the requests form the db
 $asynchronousRequests = new AsynchronousRequests();

@@ -26,6 +26,24 @@ class Groups extends Database
     }
 
     /**
+     * @param $groupId
+     * @return string
+     */
+    public static function getGroupName ($groupId)
+    {
+        switch ($groupId) {
+            case Groups::GROUP_ADMINISTRATOR:
+                return "Admin";
+
+            case self::GROUP_SUPPLIER:
+                return "Supplier";
+
+            default:
+                return "Consumer";
+        }
+    }
+
+    /**
      * @return mixed|null
      */
     public function insert()

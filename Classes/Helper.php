@@ -109,7 +109,7 @@ class Helper
      */
     public static function setEuDirectiveCookie()
     {
-        setcookie('iadaatpaEuDirective', 1, 2147483647, '/', Session::getSessionDomain(), true, true);
+        setcookie('MT-HUBEuDirective', 1, 2147483647, '/', Session::getSessionDomain(), true, true);
     }
 
     /**
@@ -117,7 +117,7 @@ class Helper
      */
     public static function getEuDirectiveCookie()
     {
-        if (isset($_COOKIE['iadaatpaEuDirective'])) {
+        if (isset($_COOKIE['MT-HUBEuDirective'])) {
             return true;
         }
 

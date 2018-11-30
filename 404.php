@@ -40,7 +40,7 @@ include_once 'functions.php';
                 		<h1>
                 			<div class="btn-group">
                 				<a href="index.php" target="_self"><button type="button" class="btn btn-lg btn-info" title="Go to the home page"><i class="fa fa-home fa-pointer fa-fw fa-lg" aria-hidden="true"></i>&nbsp;&nbsp;<?php echo Session::t('Home'); ?></button></a>
-                				<a href="mailto:info@iadaatpa.eu?Subject=Page%20Not%20Found%20Error target="_self"><button type="button" class="btn btn-lg btn-info" title="Contact support"><i class="fa fa-home fa-envelope fa-fw fa-lg" aria-hidden="true"></i>&nbsp;&nbsp;<?php echo Session::t('Contact us'); ?></button></a>
+                				<a href="mailto:info@mt-hub.eu?Subject=Page%20Not%20Found%20Error target="_self"><button type="button" class="btn btn-lg btn-info" title="Contact support"><i class="fa fa-home fa-envelope fa-fw fa-lg" aria-hidden="true"></i>&nbsp;&nbsp;<?php echo Session::t('Contact us'); ?></button></a>
                 			</div>
                 		</h1>
                 		</div>

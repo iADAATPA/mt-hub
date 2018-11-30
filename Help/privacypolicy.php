@@ -15,7 +15,7 @@
             <blockquote class="blockquote" style="font-size: 0.9em;">
                 <p>If you have questions about this Privacy Statement or want to
                     contact us regarding how we handle your data, please send an email
-                    to info@iadaatpa.eu.</p>
+                    to info@mt-hub.eu.</p>
             </blockquote>
 
             <p>

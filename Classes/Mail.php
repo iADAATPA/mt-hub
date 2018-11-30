@@ -23,8 +23,8 @@ class Mail
     public function sendPlainEmail($to, $subject, $message)
     {
         if (!empty($to)) {
-            $headers = 'From: no-replay@iadaatpa.eu' . "\r\n" .
-                'Reply-To: no-replay@iadaatpa.eu' . "\r\n" .
+            $headers = 'From: no-replay@mt-hub.eu' . "\r\n" .
+                'Reply-To: no-replay@mt-hub.eu' . "\r\n" .
                 'X-Mailer: PHP/' . phpversion();
 
             $response = mail($to, $subject, $message, $headers);
@@ -51,8 +51,8 @@ class Mail
 
         $message = $header . $message . $footer;
 
-        $headers = "From: no-replay@iadaatpa.eu\r\n";
-        $headers .= "Reply-To: no-replay@iadaatpa.eu\r\n";
+        $headers = "From: no-replay@mt-hub.eu\r\n";
+        $headers .= "Reply-To: no-replay@mt-hub.eu\r\n";
         $headers .= "MIME-Version: 1.0\r\n";
         $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
         $headers .= "X-Mailer: PHP/" . phpversion() . "\r\n";

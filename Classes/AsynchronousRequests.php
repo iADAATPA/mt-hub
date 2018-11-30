@@ -7,6 +7,7 @@
 class AsynchronousRequests extends Database
 {
     private $id = null;
+    private $guId = null;
     private $consumeraccountid = null;
     private $supplierAccountId = null;
     private $engineName = null;
@@ -23,15 +24,17 @@ class AsynchronousRequests extends Database
     private $error = null;
     private $methodId = UrlConfig::METHOD_TRANSLATE_ID;
     private $fileType = null;
-    private $supplierGuid = null;
+    private $supplierGuId = null;
+    private $multipleTranslation = false;
 
     /**
      * Asynchronous Requests constructor.
      * @param null|int $id
      */
-    public function __construct($id = null)
+    public function __construct($id = null, $guId = null)
     {
-        if ($id) {
+        if (!empty($id) || !empty($guId)) {
+            $this->setGuId($guId);
             $this->setId($id);
             $this->set($this->get());
         }
@@ -45,7 +48,7 @@ class AsynchronousRequests extends Database
         if (!empty($this->getConsumerAccountid())) {
             $query = 'INSERT INTO
 							asynchronousrequests(
-							    id,
+							    guid,
 							    consumeraccountid,
 							    supplieraccountid,
 							    status,
@@ -65,7 +68,7 @@ class AsynchronousRequests extends Database
 							    supplierguid
 						)
 						VALUES (
-						    :id,
+						    :guid,
                             :consumeraccountid,
                             :supplieraccountid,
                             :status,
@@ -87,7 +90,7 @@ class AsynchronousRequests extends Database
 
             $this->startTransaction();
             $this->query($query);
-            $this->bindValue(':id', $this->getId(), PDO::PARAM_STR);
+            $this->bindValue(':guid', $this->getGuId(), PDO::PARAM_STR);
             $this->bindValue(':consumeraccountid', $this->getConsumerAccountid(), PDO::PARAM_INT);
             $this->bindValue(':supplieraccountid', $this->getSupplierAccountId(), PDO::PARAM_INT);
             $this->bindValue(':status', $this->getStatus(), PDO::PARAM_INT);
@@ -104,13 +107,14 @@ class AsynchronousRequests extends Database
             $this->bindValue(':methodid', $this->getMethodId(), PDO::PARAM_INT);
             $this->bindValue(':error', $this->getError(), PDO::PARAM_STR);
             $this->bindValue(':filetype', $this->getFileType(), PDO::PARAM_STR);
-            $this->bindValue(':supplierguid', $this->getSupplierGuid(), PDO::PARAM_STR);
+            $this->bindValue(':supplierguid', $this->getSupplierGuId(), PDO::PARAM_STR);
             $response = $this->execute();
-            $this->endTransaction();
 
             if ($response) {
-                return $this->getId();
+                return $this->lastInsertId();
             }
+
+            $this->endTransaction();
         }
 
         return null;
@@ -121,9 +125,10 @@ class AsynchronousRequests extends Database
      */
     public function get()
     {
-        if (!empty($this->getId())) {
+        if (!empty($this->getGuId()) || !empty($this->getId())) {
             $query = 'SELECT
                         id,
+                        guid,
 						consumeraccountid,
                         supplieraccountid,
                         status,
@@ -144,12 +149,15 @@ class AsynchronousRequests extends Database
 					FROM
 						asynchronousrequests
 					WHERE 
-					    id = :id';
+					    guid = :guid
+                    OR 
+                        id   = :id';
 
             $this->startTransaction();
             $this->query($query);
-            $this->bindValue(':id', $this->getId(), PDO::PARAM_STR);
-            $result = $this->result();
+            $this->bindValue(':guid', $this->getGuId(), PDO::PARAM_STR);
+            $this->bindValue(':id', $this->getId(), PDO::PARAM_INT);
+            $result = $this->resultSet();
             $this->endTransaction();
 
             return $result;
@@ -163,15 +171,15 @@ class AsynchronousRequests extends Database
      */
     public function delete()
     {
-        if (!empty($this->getId())) {
+        if (!empty($this->getGuId())) {
             $query = 'DELETE FROM
 						asynchronousrequests
 					WHERE 
-					    id = :id';
+					    guid = :guid';
 
             $this->startTransaction();
             $this->query($query);
-            $this->bindValue(':id', $this->getId(), PDO::PARAM_STR);
+            $this->bindValue(':guid', $this->getGuId(), PDO::PARAM_STR);
             $result = $this->execute();
             $this->endTransaction();
 
@@ -188,6 +196,7 @@ class AsynchronousRequests extends Database
     {
         $query = 'SELECT
                     id,
+                    guid,
                     consumeraccountid,
                     supplieraccountid,
                     status,
@@ -257,7 +266,7 @@ class AsynchronousRequests extends Database
 
             $this->startTransaction();
             $this->query($query);
-            $this->bindValue(':id', $this->getId(), PDO::PARAM_STR);
+            $this->bindValue(':id', $this->getId(), PDO::PARAM_INT);
             $this->bindValue(':consumeraccountid', $this->getConsumerAccountid(), PDO::PARAM_INT);
             $this->bindValue(':supplieraccountid', $this->getSupplierAccountId(), PDO::PARAM_INT);
             $this->bindValue(':status', $this->getStatus(), PDO::PARAM_INT);
@@ -274,7 +283,33 @@ class AsynchronousRequests extends Database
             $this->bindValue(':methodid', $this->getMethodId(), PDO::PARAM_INT);
             $this->bindValue(':error', $this->getError(), PDO::PARAM_STR);
             $this->bindValue(':filetype', $this->getFileType(), PDO::PARAM_STR);
-            $this->bindValue(':supplierguid', $this->getSupplierGuid(), PDO::PARAM_STR);
+            $this->bindValue(':supplierguid', $this->getSupplierGuId(), PDO::PARAM_STR);
+            $result = $this->execute();
+            $this->endTransaction();
+
+            return $result;
+        }
+
+        return null;
+    }
+
+    /**
+     * @return mixed|null
+     */
+    public function updateMultipleTranslationRequestTime()
+    {
+        if ($this->getGuId()) {
+            $query = 'UPDATE
+							asynchronousrequests
+						SET
+                            requesttime         = :requesttime
+						WHERE
+							guid			    = :guid';
+
+            $this->startTransaction();
+            $this->query($query);
+            $this->bindValue(':guid', $this->getGuId(), PDO::PARAM_STR);
+            $this->bindValue(':requesttime', $this->getRequestTime(), PDO::PARAM_STR);
             $result = $this->execute();
             $this->endTransaction();
 
@@ -291,24 +326,27 @@ class AsynchronousRequests extends Database
     public function set($details)
     {
         if (!empty($details) && is_array($details)) {
-            $this->setId($details['id'] ? $details['id'] : null);
-            $this->setConsumerAccountid($details['consumeraccountid'] ? $details['consumeraccountid'] : null);
-            $this->setSupplierAccountId($details['supplieraccountid'] ? $details['supplieraccountid'] : null);
-            $this->setStatus($details['status'] ? $details['status'] : null);
-            $this->setEngineName($details['enginename'] ? $details['enginename'] : null);
-            $this->setEngineCustomId($details['enginecustomid'] ? $details['enginecustomid'] : null);
-            $this->setSource($details['src'] ? $details['src'] : null);
-            $this->setTarget($details['trg'] ? $details['trg'] : null);
-            $this->setDomain($details['domain'] ? $details['domain'] : null);
-            $this->setText($details['text'] ? $details['text'] : null);
-            $this->setTranslation($details['translation'] ? $details['translation'] : null);
-            $this->setTranslationTime($details['translationtime'] ? $details['translationtime'] : null);
-            $this->setRequestTime($details['requesttime'] ? $details['requesttime'] : null);
-            $this->setRetry($details['retry'] ? $details['retry'] : null);
-            $this->setError($details['error'] ? $details['error'] : null);
-            $this->setMethodId($details['methodid'] ? $details['methodid'] : null);
-            $this->setFileType($details['filetype'] ? $details['filetype'] : null);
-            $this->setSupplierGuid($details['supplierguid'] ? $details['supplierguid'] : null);
+            $this->setMultipleTranslation(count($details) > 1 ? true : false);
+            $details = empty($details[0]) ? $details : $details[0];
+            $this->setId(!empty($details['id']) ? $details['id'] : null);
+            $this->setGuId(!empty($details['guid']) ? $details['guid'] : null);
+            $this->setConsumerAccountid(!empty($details['consumeraccountid']) ? $details['consumeraccountid'] : null);
+            $this->setSupplierAccountId(!empty($details['supplieraccountid']) ? $details['supplieraccountid'] : null);
+            $this->setStatus(!empty($details['status']) ? $details['status'] : null);
+            $this->setEngineName(!empty($details['enginename']) ? $details['enginename'] : null);
+            $this->setEngineCustomId(!empty($details['enginecustomid']) ? $details['enginecustomid'] : null);
+            $this->setSource(!empty($details['src']) ? $details['src'] : null);
+            $this->setTarget(!empty($details['trg']) ? $details['trg'] : null);
+            $this->setDomain(!empty($details['domain']) ? $details['domain'] : null);
+            $this->setText(!empty($details['text']) ? $details['text'] : null);
+            $this->setTranslation(!empty($details['translation']) ? $details['translation'] : null);
+            $this->setTranslationTime(!empty($details['translationtime']) ? $details['translationtime'] : null);
+            $this->setRequestTime(!empty($details['requesttime']) ? $details['requesttime'] : null);
+            $this->setRetry(!empty($details['retry']) ? $details['retry'] : null);
+            $this->setError(!empty($details['error']) ? $details['error'] : null);
+            $this->setMethodId(!empty($details['methodid']) ? $details['methodid'] : null);
+            $this->setFileType(!empty($details['filetype']) ? $details['filetype'] : null);
+            $this->setSupplierGuId(!empty($details['supplierguid']) ? $details['supplierguid'] : null);
 
             return true;
         }
@@ -599,16 +637,48 @@ class AsynchronousRequests extends Database
     /**
      * @return null
      */
-    public function getSupplierGuid()
+    public function getSupplierGuId()
     {
-        return $this->supplierGuid;
+        return $this->supplierGuId;
     }
 
     /**
-     * @param null $supplierGuid
+     * @param null $supplierGuId
      */
-    public function setSupplierGuid($supplierGuid)
+    public function setSupplierGuId($supplierGuId)
     {
-        $this->supplierGuid = $supplierGuid;
+        $this->supplierGuId = $supplierGuId;
+    }
+
+    /**
+     * @return null
+     */
+    public function getGuId()
+    {
+        return $this->guId;
+    }
+
+    /**
+     * @param null $guId
+     */
+    public function setGuId($guId)
+    {
+        $this->guId = $guId;
+    }
+
+    /**
+     * @return null
+     */
+    public function getMultipleTranslation()
+    {
+        return $this->multipleTranslation;
+    }
+
+    /**
+     * @param null $multipleTranslation
+     */
+    public function setMultipleTranslation($multipleTranslation)
+    {
+        $this->multipleTranslation = $multipleTranslation;
     }
 }

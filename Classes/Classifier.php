@@ -50,6 +50,13 @@ class Classifier
      */
     public function classifyText($text)
     {
+        $text = $this->normaliseText($text);
+
+        // Checl if there is a minimum lenght
+        if (strlen($text) < 10) {
+            return null;
+        }
+
         $name = [];
         $value = [];
         $cat = !empty($this->catMgr->listCategory) ? $this->catMgr->listCategory : null;
@@ -113,5 +120,124 @@ class Classifier
         $probability += log($this->catMgr->getCatProb($catname));
 
         return $probability;
+    }
+
+    /**
+     * @param $text
+     * @return normalised Text
+     */
+    public function normaliseText($text)
+    {
+        // 1. Remove all \r\n characters
+        $text = str_replace("\r\n", '', $text);
+
+        /* 2. Remove multlple contingous spaces **/
+        $text = preg_replace('/\s+/', ' ', $text);
+
+
+        return $text;
+    }
+
+    /**
+     * @param $text
+     * @param $len
+     * @return bool|string
+     */
+    private function standardizeText($text, $len)
+    {
+        $standardizeText = $text;
+
+        // split into words
+        //$words = explode(" ", $text);
+
+        // Sort array
+        //sort( $words );
+
+        // join it back up
+        //$standardizeText = join( " ", $words );
+
+        // set now to len paramters
+        $standardizeText = substr($standardizeText, 0, $len);
+
+        return $standardizeText;
+    }
+
+    /**
+     * @param $text
+     * @return QES Score - (Vector mass score)
+     */
+    public function generateQESScore($text)
+    {
+        $text = $this->normaliseText($text);
+
+        $name = [];
+        $value = [];
+        $max = 0;
+        $i = 0;
+
+        // only one category in QES models
+        $cat = !empty($this->catMgr->listCategory) ? $this->catMgr->listCategory : null;
+
+        if (is_array($cat)) {
+            foreach ($cat as $obj_cat) {
+                $value[$i] = $this->computeProb($text, $obj_cat->nameOfCategory);
+                $name[$i] = $obj_cat->nameOfCategory;
+                $i++;
+            }
+
+            $i = 1;
+            while ($i < count($value)) {
+                if ($value[$max] < $value[$i]) {
+                    $max = $i;
+                }
+                $i++;
+            }
+        }
+
+        return !empty($value[$max]) ? $value[$max] : null;
+    }
+
+    /**
+     * @param $sentences []
+     * @return $rank - array element with best QES score
+     */
+    public function rankTexts($sentences)
+    {
+        $QESvalue = [];
+
+        // Find the shortest len - used as param to standardizeText
+        $i = 0;
+        $minLen = 999999;
+        $best = 0;
+
+        if (!empty($sentences) && is_array($sentences)) {
+            foreach ($sentences as $sentence) {
+                $len = strlen($sentence);
+                $minLen = ($minLen < $len ? $minLen : $len);
+            }
+
+            // Normalise Texts - this is an important step before we score a sentence
+            foreach ($sentences as $sentence) {
+                $sentences[$i++] = $this->standardizeText($sentence, $minLen);
+            }
+
+            // Now get the QES for each sentence
+            $i = 0;
+
+            foreach ($sentences as $sentence) {
+                $QESvalue[$i] = $this->generateQESScore($sentence);
+                $i++;
+            }
+
+            $i = 1;
+            while ($i < count($QESvalue)) {
+                if ($QESvalue[$best] > $QESvalue[$i]) {
+                    $best = $i;
+                }
+                $i++;
+            }
+        }
+
+        return $best;
     }
 }

@@ -32,7 +32,6 @@ $domainList = is_array($domainList) ? $domainList : [];
         <div class="box box-warning small-padding">
             <div class="box-header">
                 <h3 class="box-title"><?php echo Session::t('iADAATPA Translate'); ?></h3>
-                <span class="pull-right btn-help-circle"><?php Helper::printHelpButton(Session::t('Test'), 'Help/test.php'); ?></span>
             </div>
             <div class="box-body">
                 <div class="row">
@@ -67,7 +66,7 @@ $domainList = is_array($domainList) ? $domainList : [];
                     <div class="col-sm-4 col-xs-12">
                         <div class="form-group">
                             <label class="control-label"><?php echo Session::t('Domain'); ?></label>
-                            <select id="domain" class="form-control" onchange="cleanForm();">
+                            <select id="domain" name="domain" class="form-control" onchange="cleanForm();">
                                 <option id="0" selected value="0">&nbsp;Detect Domain</option>
                                 <?php foreach ($domainList as $domain) {
                                     $id = $domain['id'];
@@ -252,6 +251,7 @@ $domainList = is_array($domainList) ? $domainList : [];
             var sourceText = $("#sourceText").val();
             var target = $("#target").val();
             var source = $("#source").val();
+            var domain = $("#domain").val();
 
             $('#btnTranslate').find($('.fa')).removeClass('fa-language').addClass('fa-refresh fa-spin').prop('disabled', true);
 
@@ -267,6 +267,7 @@ $domainList = is_array($domainList) ? $domainList : [];
                     segments: sourceText,
                     method: "translate",
                     source: source,
+                    domain: domain,
                     target: target,
                     customerId: <?php echo Session::getAccountId(); ?>,
                     <?php Csrf::printParameters("Translate"); ?>

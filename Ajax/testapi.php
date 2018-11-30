@@ -21,14 +21,14 @@ $apiToken = $accounts->getApiToken();
 if ($method && $apiToken) {
     switch ($method) {
         case "detectLanguage":
-            $url = "https://www.iadaatpa.eu/api/dev/detectlanguage";
+            $url = "https://www.mt-hub.eu/api/dev/detectlanguage";
             $data = [
                 'segments[0]' => $segments,
                 'token' => $apiToken
             ];
             break;
         case "detectDomain":
-            $url = "https://www.iadaatpa.eu/api/dev/detectdomain";
+            $url = "https://www.mt-hub.eu/api/dev/detectdomain";
             $data = [
                 'segments[0]' => $segments,
                 'token' => $apiToken,
@@ -36,7 +36,7 @@ if ($method && $apiToken) {
             ];
             break;
         case "translate":
-            $url = "https://www.iadaatpa.eu/api/dev/translate";
+            $url = "https://www.mt-hub.eu/api/dev/translate";
             $data = [
                 'segments[0]' => $segments,
                 'token' => $apiToken,
@@ -46,7 +46,7 @@ if ($method && $apiToken) {
             ];
             break;
         case "aTranslate":
-            $url = "https://www.iadaatpa.eu/api/dev/atranslate";
+            $url = "https://www.mt-hub.eu/api/dev/atranslate";
             $data = [
                 'segments[0]' => $segments,
                 'token' => $apiToken,
@@ -56,7 +56,7 @@ if ($method && $apiToken) {
             ];
             break;
         case "aRetrieveTranslation":
-            $url = "https://www.iadaatpa.eu/api/dev/aretrievetranslation/" . $apiToken . '/' . $segments;
+            $url = "https://www.mt-hub.eu/api/dev/aretrievetranslation/" . $apiToken . '/' . $segments;
             $data = null;
             break;
     }

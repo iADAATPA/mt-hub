@@ -42,8 +42,24 @@ $columns = [
     ],
     ['db' => 'accounts.adminid', 'dt' => 5],
     ['db' => 'accounts.created', 'dt' => 6],
-    ['db' => 'accounts.id', 'dt' => 7],
-    ['db' => 'accounts.id', 'dt' => 8],
+    [
+        'db' => 'accounts.id',
+        'dt' => 7,
+        'formatter' => function ($d) {
+            $icon = '<span id="btnEdit_' . $d . '" title="' . Session::t('Edit properties') . '" onClick="editAccount(' . $d . ')"><i class="fa fa-lg fa-pencil-square-o fa-pointer" aria-hidden="true"></i></span>';
+
+            return $icon;
+        }
+    ],
+    [
+        'db' => 'accounts.id',
+        'dt' => 8,
+        'formatter' => function ($d) {
+            $icon = '<span title="' . Session::t('Login as a User') . '" onClick="loginToAccount(' . $d . ')"><i class="fa fa-lg fa-sign-in fa-green fa-pointer" aria-hidden="true"></i></a>';
+
+            return $icon;
+        }
+    ],
     ['db' => 'accounts.deleted', 'dt' => 9],
     ['db' => 'accounts.groupid', 'dt' => 10],
 ];

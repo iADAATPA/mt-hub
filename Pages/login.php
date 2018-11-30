@@ -195,7 +195,7 @@ if (!empty($_GET['token'])) {
             $('#' + errorId).on('click', 'button.close', function() {
                 $('#' + errorId).animate({opacity: 0}, 500).hide('slow').queue(function() {
                     $('#' + errorId).remove();
-                    createCookie('iadaatpaEuDirective', 1);
+                    createCookie('MT-HUBEuDirective', 1);
                 });
             });
 

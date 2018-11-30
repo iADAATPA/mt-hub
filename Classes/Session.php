@@ -18,7 +18,7 @@ class Session
             '::1'
         ];
 
-        // If the ip is not from a localhost set cookies params do iadaatpa.eu
+        // If the ip is not from a localhost set cookies params do Mt-HUB
         if (!in_array($_SERVER['REMOTE_ADDR'], $whitelist)) {
             session_set_cookie_params(0, '/', Session::getSessionDomain(), true, true);
         } else {
@@ -48,7 +48,9 @@ class Session
             'iadaatpa.eu',
             'app.iadaatpa.com',
             'app.iadaatpa.org',
-            'app.iadaatpa.eu'
+            'app.iadaatpa.eu',
+            'mt-hub.eu',
+            'app.mt-hub.eu'
         ];
 
         $currentDomain = $_SERVER['SERVER_NAME'];
@@ -57,7 +59,7 @@ class Session
             return $currentDomain;
         }
 
-        return 'iadaatpa.com';
+        return 'mt-hub.eu';
     }
 
     /**
@@ -77,8 +79,8 @@ class Session
     public static function setLang()
     {
         $supportedLangs = ['en-us', 'pl'];
-        if (isset($_COOKIE['iadaatpaLang']) && in_array($_COOKIE['iadaatpaLang'], $supportedLangs)) {
-            $_SESSION['lang'] = $_COOKIE['iadaatpaLang'];
+        if (isset($_COOKIE['MT-HUBLang']) && in_array($_COOKIE['MT-HUBLang'], $supportedLangs)) {
+            $_SESSION['lang'] = $_COOKIE['MT-HUBLang'];
         } else {
             if (empty($_SESSION['lang']) && !empty($_SERVER['HTTP_ACCEPT_LANGUAGE'])) {
                 $browserLanguage = explode(',', $_SERVER['HTTP_ACCEPT_LANGUAGE']);

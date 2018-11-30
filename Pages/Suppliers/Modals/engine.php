@@ -64,6 +64,7 @@ if ($admin && Session::isAdministrator()) {
             <div class="form-group">
                 <label class="control-label"><?php echo Session::t('Domain'); ?></label>
                 <select id="domainId" class="form-control" name="domainId" tabindex="-1" onchange="cleanError();">
+                    <option id="None" value="None">&nbsp;</option>
 
                     <?php foreach ($domainList as $domain) {
                         $id = $domain['id'];

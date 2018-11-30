@@ -64,7 +64,7 @@ if ($domainId) {
             <div class="btn-group">
                 <div class="btn btn-default" data-bb-handler="cancel" data-dismiss="modal"><i class="fa fa-times fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;<?php echo Session::t('Cancel'); ?></div>
                 <?php if ($isDomainAssigned){ ?>
-                <div class="btn btn-info" disabled="disabled" title="<?php echo Session::t("Domain assigned to an engine can't be modified."); ?>"><i class="fa fa-floppy-o fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;<?php echo Session::t('Save'); ?></div>
+                <div class="btn btn-info" disabled="disabled" title="<?php echo Session::t("The domain assigned to an engine can&apos;t be modified"); ?>"><i class="fa fa-floppy-o fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;<?php echo Session::t('Save'); ?></div>
                 <?php } else { ?>
                 <div id="btnSaveDomain" class="btn btn-info"><i class="fa fa-floppy-o fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;<?php echo Session::t('Save'); ?></div>
                 <?php } ?>

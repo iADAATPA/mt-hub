@@ -67,14 +67,8 @@ $formatters = [
     ['targets' => 3, 'render' => 'formatLongString'],
     ['targets' => 5, 'width' => 10],
     ['targets' => 6, 'width' => 20],
-    ['targets' => 7, 'width' => 1, 'render' => 'formatEditIcon', 'class' => 'dt-body-center', 'orderable' => 'false'],
-    [
-        'targets' => 8,
-        'width' => 1,
-        'render' => 'formatLoginAsIcon',
-        'class' => 'dt-body-center',
-        'orderable' => 'false'
-    ],
+    ['targets' => 7, 'width' => 1, 'class' => 'dt-body-center', 'orderable' => 'false'],
+    ['targets' => 8, 'width' => 1, 'class' => 'dt-body-center', 'orderable' => 'false'],
     ['targets' => 9, 'visible' => 'false'],
     ['targets' => 10, 'visible' => 'false']
 ];
@@ -100,18 +94,6 @@ $table->drawTable();
             showModal(link, '<?php echo Session::t('New Account'); ?>');
         });
     });
-
-    function formatEditIcon(data, type, row) {
-        var icon = '<span id=\"btnEdit_' + row[0] + '\" title=\"<?php echo Session::t('Edit properties'); ?>\" onClick=\"editAccount(' + row[0] + ')\"><i class=\"fa fa-lg fa-pencil-square-o fa-pointer\" aria-hidden=\"true\"></i></span>';
-
-        return icon;
-    }
-
-    function formatLoginAsIcon(data, type, row) {
-        var icon = '<span title=\"<?php echo Session::t('Login to account'); ?>\" onClick=\"loginToAccount(' + row[0] + ')\"><i class=\"fa fa-lg fa-sign-in fa-green fa-pointer\" aria-hidden=\"true\"></i></span>';
-
-        return icon;
-    }
 
     function loginToAccount(id) {
         $.post(

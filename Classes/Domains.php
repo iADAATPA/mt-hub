@@ -227,14 +227,15 @@ class Domains extends Database
 					FROM
 						domains
 					WHERE 
-					    name      = :name 
-                    AND 
-                        src       = :src';
+					    (name      = :name 
+                    OR 
+                        id         = :id)';
 
             $this->startTransaction();
             $this->query($query);
             $this->bindValue(':name', $name, PDO::PARAM_STR);
-            $this->bindValue(':src', $source, PDO::PARAM_STR);
+            $this->bindValue(':id', $name, PDO::PARAM_STR);
+            //$this->bindValue(':src', $source, PDO::PARAM_STR);
 
             $result = $this->result();
             $this->endTransaction();

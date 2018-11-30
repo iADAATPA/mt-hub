@@ -15,6 +15,9 @@ class Cache extends Database
     private $engineId = null;
     private $segments = null;
     private $translatedSegments = null;
+    private $domainId = null;
+    private $src = null;
+    private $trg = null;
 
     /**
      * Cache constructor.
@@ -32,6 +35,9 @@ class Cache extends Database
                         cache(
                             supplieraccountid,
                             engineid,
+                            domainid,
+                            src,
+                            trg,
                             segments,
                             translatedsegments,
                             time
@@ -39,6 +45,9 @@ class Cache extends Database
                     VALUES (
                         :supplieraccountid,
                         :engineid,
+                        :domainid,
+                        :src,
+                        :trg,
                         :segments,
                         :translatedsegments,
                         NOW()
@@ -48,6 +57,9 @@ class Cache extends Database
         $this->query($query);
         $this->bindValue(':supplieraccountid', $this->getSupplierAccountId(), PDO::PARAM_INT);
         $this->bindValue(':engineid', $this->getEngineId(), PDO::PARAM_INT);
+        $this->bindValue(':domainid', $this->getDomainId(), PDO::PARAM_INT);
+        $this->bindValue(':src', $this->getSrc(), PDO::PARAM_STR);
+        $this->bindValue(':trg', $this->getTrg(), PDO::PARAM_STR);
         $this->bindValue(':segments', $this->getSegments(), PDO::PARAM_STR);
         $this->bindValue(':translatedsegments', $this->getTranslatedSegments(), PDO::PARAM_STR);
 
@@ -68,6 +80,9 @@ class Cache extends Database
                         id,
                         supplieraccountid,
 						engineid,
+						domainid,
+						src,
+                        trg,
 						segments,
 						translatedsegments
 					FROM
@@ -93,6 +108,8 @@ class Cache extends Database
     public function getCachedTranslatedSegments()
     {
         if (!empty($this->getSupplierAccountId())) {
+            $domain = $this->getDomainId() ? " = :domainid " : " IS NULL ";
+
             $query = 'SELECT
 						translatedsegments
 					FROM
@@ -102,13 +119,25 @@ class Cache extends Database
                     AND 
                         segments          = :segments
                     AND   
-                        engineid          = :engineid';
+                        engineid          = :engineid
+                    AND 
+                        domainid          ' . $domain . '
+                    AND 
+                        src               = :src
+                    AND   
+                        trg               = :trg';
 
             $this->startTransaction();
             $this->query($query);
             $this->bindValue(':supplieraccountid', $this->getSupplierAccountId(), PDO::PARAM_INT);
             $this->bindValue(':segments', $this->getSegments(), PDO::PARAM_STR);
             $this->bindValue(':engineid', $this->getEngineId(), PDO::PARAM_INT);
+            if ($this->getDomainId()) {
+                $this->bindValue(':domainid', $this->getDomainId(), PDO::PARAM_INT);
+            }
+
+            $this->bindValue(':src', $this->getSrc(), PDO::PARAM_STR);
+            $this->bindValue(':trg', $this->getTrg(), PDO::PARAM_STR);
             $result = $this->result();
             $this->endTransaction();
 
@@ -129,6 +158,9 @@ class Cache extends Database
                     id,
                     supplieraccountid,
                     engineid,
+                    domainid,
+                    src,
+                    trg,
                     segments,
                     translatedsegments
                 FROM
@@ -225,6 +257,9 @@ class Cache extends Database
             $this->setId($details['id'] ? $details['id'] : null);
             $this->setSupplierAccountId($details['supplieraccountid'] ? $details['supplieraccountid'] : null);
             $this->setEngineId($details['engineid'] ? $details['engineid'] : null);
+            $this->setDomainId($details['domainid'] ? $details['domainid'] : null);
+            $this->setSrc($details['src'] ? $details['src'] : null);
+            $this->setTrg($details['trg'] ? $details['trg'] : null);
             $this->setSegments($details['segments'] ? $details['segments'] : null);
             $this->setTranslatedSegments($details['translatedsegments'] ? $details['translatedsegments'] : null);
 
@@ -321,5 +356,53 @@ class Cache extends Database
         }
 
         $this->translatedSegments = $translatedSegments;
+    }
+
+    /**
+     * @return null
+     */
+    public function getDomainId()
+    {
+        return $this->domainId;
+    }
+
+    /**
+     * @param null $domainId
+     */
+    public function setDomainId($domainId)
+    {
+        $this->domainId = $domainId;
+    }
+
+    /**
+     * @return null
+     */
+    public function getSrc()
+    {
+        return $this->src;
+    }
+
+    /**
+     * @param null $src
+     */
+    public function setSrc($src)
+    {
+        $this->src = $src;
+    }
+
+    /**
+     * @return null
+     */
+    public function getTrg()
+    {
+        return $this->trg;
+    }
+
+    /**
+     * @param null $trg
+     */
+    public function setTrg($trg)
+    {
+        $this->trg = $trg;
     }
 }

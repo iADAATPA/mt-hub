@@ -28,7 +28,7 @@ Helper::displayPageHeader($header);
         <div class="box box-warning small-padding">
             <div class="box-header">
                 <h3 class="box-title"><?php echo Session::t('Available Suppliers'); ?></h3>
-                <span class="pull-right btn-help-circle"><?php Helper::printHelpButton(Session::t('Relations'), 'Help/suppliers.php'); ?></span>
+                <span class="pull-right btn-help-circle"><?php Helper::printHelpButton(Session::t('Relations'), 'Help/relations.php'); ?></span>
             </div>
             <div class="box-body">
                 <div id='suppliers'></div>

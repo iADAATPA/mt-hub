@@ -35,14 +35,13 @@ class UrlConfig extends Database
     const METHOD_ATRANSLATE_FILE_ID = 10;
     const METHOD_ATRANSLATE_FILE_DESC = 'translateFile w/ callback';
 
-
     const TYPE_POST = "POST";
     const TYPE_GET = "GET";
 
     const AUTH_BASIC = 1;
     const AUTH_DIGEST = 2;
 
-    const CALLBACK_URL = "https://iadaatpa.eu/callbacksuccess.php";
+    const CALLBACK_URL = "https://mt-hub.eu/callbacksuccess.php";
 
     /**
      * UrlConfig constructor.

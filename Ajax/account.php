@@ -59,7 +59,7 @@ if ($activiaTm && empty($activiaTmPassword) && empty($activiaTmUserName)) {
                 $mail->sendHtmlEmail(
                     $adminEmail,
                     Session::t('New Account created.'),
-                    Session::t('Hi') . ' ' . $userName . '<br/><br/>' . Session::t('Please set up your password to the IADAATPA platform by clicking on the following link:') . ' <a href="https://iadaatpa.eu?token=' . $token . '">www.iadaatpa.eu</a>.<br/><br/>' . Session::t('Your User Name is:') . ' ' . $userName . '<br/><br/><br/><br/>IADAATPA Team'
+                    Session::t('Hi') . ' ' . $userName . '<br/><br/>' . Session::t('Please set up your password to the MT-HUB platform by clicking on the following link:') . ' <a href="https://mt-hub.eu?token=' . $token . '">www.mt-hub.eu</a>.<br/><br/>' . Session::t('Your User Name is:') . ' ' . $userName . '<br/><br/><br/><br/>MT-HUB Team'
                 );
             }
         } else {

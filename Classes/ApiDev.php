@@ -1248,6 +1248,7 @@ class ApiDev
 
             return $this->apiResponses()->get();
         } else {
+            $allSuppliers = $relations->getConsumerSuppliers($this->getSupplierAccountId());
             $supplierIds[] = $this->getSupplierAccountId();
         }
 
@@ -1275,7 +1276,7 @@ class ApiDev
             return $this->apiResponses()->get();
         }
 
-        if ($allSuppliers) {
+        if (!empty($allSuppliers)) {
             foreach ($allSuppliers as $supplier) {
                 if ($engine[0]['accountid'] == $supplier['supplieraccountid']) {
                     $supplierToken = empty($supplier['apitoken']) || empty($supplier['token']) ? null : Encryption::decrypt($supplier['apitoken'],

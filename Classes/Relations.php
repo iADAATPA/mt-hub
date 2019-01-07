@@ -299,10 +299,13 @@ class Relations extends Database
     }
 
     /**
+     * @param null|int $supplierAccountId
      * @return array|null
      */
-    public function getConsumerSuppliers()
+    public function getConsumerSuppliers($supplierAccountId = null)
     {
+        $where = empty($supplierAccountId) || !is_numeric($supplierAccountId) ? '' : ' AND relations.supplieraccountid = ' . $supplierAccountId;
+
         $query = 'SELECT
                     relations.id,
                     relations.consumeraccountid,
@@ -325,7 +328,7 @@ class Relations extends Database
                 LEFT JOIN 
                     accounts ON relations.supplieraccountid = accounts.id
                 WHERE 
-                    relations.consumeraccountid = :consumeraccountid';
+                    relations.consumeraccountid = :consumeraccountid' . $where;
 
         $this->startTransaction();
         $this->query($query);

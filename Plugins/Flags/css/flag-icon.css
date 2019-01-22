@@ -785,6 +785,7 @@
   background-image: url(../flags/1x1/id.svg);
 }
 .flag-icon-ie,
+.flag-icon-ga,
 .flag-icon-gd-ie,
 .flag-icon-ga-ie,
 .flag-icon-gd-IE,
@@ -792,6 +793,7 @@
   background-image: url(../flags/4x3/ie.svg);
 }
 .flag-icon-ie.flag-icon-squared,
+.flag-icon-ga.flag-icon-squared,
 .flag-icon-gd-ie.flag-icon-squared,
 .flag-icon-ga-ie.flag-icon-squared,
 .flag-icon-gd-IE.flag-icon-squared,

@@ -500,7 +500,7 @@ class Api
         $response = $this->validateRequest(
             $postData,
             true,
-            false,
+            true,
             false,
             false
         );
@@ -921,6 +921,7 @@ class Api
 
         if (strlen($this->getFile()) > 0) {
             $response = $this->makeRequest($methodId);
+
             if (is_object($response)) {
                 // Reset error
                 $this->apiResponses()->setStatusCode(ApiResponses::HTTP_200_CODE);
@@ -940,6 +941,8 @@ class Api
 
                     return $this->apiResponses()->get();
                 }
+            } else {
+                $supplierGuId = $response;
             }
 
             // Store the request in the db and return a unique id
@@ -955,6 +958,7 @@ class Api
             $asynchronousRequests->setSource($this->getSource());
             $asynchronousRequests->setTarget($this->getTarget());
             $asynchronousRequests->setDomain($this->getDomainId());
+            $asynchronousRequests->setText($this->getFileType());
             $asynchronousRequests->setMethodId($methodId);
             $asynchronousRequests->setSupplierGuId(empty($supplierGuId) ? null : $supplierGuId);
             $id = $asynchronousRequests->insert();
@@ -1948,9 +1952,7 @@ class Api
      */
     public function setGuId($guId)
     {
-        if ($this->validateGuid($guId)) {
-            $this->guId = $guId;
-        }
+        $this->guId = $guId;
     }
 
     /**

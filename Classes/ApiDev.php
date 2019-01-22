@@ -500,7 +500,7 @@ class ApiDev
         $response = $this->validateRequest(
             $postData,
             true,
-            false,
+            true,
             false,
             false
         );
@@ -940,6 +940,8 @@ class ApiDev
 
                     return $this->apiResponses()->get();
                 }
+            } else {
+                $supplierGuId = $response;
             }
 
             // Store the request in the db and return a unique id
@@ -954,6 +956,7 @@ class ApiDev
             $asynchronousRequests->setRequestTime(date("Y-m-d H:i:s"));
             $asynchronousRequests->setSource($this->getSource());
             $asynchronousRequests->setTarget($this->getTarget());
+            $asynchronousRequests->setText($this->getFileType());
             $asynchronousRequests->setDomain($this->getDomainId());
             $asynchronousRequests->setMethodId($methodId);
             $asynchronousRequests->setSupplierGuId(empty($supplierGuId) ? null : $supplierGuId);
@@ -1948,9 +1951,7 @@ class ApiDev
      */
     public function setGuId($guId)
     {
-        if ($this->validateGuid($guId)) {
-            $this->guId = $guId;
-        }
+        $this->guId = $guId;
     }
 
     /**

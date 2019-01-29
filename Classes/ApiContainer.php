@@ -5,15 +5,25 @@ use Slim\Container;
 /**
  * Class ApiContainer
  * @package Classes
+ * @author Marek Mazur | Colin Harper
  */
 class ApiContainer
 {
+    /**
+     * Display errors
+     */
     const CONFIGURATION_DISPLAY_ERROR_DETAILS = true;
 
+    /**
+     * ApiContainer constructor.
+     */
     public function __construct()
     {
     }
 
+    /**
+     * @return array
+     */
     static function getConfiguration()
     {
         $configuration = [
@@ -25,6 +35,9 @@ class ApiContainer
         return $configuration;
     }
 
+    /**
+     * @return Container
+     */
     static function getContainer()
     {
         $container = new Container(self::getConfiguration());

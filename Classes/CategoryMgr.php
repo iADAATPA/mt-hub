@@ -17,9 +17,19 @@
  */
 class CategoryMgr
 {
+    /**
+     * @var null|array
+     */
     public $listCategory = [];
+
+    /**
+     * @var null|string
+     */
     public $numberCategory;
-    // using this to version stamp SVM models. Useful for debugging
+
+    /**
+     * @var null|string
+     */
     public $versionNumber = "1.0";
 
     /**

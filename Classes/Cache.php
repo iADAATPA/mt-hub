@@ -2,6 +2,7 @@
 
 /**
  * Class Cache
+ * @author Marek Mazur
  */
 class Cache extends Database
 {
@@ -10,13 +11,44 @@ class Cache extends Database
      */
     const CACHE_MAX = 200;
 
+    /**
+     * @var null|int
+     */
     private $id = null;
+
+    /**
+     * @var null|int
+     */
     private $supplierAccountId = null;
+
+    /**
+     * @var null|int
+     */
     private $engineId = null;
+
+    /**
+     * @var null|array
+     */
     private $segments = null;
+
+    /**
+     * @var null|array
+     */
     private $translatedSegments = null;
+
+    /**
+     * @var null|int
+     */
     private $domainId = null;
+
+    /**
+     * @var null|string
+     */
     private $src = null;
+
+    /**
+     * @var null|string
+     */
     private $trg = null;
 
     /**

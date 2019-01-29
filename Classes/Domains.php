@@ -1,16 +1,30 @@
 <?php
 
 /**
- * Class Domainss
+ * Class Domains
+ * @author Marek Mazur
  */
 class Domains extends Database
 {
+    /**
+     * @var null|int
+     */
     private $id = null;
-    private $accountId = null;
-    private $name = null;
-    private $src = null;
 
-    const DOMAIN_GENERAL = 3;
+    /**
+     * @var null|int
+     */
+    private $accountId = null;
+
+    /**
+     * @var null|string
+     */
+    private $name = null;
+
+    /**
+     * @var null|string
+     */
+    private $src = null;
 
     /**
      * Accounts constructor.

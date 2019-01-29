@@ -1,15 +1,30 @@
 <?php
 
+/**
+ * Class Helper
+ * @author Marek Mazur
+ */
 class Helper
 {
-	// Amount of time before window automatically closes
+    /**
+     * Amount of time before window automatically closes
+     */
 	const CLOSE_TIMER = 10000;
 	const TOKENMASKER = '&#9679;';
-	// Amount of time to scroll to the error message
+
+    /**
+     * Amount of time to scroll to the error message
+     */
 	const SCROLL_TIME = 500;
-	// The font family used by the helper text
+
+    /**
+     * The font family used by the helper text
+     */
 	const FONT_FAMILY = '"Open Sans", "Trebuchet MS", Arial, Helvetica, sans-serif !important';
 
+    /**
+     * @param $message
+     */
     public static function printError($message)
     {
         ?>
@@ -49,6 +64,9 @@ class Helper
         <?php
     }
 
+    /**
+     * @param $message
+     */
     public static function printWarning($message)
     {
         ?>
@@ -84,6 +102,11 @@ class Helper
         <?php
     }
 
+    /**
+     * @param $id
+     * @param $value
+     * @param $name
+     */
     public static function printenableDisableOptions($id, $value, $name)
     {
         $checked = $value == 1 ? "checked" : "";
@@ -176,6 +199,9 @@ class Helper
         return $bytes;
     }
 
+    /**
+     * @param $message
+     */
     public static function printSuccess($message)
     {
         ?>
@@ -203,45 +229,6 @@ class Helper
 			}, <?php echo Helper::CLOSE_TIMER; ?>);
 			
             $(document).scroll(function() { 
-                if ($(document).scrollTop() > 51) {
-                    $("#alertBox").addClass("fix-alert");
-                    var size = document.getElementById("sidebar-menu").offsetWidth;
-                    $("#alertBox").css('width', '100%').css('width', '-=' + size + 'px');
-                } else {
-                    $("#alertBox").removeClass("fix-alert");
-                }              
-            });
-
-        <?php
-    }
-
-    public static function printInfo($message)
-    {
-        ?>
-
-            var errorId = Date.now();
-            $('#alertBox').prepend('<div class="alert alert-info" id="' + errorId + '" style="display: none;">' +
-           			'<button type="button" class="close" aria-hidden="true">&times;</button>' +
-           			'<?php echo $message; ?>' +
-           		'</div>'
-           	);
-
-			$('#' + errorId).fadeIn('slow');
-
-           	// $('html, body').animate({
-        	//	scrollTop: $('#' + errorId).offset().top
-    		// }, <?php echo Helper::SCROLL_TIME; ?>);
-
-           	$('#' + errorId).on('click', 'button.close', function() {
-   				clearTimeout(timeout);
-   				$('#' + errorId).animate({opacity: 0}, 500).hide('slow').queue(function() { $('#' + errorId).remove(); });
-			});
-
-			var timeout = setTimeout(function() {
-  				$('#' + errorId).animate({opacity: 0}, 500).hide('slow').queue(function() { $('#' + errorId).remove(); });
-			}, <?php echo Helper::CLOSE_TIMER; ?>);
-			
-			$(document).scroll(function() { 
                 if ($(document).scrollTop() > 51) {
                     $("#alertBox").addClass("fix-alert");
                     var size = document.getElementById("sidebar-menu").offsetWidth;
@@ -316,7 +303,10 @@ class Helper
 
         <?php
     }
-    
+
+    /**
+     * @param $element
+     */
     public static function makeScrollable($element)
     {
         ?>
@@ -368,18 +358,11 @@ class Helper
     	<?php
     }
 
-    public static function printYouTubeButton($title, $youTubeId)
-    {
-        echo '<span id="' . $youTubeId . '" title="Watch video help" class="fa-stack fa-pointer fa-lg margin-top--10">' .
-            '<i class="fa fa-circle fa-deeporange fa-pointer fa-stack-2x"></i>' .
-            '<i class="fa fa-video-camera fa-stack-1x fa-inverse"></i>' .
-        '</span>';
-
-        $youTube = '<iframe width="660" height="360" src="https://www.youtube-nocookie.com/embed/' . $youTubeId . '?rel=0&amp;controls=1&amp;showinfo=0&amp;autoplay=1" frameborder="0" allowfullscreen></iframe>';
-
-        self::printModal($youTubeId, null, $title, $youTube);
-    }
-
+    /**
+     * @param $title
+     * @param $content
+     * @param null $url
+     */
     public static function printHelpButton($title, $content, $url = null)
     {
         $randomStr = time() . rand(0,10000);
@@ -402,48 +385,22 @@ class Helper
 		}
     }
 
-    public static function maskToken($string)
-    {
-        if (strlen($string) >= 5) {
-            return str_repeat(Helper::TOKENMASKER, strlen($string) - 4) . substr($string, strlen($string) - 4);
-        } else {
-            return $string;
-        }
-    }
-
+    /**
+     * @return false|string
+     */
     public static function getMySqlCurrentTime()
     {
         return date("Y-m-d H:i:s", time());
     }
-    
+
+    /**
+     * @param $breadCrumb
+     */
     public static function storeBreadCrumb($breadCrumb)
     {
         $_SESSION['breadcrumb'] = $breadCrumb;    
     }
 
-    /**
-     * Format plan type feature status
-     *
-     * @param $status
-     * @return string
-     */
-    public static function formatFeatureStatus($status) {
-        if ($status == 1) {
-            return '<i class=\'fa fa-lg fa-check fa-green\' aria-hidden=\'true\' title=\'Enabled\'></i>';
-        } else if ($status == -1){
-            return 'Unlimited';
-        } else if ($status == 0){
-            return '<i class=\'fa fa-lg fa-ban fa-red\' aria-hidden=\'true\' title=\'Disabled\'></i>';
-        } else {
-            return $status;
-        }
-    }
-
-    public static function getBreadCrumb()
-    {
-        return isset($_SESSION['breadcrumb']) ? $_SESSION['breadcrumb'] : null;
-    }
-    
     /**
      * Display content header section. The section includes:<br/>
      * - the page title<br/>
@@ -577,93 +534,8 @@ class Helper
     }
 
     /**
-     * Display engine name
-     *
-     * @param string $ngineName
-     * @param string $src
-     * @param string $trg
-     */
-    public static function displayActiveDomainName($name, $src = null)
-    {
-        $src = empty($src) ? '' : $src;
-        $name = empty($name) ? 'None' : trim($name);
-
-        ?>
-
-        <h3 class="box-title">
-            Active Domain [
-            <i>
-                <span class="activeDomainName"><?php echo $name; ?></span>
-                <span class="engineLanguagePairs" style="margin-left: 10px;">
-                    <span id="activeDomainSrcFlag" class="font-xsmall flag-icon flag-icon-<?php echo $src; ?>"></span>
-                    <span class="activeDomainSrc"><?php echo $src; ?></span>
-                </span>
-            </i>
-            ]
-        </h3>
-
-        <?php
-    }
-
-    public static function getAliasTag($alias) {
-        if ( ! empty($alias)) {
-            return "<span class=\"alias-tag\" title=\"Alias Group Name\">" . $alias . "</span>";
-        }
-        return '';
-    }
-
-
-    public static function removeDirectory($dir) {
-        if (is_dir($dir)) {
-            $objects = scandir($dir);
-            
-            foreach ($objects as $object) {
-                if ($object != "." && $object != "..") {
-                    if (is_dir($dir."/".$object))
-                        rrmdir($dir."/".$object);
-                    else
-                        unlink($dir."/".$object);
-                }
-            }
-
-            rmdir($dir);
-        }
-    }
-
-    public static function displayHelp($text, $url = null)
-    {
-        ?>
-
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="insight font-lsmall">
-                        <i class="fa fa-lightbulb-o fa-3x"></i>
-                        <span>
-
-                            <?php
-
-                            echo $text;
-
-                            if ($url) {
-
-                            ?>
-
-                                <a class="wizard-info-link" href="<?php echo $url; ?>" target="_blank">click here.</a>
-
-                            <?php } ?>
-                            
-                        </span>
-                    </div>
-                </div>
-            </div>
-
-        <?php
-    }
-
-    /**
-     * Removes all special characters
-     *
-     * @param string $string
+     * @param $string
+     * @return mixed
      */
     public static function removeSpecialCharacters($string)
     {

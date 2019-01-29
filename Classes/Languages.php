@@ -2,13 +2,28 @@
 
 /**
  * Class Languages
+ * @author Marek Mazur
  */
 class Languages extends Database
 {
+    /**
+     * @var null|int
+     */
     private $id = null;
+
+    /**
+     * @var null|string
+     */
     private $code = null;
+
+    /**
+     * @var null|string
+     */
     private $name = null;
 
+    /**
+     * Default language
+     */
     const LANGUAGE_EN = 'en';
 
     /**

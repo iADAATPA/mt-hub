@@ -2,13 +2,33 @@
 
 /**
  * Class DomainData
+ * @author Marek Mazur
  */
 class DomainData extends Database
 {
+    /**
+     * @var null|int
+     */
     private $id = null;
+
+    /**
+     * @var null|int
+     */
     private $domainId = null;
+
+    /**
+     * @var null|int
+     */
     private $accountId = null;
+
+    /**
+     * @var null|string
+     */
     private $segments = null;
+
+    /**
+     * @var null|string
+     */
     private $added = null;
 
     /**

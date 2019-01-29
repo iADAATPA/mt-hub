@@ -7,6 +7,7 @@ use function FastRoute\TestFixtures\empty_options_cached;
 /**
  * Class ApiResponses
  * @package Classes
+ * @author Marek Mazur | Colin Harper
  */
 class ApiResponses
 {

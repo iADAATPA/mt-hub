@@ -5,9 +5,24 @@
  */
 class DomainModels extends Database
 {
+    /**
+     * @var null|int
+     */
     private $id = null;
+
+    /**
+     * @var null|int
+     */
     private $accountId = null;
+
+    /**
+     * @var null|object
+     */
     private $model = null;
+
+    /**
+     * @var null|string
+     */
     private $created = null;
 
     /**

@@ -2,6 +2,7 @@
 
 /**
  * Class Session
+ * @author Marek Mazur
  */
 class Session
 {

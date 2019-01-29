@@ -1,16 +1,49 @@
 <?php
 
+/**
+ * Class Database
+ * @author Marek Mazur
+ */
 abstract class Database
 {
+    /**
+     * @var null|object
+     */
     private $db = null;
+
+    /**
+     * @var null|string
+     */
     private $error = null;
+
+    /**
+     * @var null|object
+     */
     private $stmt = null;
-    // Set connection details
+
+    /**
+     * @var null|string
+     */
     private $host = '';
+
+    /**
+     * @var null|string
+     */
     private $name = '';
+
+    /**
+     * @var null|string
+     */
     private $user = '';
+
+    /**
+     * @var null|string
+     */
     private $pass = '';
 
+    /**
+     * Connect to db
+     */
     public function connect()
     {
         // Set DSN

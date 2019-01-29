@@ -31,19 +31,56 @@
  */
 class Trainer
 {
-
+    /**
+     * @var bool
+     */
     public static $noWordAlignment = false;
+
+    /**
+     * @var bool
+     */
     public static $WordAlignment = true;
 
-    // This is a list of words that you want to exclude from the modelling process.
+    /**
+     * This is a list of words that you want to exclude from the modelling process.
+     *
+     * @var array
+     */
     private $excludedWords = ['this', 'that', 'those', 'on', 'an', 'I'];
 
+    /**
+     * @var object
+     */
     public $ctgrMgr;
+
+    /**
+     * @var array
+     */
     public $arrWc = [];
+
+    /**
+     * @var bool
+     */
     public $debug = false;
+
+    /**
+     * @var
+     */
     public $wordAlignment;
+
+    /**
+     * @var string
+     */
     public $svmModel = "domains.svm";
+
+    /**
+     * @var null|string
+     */
     private $pathToSvnModel = null;
+
+    /**
+     * @var null|string
+     */
     private $data = null;
 
     /**

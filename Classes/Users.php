@@ -3,18 +3,58 @@
 /**
  * Class Users
  * @package Classes
+ * @author Marek Mazur
  */
 class Users extends Database
 {
+    /**
+     * @var null|int
+     */
     private $id = null;
+
+    /**
+     * @var null|int
+     */
     private $accountId = null;
+
+    /**
+     * @var null|string
+     */
     private $name = null;
+
+    /**
+     * @var null|string
+     */
     private $email = null;
+
+    /**
+     * @var null|string
+     */
     private $password = null;
+
+    /**
+     * @var null|string
+     */
     private $token = null;
+
+    /**
+     * @var null|int
+     */
     private $loginAttempts = null;
+
+    /**
+     * @var null|string
+     */
     private $lastlogin = null;
+
+    /**
+     * @var null|string
+     */
     private $photo = null;
+
+    /**
+     * @var null|string
+     */
     private $created = null;
 
     /**

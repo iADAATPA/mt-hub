@@ -2,29 +2,100 @@
 
 /**
  * Class StatisticsSummary
+ * @author Marek Mazur
  */
 class StatisticsSummary extends Statistics
 {
-    private $generalUsedSuppliers = 0;
-    private $generalUsedConsumers = 0;
-    private $generalUsedEngines = 0;
-    private $generalUsedMethods = 0;
-    private $generalRequestCount = 0;
-    private $generalWordCount = 0;
-    private $generalEngineRequestCount = 0;
-    private $generalEngineWordCount = 0;
-    private $monthlyWordCount = null;
-    private $monthlyRequestCount = null;
-    private $monthlyEngines = null;
-    private $monthlySuppliers = null;
-    private $dailyWordCount = null;
-    private $dailyRequestCount = null;
-    private $monthylEngineWordCount = null;
-    private $monthylEngineRequestCount = null;
-
+    /**
+     * Database table
+     */
     const TABLE_NAME = "statisticssummary";
+
+    /**
+     * Statistic types
+     */
     const TYPE_SUPPLIER = "Supplier";
     const TYPE_CONSUMER = "Consumer";
+
+    /**
+     * @var null|int
+     */
+    private $generalUsedSuppliers = 0;
+
+    /**
+     * @var null|int
+     */
+    private $generalUsedConsumers = 0;
+
+    /**
+     * @var null|int
+     */
+    private $generalUsedEngines = 0;
+
+    /**
+     * @var null|int
+     */
+    private $generalUsedMethods = 0;
+
+    /**
+     * @var null|int
+     */
+    private $generalRequestCount = 0;
+
+    /**
+     * @var null|int
+     */
+    private $generalWordCount = 0;
+
+    /**
+     * @var null|int
+     */
+    private $generalEngineRequestCount = 0;
+
+    /**
+     * @var null|int
+     */
+    private $generalEngineWordCount = 0;
+
+    /**
+     * @var null|int
+     */
+    private $monthlyWordCount = null;
+
+    /**
+     * @var null|int
+     */
+    private $monthlyRequestCount = null;
+
+    /**
+     * @var null|int
+     */
+    private $monthlyEngines = null;
+
+    /**
+     * @var null|int
+     */
+    private $monthlySuppliers = null;
+
+    /**
+     * @var null|int
+     */
+    private $dailyWordCount = null;
+
+    /**
+     * @var null|int
+     */
+    private $dailyRequestCount = null;
+
+    /**
+     * @var null|int
+     */
+    private $monthylEngineWordCount = null;
+
+    /**
+     * @var null|int
+     */
+    private $monthylEngineRequestCount = null;
 
     /**
      * StatisticsSummary constructor.

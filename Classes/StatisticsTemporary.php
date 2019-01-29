@@ -2,9 +2,13 @@
 
 /**
  * Class StatisticsTemporary
+ * @author Marek Mazur
  */
 class StatisticsTemporary extends Statistics
 {
+    /**
+     * Database table
+     */
     const TABLE_NAME = "statisticstemporary";
 
     /**

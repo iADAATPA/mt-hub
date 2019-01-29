@@ -1,25 +1,64 @@
 <?php
-/**
- * User: marek
- * Date: 09/01/2018
- * Time: 11:10
- */
 
 /**
  * Class AsyncRequests
+ * @author Marek Mazur
  */
 class AsyncRequests extends Database
 {
+    /**
+     * @var null|string
+     */
     private $uuId = null;
+
+    /**
+     * @var null|int
+     */
     private $accountId = null;
+
+    /**
+     * @var null|int
+     */
     private $jobId = null;
+
+    /**
+     * @var null|int
+     */
     private $engineId = null;
+
+    /**
+     * @var null|string
+     */
     private $engineName = null;
+
+    /**
+     * @var null|string
+     */
     private $timeReceived = null;
+
+    /**
+     * @var null|string
+     */
     private $timeTranslated = null;
+
+    /**
+     * @var null|string
+     */
     private $timePulled = null;
+
+    /**
+     * @var null|int
+     */
     private $status = null;
+
+    /**
+     * @var null|string
+     */
     private $source = null;
+
+    /**
+     * @var null|string
+     */
     private $target = null;
 
     /**

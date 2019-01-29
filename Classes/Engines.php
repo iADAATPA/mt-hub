@@ -2,27 +2,98 @@
 
 /**
  * Class Engines
+ * @author Marek Mazur
  */
 class Engines extends Database
 {
+    /**
+     * @var null|int
+     */
     private $id = null;
+
+    /**
+     * @var null|string
+     */
     private $name = null;
+
+    /**
+     * @var null|int
+     */
     private $accountId = null;
+
+    /**
+     * @var null|string
+     */
     private $trg = null;
+
+    /**
+     * @var null|string
+     */
     private $src = null;
+
+    /**
+     * @var null|int
+     */
     private $type = null;
+
+    /**
+     * @var null|string
+     */
     private $created = null;
+
+    /**
+     * @var null|string
+     */
     private $deleted = null;
+
+    /**
+     * @var null|int
+     */
     private $online = null;
+
+    /**
+     * @var null|string
+     */
     private $customId = null;
+
+    /**
+     * @var null|int
+     */
     private $domainId = null;
+
+    /**
+     * @var null|int
+     */
     private $ter = null;
+
+    /**
+     * @var null|int
+     */
     private $bleu = null;
+
+    /**
+     * @var null|int
+     */
     private $fmeasure = null;
+
+    /**
+     * @var null|int
+     */
     private $trainingWordCount = null;
+
+    /**
+     * @var null|float
+     */
     private $costPerWord = null;
+
+    /**
+     * @var null|string
+     */
     private $description = null;
 
+    /**
+     * Engine types
+     */
     const ENGINE_TYPE_SMT = 1;
     const ENGINE_TYPE_NMT = 2;
     const ENGINE_TYPE_RBMT = 3;

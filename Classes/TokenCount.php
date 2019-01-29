@@ -18,7 +18,14 @@
  */
 class TokenCount
 {
+    /**
+     * @var
+     */
     public $numberTokens;
+
+    /**
+     * @var array
+     */
     public $tokens = [];
 
     /**

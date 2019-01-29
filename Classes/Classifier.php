@@ -19,6 +19,9 @@
  */
 class Classifier
 {
+    /**
+     * @var null|string
+     */
     public $catMgr;
 
     /**

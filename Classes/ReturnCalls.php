@@ -3,17 +3,40 @@
 
 /**
  * Class ReturnCalls
+ * @author Marek Mazur
  */
 class ReturnCalls
 {
+    /**
+     * Statuses
+     */
     const STATUSID_SUCCESS = 'success';
     const STATUSID_WARNING = 'warning';
     const STATUSID_ERROR = 'error';
 
+    /**
+     * @var null|string
+     */
     private $message = null;
+
+    /**
+     * @var null|int
+     */
     private $statusId = null;
+
+    /**
+     * @var null|string
+     */
     private $error = null;
+
+    /**
+     * @var null|string
+     */
     private $data = null;
+
+    /**
+     * @var null|int
+     */
     private $code = null;
 
     /**

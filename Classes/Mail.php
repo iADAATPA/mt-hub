@@ -2,15 +2,43 @@
 
 /**
  * Class Mail
+ * @author Marek Mazur | Colin Harper
  */
 class Mail
 {
+    /**
+     * @var null|string
+     */
     private $to = null;
+
+    /**
+     * @var null|string
+     */
     private $subject = 'Message';
+
+    /**
+     * @var null|string
+     */
     private $message = null;
+
+    /**
+     * @var null|string
+     */
     private $header = null;
+
+    /**
+     * @var null|string
+     */
     private $body = null;
+
+    /**
+     * @var null|string
+     */
     private $footer = null;
+
+    /**
+     * @var null|string
+     */
     private $recipientName = null;
 
     /**

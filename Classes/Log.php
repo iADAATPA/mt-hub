@@ -4,17 +4,48 @@
  * Class Log
  *
  * @package Classes
+ * @author Marek Mazur
  */
 class Log extends Database
 {
+    /**
+     * @var null|int
+     */
     private $id = null;
+
+    /**
+     * @var null|int
+     */
     private $accountId = null;
+
+    /**
+     * @var null|int
+     */
     private $userId = null;
+
+    /**
+     * @var null|string
+     */
     private $time = null;
+
+    /**
+     * @var null|int
+     */
     private $action = null;
+
+    /**
+     * @var null|string
+     */
     private $comment = null;
+
+    /**
+     * @var null|string
+     */
     private $differences = null;
 
+    /**
+     * Actions
+     */
     const ACCOUNT_SWITCHED = 10;
     const ACCOUNT_ADDED = 11;
     const ACCOUNT_DELETED = 12;

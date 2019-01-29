@@ -19,11 +19,34 @@
  */
 class Category
 {
+    /**
+     * @var null|string
+     */
     public $numberWordsInCategory;
+
+    /**
+     * @var null|string
+     */
     public $categoryProb;
+
+    /**
+     * @var null|string
+     */
     public $nameOfCategory;
+
+    /**
+     * @var null|string
+     */
     public $wordProb;
+
+    /**
+     * @var null|string
+     */
     public $wordAlignment;
+
+    /**
+     * @var null|string
+     */
     public $numberVocab;
 
     /**

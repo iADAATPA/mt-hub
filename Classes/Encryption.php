@@ -2,6 +2,7 @@
 
 /**
  * Class Encryption
+ * @author Marek Mazur
  */
 class Encryption
 {

@@ -6,42 +6,145 @@ use Slim\Http\Request;
 /**
  * Class ApiDev
  * @package Classes
+ * @author Marek Mazur | Colin Harper
  */
 class ApiDev
 {
+    /**
+     * Api request limitations
+     */
+    const SEGMENTS_LENGHT_LIMIT = 30;
+    const SEGMENT_SIZE_LIMIT = 2000;
+
+    /**
+     * @var null|object
+     */
     protected $container;
+
+    /**
+     * @var null|object
+     */
     private $accounts = null;
+
+    /**
+     * @var null|int
+     */
     private $domainId = null;
+
+    /**
+     * @var null|string
+     */
     private $source = null;
+
+    /**
+     * @var null|string
+     */
     private $target = null;
+
+    /**
+     * @var null|string
+     */
     private $engineName = null;
+
+    /**
+     * @var null|string
+     */
     private $engineCustomId = null;
+
+    /**
+     * @var null|int
+     */
     private $engineId = null;
+
+    /**
+     * @var null|string
+     */
     private $supplierToken = null;
+
+    /**
+     * @var null|int
+     */
     private $supplierAccountId = null;
+
+    /**
+     * @var null|string
+     */
     private $segments = null;
+
+    /**
+     * @var null|string
+     */
     private $file = null;
+
+    /**
+     * @var null|string
+     */
     private $fileType = null;
+
+    /**
+     * @var null|string
+     */
     private $guId = null;
+
+    /**
+     * @var null|string
+     */
     private $domainName = null;
+
+    /**
+     * @var null|string
+     */
     private $conentType = null;
+
+    /**
+     * @var null|object
+     */
     private $requestLog = null;
+
+    /**
+     * @var null|string
+     */
     private $userName = null;
+
+    /**
+     * @var null|string
+     */
     private $password = null;
+
+    /**
+     * @var null|string
+     */
     private $callBackUrl = null;
+
+    /**
+     * @var null|boolean
+     */
     private $cache = null;
+
+    /**
+     * @var null|boolean
+     */
     private $activiaTm = null;
+
+    /**
+     * @var null|string
+     */
     private $activiaTmUserName = null;
+
+    /**
+     * @var null|string
+     */
     private $activiaTmPassword = null;
+
+    /**
+     * @var null|string
+     */
     private $token = null;
 
     /**
      * @var ApiResponses
      */
     protected $apiResponses;
-
-    const SEGMENTS_LENGHT_LIMIT = 30;
-    const SEGMENT_SIZE_LIMIT = 1000;
 
     /**
      * ApiDev constructor.
@@ -921,6 +1024,7 @@ class ApiDev
 
         if (strlen($this->getFile()) > 0) {
             $response = $this->makeRequest($methodId);
+
             if (is_object($response)) {
                 // Reset error
                 $this->apiResponses()->setStatusCode(ApiResponses::HTTP_200_CODE);
@@ -956,8 +1060,8 @@ class ApiDev
             $asynchronousRequests->setRequestTime(date("Y-m-d H:i:s"));
             $asynchronousRequests->setSource($this->getSource());
             $asynchronousRequests->setTarget($this->getTarget());
-            $asynchronousRequests->setText($this->getFileType());
             $asynchronousRequests->setDomain($this->getDomainId());
+            $asynchronousRequests->setText($this->getFileType());
             $asynchronousRequests->setMethodId($methodId);
             $asynchronousRequests->setSupplierGuId(empty($supplierGuId) ? null : $supplierGuId);
             $id = $asynchronousRequests->insert();
@@ -1163,18 +1267,28 @@ class ApiDev
 
         // Validate source
         if ($validateSource) {
+            if (empty($source)) {
+                // Autodetect language
+                $classifier = new Classifier('Classifier/languages.svm');
+                $source = $classifier->classifyText(is_array($segments) ? implode(' ', $segments) : $segments);
+
+                if (empty($source)) {
+                    // Missing lang code
+                    $this->apiResponses()->setStatusCode(ApiResponses::HTTP_400_CODE);
+                    $this->apiResponses()->setCode(ApiResponses::INVALID_LANG_CODE_CODE);
+                    $this->apiResponses()->setMessage('Missing <source> or the <source> is to short to be detected');
+
+                    return $this->apiResponses()->get();
+                }
+            }
+
             $response = $this->validateSource($source);
+
             if (is_object($response)) {
                 return $response;
-            } else {
-                if (!$response) {
-                    // Autodetect language
-                    $classifier = new Classifier('Classifier/languages.svm');
-                    $source = $classifier->classifyText(is_array($segments) ? implode(' ', $segments) : $segments);
-                }
-
-                $this->setSource($source);
             }
+
+            $this->setSource($source);
         }
 
         // Validate target

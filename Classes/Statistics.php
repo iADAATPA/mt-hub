@@ -5,14 +5,49 @@
  */
 abstract class Statistics extends Database
 {
+    /**
+     * @var null|int
+     */
     private $id = null;
+
+    /**
+     * @var null|int
+     */
     private $consumerAccountId = null;
+
+    /**
+     * @var null|int
+     */
     private $supplierAccountId = null;
+
+    /**
+     * @var null|int
+     */
     private $methodId = null;
+
+    /**
+     * @var null|int
+     */
     private $engineId = null;
+
+    /**
+     * @var null|int
+     */
     private $requestCount = null;
+
+    /**
+     * @var null|int
+     */
     private $wordCount = null;
+
+    /**
+     * @var null|string
+     */
     private $time = null;
+
+    /**
+     * @var null|string
+     */
     private $table = null;
 
     /**

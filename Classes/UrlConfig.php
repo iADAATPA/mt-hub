@@ -1,19 +1,14 @@
 <?php
 
+/**
+ * Class UrlConfig
+ * @author Marek Mazur
+ */
 class UrlConfig extends Database
 {
-    private $id = null;
-    private $methodId = null;
-    private $accountId = null;
-    private $urlEndPoint = null;
-    private $parameters = null;
-    private $header = null;
-    private $response = null;
-    private $type = null;
-    private $request = null;
-    private $authorization = null;
-    private $callback = null;
-
+    /**
+     * Method ids and names
+     */
     const METHOD_TRANSLATE_ID = 1;
     const METHOD_TRANSLATE_DESC = 'translate';
     const METHOD_TRANSLATE_WITH_QES_ID = 2;
@@ -35,13 +30,77 @@ class UrlConfig extends Database
     const METHOD_ATRANSLATE_FILE_ID = 10;
     const METHOD_ATRANSLATE_FILE_DESC = 'translateFile w/ callback';
 
+    /**
+     * Method types
+     */
     const TYPE_POST = "POST";
     const TYPE_GET = "GET";
 
+    /**
+     * Authentication type
+     */
     const AUTH_BASIC = 1;
     const AUTH_DIGEST = 2;
 
+    /**
+     * Call back url
+     */
     const CALLBACK_URL = "https://mt-hub.eu/callbacksuccess.php";
+
+    /**
+     * @var null|int
+     */
+    private $id = null;
+
+    /**
+     * @var null|int
+     */
+    private $methodId = null;
+
+    /**
+     * @var null|int
+     */
+    private $accountId = null;
+
+    /**
+     * @var null|string
+     */
+    private $urlEndPoint = null;
+
+    /**
+     * @var null|string
+     */
+    private $parameters = null;
+
+    /**
+     * @var null|string
+     */
+    private $header = null;
+
+    /**
+     * @var null|string
+     */
+    private $response = null;
+
+    /**
+     * @var null|string
+     */
+    private $type = null;
+
+    /**
+     * @var null|string
+     */
+    private $request = null;
+
+    /**
+     * @var null|string
+     */
+    private $authorization = null;
+
+    /**
+     * @var null|string
+     */
+    private $callback = null;
 
     /**
      * UrlConfig constructor.

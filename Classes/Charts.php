@@ -2,17 +2,53 @@
 
 /**
  * Class Charts
+ * @author Marek Mazur | Colin Harper
  */
 class Charts
 {
+    /**
+     * @var null|int
+     */
     private $id = null;
+
+    /**
+     * @var null|string
+     */
     private $placeHolderWidth = 'auto';
+
+    /**
+     * @var null|string
+     */
     private $placeHolderHeight = 'auto';
+
+    /**
+     * @var null|array
+     */
     private $data = null;
+
+    /**
+     * @var null|array
+     */
     private $labels = null;
+
+    /**
+     * @var null|array
+     */
     private $dataSets = null;
+
+    /**
+     * @var null|string
+     */
     private $yAxes = null;
+
+    /**
+     * @var null|string
+     */
     private $showDoubleAxes = false;
+
+    /**
+     * @var null|string
+     */
     private $title = null;
 
     /**

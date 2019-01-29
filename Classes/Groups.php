@@ -3,12 +3,23 @@
 /**
  * Class Groups
  * @package Classes
+ * @author Marek Mazur
  */
 class Groups extends Database
 {
+    /**
+     * @var null|int
+     */
     private $id = null;
+
+    /**
+     * @var null|string
+     */
     private $name = null;
 
+    /**
+     * Groups
+     */
     const GROUP_SUPPLIER = 1;
     const GROUP_CONSUMER = 2;
     const GROUP_ADMINISTRATOR = 3;

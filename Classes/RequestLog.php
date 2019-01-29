@@ -2,21 +2,73 @@
 
 /**
  * Class RequestLog
+ * @author Marek Mazur
  */
 class RequestLog extends Database
 {
+    /**
+     * @var null|int
+     */
     private $id = null;
+
+    /**
+     * @var null|int
+     */
     private $methodId = null;
+
+    /**
+     * @var null|int
+     */
     private $consumerAccountId = null;
+
+    /**
+     * @var null|int
+     */
     private $supplierAccountId = null;
+
+    /**
+     * @var null|string
+     */
     private $timeIn = null;
+
+    /**
+     * @var null|string
+     */
     private $timeOut = null;
+
+    /**
+     * @var null|string
+     */
     private $timeMs = null;
+
+    /**
+     * @var null|string
+     */
     private $request = null;
+
+    /**
+     * @var null|string
+     */
     private $response = null;
+
+    /**
+     * @var null|int
+     */
     private $httpCode = null;
+
+    /**
+     * @var null|string
+     */
     private $src = null;
+
+    /**
+     * @var null|string
+     */
     private $trg = null;
+
+    /**
+     * @var null|string
+     */
     private $engineId = null;
 
     /**

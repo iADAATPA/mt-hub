@@ -1,16 +1,34 @@
 <?php
 
 /**
- * 
- * @author MarekM
- *
+ * Class DragAndDrop
+ * @author Marek Mazur
  */
 class DragAndDrop
 {
+    /**
+     * @var null|string
+     */
     private $folder = 'Images';
+
+    /**
+     * @var null|int
+     */
     private $filesLimit = 1;
+
+    /**
+     * @var null|array
+     */
     private $legalFileExtensions = ['jpg', 'png', 'gif', 'jpeg'];
+
+    /**
+     * @var null|string
+     */
     private $databaseTable = null;
+
+    /**
+     * @var null|string
+     */
     private $customCallback = null;
 
     /**

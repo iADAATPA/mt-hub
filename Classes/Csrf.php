@@ -2,9 +2,13 @@
 
 /**
  * Class Csrf
+ * @author Marek Mazur
  */
 class Csrf
 {
+    /**
+     * Error
+     */
     const UNAUTHORIZED_ACTION = "Unauthorized action.";
 
     /**

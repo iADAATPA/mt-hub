@@ -14,34 +14,144 @@
  * @license MIT - http://class.datatables.net/license_mit
  */
 
+/**
+ * Class DataTables
+ */
 class DataTables extends Database
 {
+    /**
+     * @var null|string
+     */
     private $tableId = null;
+
+    /**
+     * @var null|string
+     */
     private $emptyMessage = null;
+
+    /**
+     * @var null|boolean
+     */
     private $serverSide = true;
+
+    /**
+     * @var null|string
+     */
     private $scrolly = '380';
+
+    /**
+     * @var null|int
+     */
     private $sortCol = 1;
+
+    /**
+     * @var null|string
+     */
     private $sortOrder = 'desc';
+
+    /**
+     * @var null|string
+     */
     private $ajaxCallBack = null;
+
+    /**
+     * @var null|boolean
+     */
     private $autoRefresh = false;
+
+    /**
+     * @var null|string
+     */
     private $emptyIcon = 'fa-exclamation-triangle';
+
+    /**
+     * @var null|string
+     */
     private $formatters = '';
+
+    /**
+     * @var null|array
+     */
     private $tableColumns = [];
+
+    /**
+     * @var null|boolean
+     */
     private $lengthChange = true;
+
+    /**
+     * @var null|string
+     */
     private $customToolbar = null;
+
+    /**
+     * @var null|string
+     */
     private $filters = null;
+
+    /**
+     * @var null|boolean
+     */
     private $showCheckBoxes = false;
+
+    /**
+     * @var null|boolean
+     */
     private $searching = true;
+
+    /**
+     * @var null|boolean
+     */
     private $paging = true;
+
+    /**
+     * @var null|boolean
+     */
     private $enableBtnDownloadExcel = false;
+
+    /**
+     * @var null|boolean
+     */
     private $enableBtnDownloadPdf = false;
+
+    /**
+     * @var null|boolean
+     */
     private $enableBtnDownloadCsv = false;
+
+    /**
+     * @var null|boolean
+     */
     private $enableBtnCopyToClipboard = false;
+
+    /**
+     * @var null|boolean
+     */
     private $drillDownPageURL = null;
+
+    /**
+     * @var null|int
+     */
     private $drillDownCol = 0;
+
+    /**
+     * @var null|string
+     */
     private $drawCallback = null;
+
+    /**
+     * @var null|string
+     */
     private $lengthMenu = "[[10, 25, 50, -1], [10, 25, 50, 'All']]";
+
+    /**
+     * @var null|string
+     */
     private $customCol0 = false;
+
+    /**
+     * @var null|string
+     */
     private $selectCallback = null;
 
     /**

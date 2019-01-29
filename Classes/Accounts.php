@@ -3,23 +3,83 @@
 /**
  * Class Accounts
  * @package Classes
+ * @author Marek Mazur
  */
 class Accounts extends Database
 {
+    /**
+     * @var null|int
+     */
     private $id = null;
+
+    /**
+     * @var null|int
+     */
     private $groupId = null;
+
+    /**
+     * @var null|boolean
+     */
     private $active = null;
+
+    /**
+     * @var null|string
+     */
     private $name = null;
+
+    /**
+     * @var null|string
+     */
     private $logo = null;
+
+    /**
+     * @var null|int
+     */
     private $adminId = null;
+
+    /**
+     * @var null|string
+     */
     private $created = null;
+
+    /**
+     * @var null|string
+     */
     private $expired = null;
+
+    /**
+     * @var null|string
+     */
     private $deleted = null;
+
+    /**
+     * @var null|string
+     */
     private $apiToken = null;
+
+    /**
+     * @var null|string
+     */
     private $token = null;
+
+    /**
+     * @var null|string
+     */
     private $activiaTmUserName = null;
+
+    /**
+     * @var null|string
+     */
     private $activiaTmPassword = null;
+
+    /**
+     * @var null|boolean
+     */
     private $activiaTm = null;
+
+    /**
+     * @var null|boolean
+     */
     private $cache = null;
 
     /**

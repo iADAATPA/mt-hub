@@ -1,10 +1,29 @@
 <?php
 
+/**
+ * Class MetaData
+ * @author Marek Mazur
+ */
 class MetaData extends Database
 {
+    /**
+     * @var null|int
+     */
     private $id = null;
+
+    /**
+     * @var null|int
+     */
     private $engineId = null;
+
+    /**
+     * @var null|string
+     */
     private $variable = null;
+
+    /**
+     * @var null|string
+     */
     private $value = null;
 
     /**

@@ -2,18 +2,58 @@
 
 /**
  * Class DomainsData
+ * @author Marek Mazur
  */
 class Relations extends Database
 {
+    /**
+     * @var null|int
+     */
     private $id = null;
+
+    /**
+     * @var null|int
+     */
     private $consumerAccountId = null;
+
+    /**
+     * @var null|int
+     */
     private $supplierAccountId = null;
+
+    /**
+     * @var null|string
+     */
     private $supplierApiToken = null;
+
+    /**
+     * @var null|string
+     */
     private $description = null;
+
+    /**
+     * @var null|string
+     */
     private $added = null;
+
+    /**
+     * @var null|string
+     */
     private $apiToken = null;
+
+    /**
+     * @var null|string
+     */
     private $userName = null;
+
+    /**
+     * @var null|string
+     */
     private $password = null;
+
+    /**
+     * @var null|string
+     */
     private $token = null;
 
     /**

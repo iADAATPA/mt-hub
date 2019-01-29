@@ -2,9 +2,15 @@
 
 /**
  * Class WordCount
+ * @author Marek Mazur
  */
 class WordCount
 {
+    /**
+     * @param $sourceLang
+     * @param $text
+     * @return int
+     */
     public static function countWords($sourceLang, $text)
     {
         $wordCount = 0;

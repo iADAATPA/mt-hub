@@ -3,28 +3,108 @@
 /**
  * Class AsynchronousRequests
  * @package Classes
+ * @author Marek Mazur
  */
 class AsynchronousRequests extends Database
 {
+    /**
+     * @var null|int
+     */
     private $id = null;
+
+    /**
+     * @var null|string
+     */
     private $guId = null;
+
+    /**
+     * @var null|int
+     */
     private $consumeraccountid = null;
+
+    /**
+     * @var null|int
+     */
     private $supplierAccountId = null;
+
+    /**
+     * @var null|string
+     */
     private $engineName = null;
+
+    /**
+     * @var null|int
+     */
     private $engineCustomId = null;
+
+    /**
+     * @var null|string
+     */
     private $src = null;
+
+    /**
+     * @var null|string
+     */
     private $trg = null;
+
+    /**
+     * @var null|string
+     */
     private $domain = null;
+
+    /**
+     * @var null|string
+     */
     private $requestTime = null;
+
+    /**
+     * @var null|string
+     */
     private $text = null;
+
+    /**
+     * @var null|string
+     */
     private $translation = null;
+
+    /**
+     * @var null|string
+     */
     private $translationTime = null;
+
+    /**
+     * @var null|int
+     */
     private $status = null;
+
+    /**
+     * @var null|int
+     */
     private $retry = null;
+
+    /**
+     * @var null|string
+     */
     private $error = null;
+
+    /**
+     * @var null|int
+     */
     private $methodId = UrlConfig::METHOD_TRANSLATE_ID;
+
+    /**
+     * @var null|string
+     */
     private $fileType = null;
+
+    /**
+     * @var null|string
+     */
     private $supplierGuId = null;
+
+    /**
+     * @var null|boolean
+     */
     private $multipleTranslation = false;
 
     /**

@@ -15,6 +15,9 @@
  */
 class TokenProb
 {
+    /**
+     * @var array
+     */
     public $words = [];
 
     /**

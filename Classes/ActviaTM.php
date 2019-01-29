@@ -3,19 +3,54 @@
 /**
  * Class ActviaTM
  * @package Classes
+ * @author Marek Mazur
  */
 class ActviaTM
 {
+    /**
+     * ActiviaTM API end points
+     */
     const URL_AUTH = "http://pangeanic-online.com:27979/api/v1/auth";
     const URL_TM = "http://pangeanic-online.com:27979/api/v1/tm";
 
+    /**
+     * @var null|string
+     */
     private $userName = null;
+
+    /**
+     * @var null|string
+     */
     private $password = null;
+
+    /**
+     * @var null|string
+     */
     private $accessToken = null;
+
+    /**
+     * @var null|string
+     */
     private $segment = null;
+
+    /**
+     * @var null|string
+     */
     private $translation = null;
+
+    /**
+     * @var null|string
+     */
     private $trg = null;
+
+    /**
+     * @var null|string
+     */
     private $src = null;
+
+    /**
+     * @var null|string
+     */
     private $domain = null;
 
     /**

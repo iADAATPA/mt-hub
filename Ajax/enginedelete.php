@@ -6,7 +6,7 @@ Session::authenticateUser();
 Csrf::validateToken();
 $returnCalls = new ReturnCalls();
 
-$engineId = empty($_GET['id']) ? Session::getActiveEngineId() : $_GET['id'];
+$engineId = empty($_POST['id']) ? Session::getActiveEngineId() : $_POST['id'];
 $engines = new Engines($engineId);
 $name = $engines->getName();
 $engines->setDeleted(Helper::getMySqlCurrentTime());

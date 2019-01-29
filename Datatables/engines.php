@@ -140,12 +140,13 @@ $table->drawTable();
         var selectedRows = getSelectedCheckboxValues('tableEngines');
         var message = '';
 
+        if (selectedRows.length === 0) {
+            <?php Helper::printWarning(Session::t('No engine selected')); ?>
+            return false;
+        }
+
         $('.btn').attr('disabled', 'disabled');
         $('#btnCopyEngine').find($('.fa')).removeClass('fa-files-o fa-palegray').addClass('fa-refresh fa-spin');
-
-        if (selectedRows.length === 0) {
-            selectedRows.push(activeEngineId);
-        }
 
         $.each(selectedRows, function (index, id) {
             $.post(
@@ -180,7 +181,8 @@ $table->drawTable();
         var selectedRows = getSelectedCheckboxValues('tableEngines');
 
         if (selectedRows.length === 0) {
-            selectedRows.push(activeEngineId);
+            <?php Helper::printWarning(Session::t('No engine selected')); ?>
+            return false;
         }
 
         $('.btn').attr('disabled', 'disabled');

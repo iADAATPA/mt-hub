@@ -6,8 +6,8 @@ Session::authenticateUser();
 Csrf::validateToken();
 $returnCalls = new ReturnCalls();
 
-$accountId = empty($_GET['accountId']) || !is_numeric($_GET['accountId']) ? null : $_GET['accountId'];
-$engineId = empty($_GET['id']) || !is_numeric($_GET['id']) ? Session::getActiveEngineId() : $_GET['id'];
+$accountId = empty($_POST['accountId']) || !is_numeric($_POST['accountId']) ? null : $_POST['accountId'];
+$engineId = empty($_POST['id']) || !is_numeric($_POST['id']) ? Session::getActiveEngineId() : $_POST['id'];
 $engines = new Engines($engineId);
 $name = $engines->getName();
 $newName = $engines->generateEngineCopyName($name);

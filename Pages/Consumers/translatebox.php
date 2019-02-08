@@ -22,7 +22,7 @@ $languageList = $languages->getAll();
 
 $domains = new Domains();
 $domains->setAccountId(Session::getAccountId());
-$domainList = $domains->getAll();
+$domainList = $domains->getConsumerDomains();
 $domainList = is_array($domainList) ? $domainList : [];
 
 ?>
@@ -31,7 +31,7 @@ $domainList = is_array($domainList) ? $domainList : [];
     <div class="row">
         <div class="box box-warning small-padding">
             <div class="box-header">
-                <h3 class="box-title"><?php echo Session::t('iADAATPA Translate'); ?></h3>
+                <h3 class="box-title"><?php echo Session::t('Translate'); ?></h3>
             </div>
             <div class="box-body">
                 <div class="row">
@@ -122,7 +122,7 @@ $domainList = is_array($domainList) ? $domainList : [];
                 <div class="row padding-top-20">
                     <div class="col-sm-12 col-xs-12">
                         <div class="form-group">
-                            <label class="control-label"><?php echo Session::t('Raw iADAATPA Response'); ?></label>
+                            <label class="control-label"><?php echo Session::t('Raw Response'); ?></label>
                             <textarea readonly id="responseRaw" class="form-control" rows="5"></textarea>
                         </div>
                     </div>

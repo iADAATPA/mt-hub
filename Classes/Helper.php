@@ -242,6 +242,48 @@ class Helper
     }
 
     /**
+     * @param $message
+     */
+    public static function printInfo($message)
+    {
+        ?>
+
+            var errorId = Date.now();
+            $('#alertBox').prepend('<div class="alert alert-info" id="' + errorId + '" style="display: none;">' +
+           			'<button type="button" class="close" aria-hidden="true">&times;</button>' +
+           			'<?php echo $message; ?>' +
+           		'</div>'
+           	);
+
+			$('#' + errorId).fadeIn('slow');
+
+           	// $('html, body').animate({
+        	//	scrollTop: $('#' + errorId).offset().top
+    		// }, <?php echo Helper::SCROLL_TIME; ?>);
+
+           	$('#' + errorId).on('click', 'button.close', function() {
+   				clearTimeout(timeout);
+   				$('#' + errorId).animate({opacity: 0}, 500).hide('slow').queue(function() { $('#' + errorId).remove(); });
+			});
+
+			var timeout = setTimeout(function() {
+  				$('#' + errorId).animate({opacity: 0}, 500).hide('slow').queue(function() { $('#' + errorId).remove(); });
+			}, <?php echo Helper::CLOSE_TIMER; ?>);
+			
+			$(document).scroll(function() { 
+                if ($(document).scrollTop() > 51) {
+                    $("#alertBox").addClass("fix-alert");
+                    var size = document.getElementById("sidebar-menu").offsetWidth;
+                    $("#alertBox").css('width', '100%').css('width', '-=' + size + 'px');
+                } else {
+                    $("#alertBox").removeClass("fix-alert");
+                }              
+            });
+
+        <?php
+    }
+
+    /**
      * Add a modal popup for a form
      *
      * @param string Button ID
@@ -386,6 +428,19 @@ class Helper
     }
 
     /**
+     * @param $string
+     * @return string
+     */
+    public static function maskToken($string)
+    {
+        if (strlen($string) >= 5) {
+            return str_repeat(Helper::TOKENMASKER, strlen($string) - 4) . substr($string, strlen($string) - 4);
+        } else {
+            return $string;
+        }
+    }
+
+    /**
      * @return false|string
      */
     public static function getMySqlCurrentTime()
@@ -401,6 +456,32 @@ class Helper
         $_SESSION['breadcrumb'] = $breadCrumb;    
     }
 
+    /**
+     * Format plan type feature status
+     *
+     * @param $status
+     * @return string
+     */
+    public static function formatFeatureStatus($status) {
+        if ($status == 1) {
+            return '<i class=\'fa fa-lg fa-check fa-green\' aria-hidden=\'true\' title=\'Enabled\'></i>';
+        } else if ($status == -1){
+            return 'Unlimited';
+        } else if ($status == 0){
+            return '<i class=\'fa fa-lg fa-ban fa-red\' aria-hidden=\'true\' title=\'Disabled\'></i>';
+        } else {
+            return $status;
+        }
+    }
+
+    /**
+     * @return |null
+     */
+    public static function getBreadCrumb()
+    {
+        return isset($_SESSION['breadcrumb']) ? $_SESSION['breadcrumb'] : null;
+    }
+    
     /**
      * Display content header section. The section includes:<br/>
      * - the page title<br/>
@@ -526,6 +607,35 @@ class Helper
             Active Supplier [
             <i>
                 <span class="activeSupplierName"><?php echo $name; ?></span>
+            </i>
+            ]
+        </h3>
+
+        <?php
+    }
+
+    /**
+     * Display engine name
+     *
+     * @param string $ngineName
+     * @param string $src
+     * @param string $trg
+     */
+    public static function displayActiveDomainName($name, $src = null)
+    {
+        $src = empty($src) ? '' : $src;
+        $name = empty($name) ? 'None' : trim($name);
+
+        ?>
+
+        <h3 class="box-title">
+            Active Domain [
+            <i>
+                <span class="activeDomainName"><?php echo $name; ?></span>
+                <span class="engineLanguagePairs" style="margin-left: 10px;">
+                    <span id="activeDomainSrcFlag" class="font-xsmall flag-icon flag-icon-<?php echo $src; ?>"></span>
+                    <span class="activeDomainSrc"><?php echo $src; ?></span>
+                </span>
             </i>
             ]
         </h3>

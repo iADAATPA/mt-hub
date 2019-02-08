@@ -7,13 +7,13 @@ Session::authenticateUser();
 $breadCrumb =  [
     'icon' => 'fa-dashboard',
     'link' => 'Pages/Suppliers/dashboard.php',
-    'pagename' => Session::t('iADAATPA Dashboard')
+    'pagename' => Session::t('Dashboard')
 ];
 
 Helper::storeBreadCrumb($breadCrumb);
 
 $header = [
-    'title' => Session::t('iADAATPA Dashboard'),
+    'title' => Session::t('Dashboard'),
     'breadcrumbs' => [
        $breadCrumb
     ]

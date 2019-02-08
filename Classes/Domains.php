@@ -133,6 +133,47 @@ class Domains extends Database
     /**
      * @return array|null
      */
+    public function getConsumerDomains()
+    {
+        $query = 'SELECT
+                    id,
+                    accountid,
+                    name,
+                    src
+                FROM
+                    domains
+                WHERE
+                    accountid IN (
+                        SELECT 
+                          supplieraccountid 
+                        FROM 
+                          relations 
+                        WHERE 
+                          consumeraccountid = :consumeraccountid
+                    )';
+
+        $this->startTransaction();
+        $this->query($query);
+        $this->bindValue(":consumeraccountid", $this->getAccountId(), PDO::PARAM_INT);
+        $result = $this->resultSet();
+        $this->endTransaction();
+
+        if ($result) {
+            $domains = [];
+
+            foreach ($result as $row) {
+                $domains[$row['id']] = $row;
+            }
+
+            return $domains;
+        }
+
+        return null;
+    }
+
+    /**
+     * @return array|null
+     */
     public function getAccountDomains()
     {
         if ($this->getAccountId()) {

@@ -8,7 +8,7 @@
 
         <h4>Type</h4>
         <p>
-            Right now for the simplicity of configuration the iADAATPA platform only supports POST requests.
+            Right now for the simplicity of configuration the MT-Hub platform only supports POST requests.
         </p>
 
         <h4>Authorization</h4>
@@ -19,7 +19,7 @@
 
         <h4>Request</h4>
         <p>
-            Please provide a valid JSON with your request body. To every key you can assign following values that will be mapped from iADAATPA request:
+            Please provide a valid JSON with your request body. To every key you can assign following values that will be mapped from MT-Hub request:
             <ul>
             <li><code>token</code> - authorization token.</li>
             <li><code>segments</code> - segments to translate.</li>
@@ -50,7 +50,7 @@
 
         <h4>Callback Url Parameters</h4>
         <p>
-            For asynchronous methods iADAATPA provides standard callback endpoint. If you wish add some parameters to the endpoint url please provide a valid JSON with the same format as for the <b>Request</b> field.
+            For asynchronous methods MT-Hub provides standard callback endpoint. If you wish add some parameters to the endpoint url please provide a valid JSON with the same format as for the <b>Request</b> field.
         </p>
 
         <h4>Response</h4>

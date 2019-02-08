@@ -106,7 +106,7 @@ $supplierConsumers = $relations->getSupplierConsumers();
                 <div class="row padding-top-20">
                     <div class="col-sm-12 col-xs-12">
                         <div class="form-group">
-                            <label class="control-label"><?php echo Session::t('Raw iADAATPA Response'); ?></label>
+                            <label class="control-label"><?php echo Session::t('Raw Response'); ?></label>
                             <textarea readonly id="responseRaw" class="form-control" rows="5"></textarea>
                         </div>
                     </div>

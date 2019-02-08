@@ -840,11 +840,6 @@ class ApiDev
                         return $response;
                     }
 
-                    // Store the request in the db and return a unique id
-                    $asynchronousRequests->setRequestTime(date('Y-m-d H:i:s'));
-                    $asynchronousRequests->setStatus(ApiResponses::HTTP_200_CODE);
-                    $asynchronousRequests->update();
-
                     // If the request segments have been translated
                     if ($response) {
                         $data = [
@@ -852,6 +847,11 @@ class ApiDev
                             "fileType" => $asynchronousRequests->getFileType(),
                             "file" => is_array($response) ? $response[0] : $response
                         ];
+
+                        // Store the request in the db and return a unique id
+                        $asynchronousRequests->setRequestTime(date('Y-m-d H:i:s'));
+                        $asynchronousRequests->setStatus(ApiResponses::HTTP_200_CODE);
+                        $asynchronousRequests->update();
 
                         $this->apiResponses()->setData($data);
                     } else {
@@ -1000,6 +1000,7 @@ class ApiDev
         $guId = UUID::v4();
         $this->setGuId($guId);
         $methodId = UrlConfig::METHOD_TRANSLATE_FILE_ID;
+        $translation = null;
         // Get post data
         $postData = $request->getParams();
 
@@ -1032,17 +1033,22 @@ class ApiDev
                 $this->apiResponses()->setMessage(null);
 
                 $methodId = UrlConfig::METHOD_ATRANSLATE_FILE_ID;
-                $supplierGuId = $this->makeRequest($methodId);
+                $response = $this->makeRequest($methodId);
 
-                if (is_object($supplierGuId)) {
-                    return $supplierGuId;
-                } elseif (is_numeric($supplierGuId) && $supplierGuId < 0) {
+                if (is_object($response)) {
+                    return $response;
+                } elseif (is_numeric($response) && $response < 0) {
                     // this case is for eTransaltion error handling only.
                     $this->apiResponses()->setStatusCode(ApiResponses::HTTP_500_CODE);
-                    $this->apiResponses()->setCode($supplierGuId);
+                    $this->apiResponses()->setCode($response);
                     $this->apiResponses()->setMessage('Unexpected error occured');
 
                     return $this->apiResponses()->get();
+                }
+
+                if (base64_encode(base64_decode($response, true)) === $response) {
+                    $translation = is_array($response) ? $response : [$response];
+                    $translation = json_encode($translation);
                 }
             } else {
                 $supplierGuId = $response;
@@ -1057,11 +1063,13 @@ class ApiDev
             $asynchronousRequests->setEngineCustomId($this->getEngineCustomId());
             $asynchronousRequests->setSupplierGuId(is_array($response) ? $response[0] : $response);
             $asynchronousRequests->setFileType($this->getFileType());
-            $asynchronousRequests->setRequestTime(date("Y-m-d H:i:s"));
             $asynchronousRequests->setSource($this->getSource());
             $asynchronousRequests->setTarget($this->getTarget());
             $asynchronousRequests->setDomain($this->getDomainId());
             $asynchronousRequests->setText($this->getFileType());
+            $asynchronousRequests->setTranslationTime(empty($translation) ? null : Helper::getMySqlCurrentTime());
+            $asynchronousRequests->setStatus(empty($translation) ? null : ApiResponses::HTTP_200_CODE);
+            $asynchronousRequests->setTranslation($translation);
             $asynchronousRequests->setMethodId($methodId);
             $asynchronousRequests->setSupplierGuId(empty($supplierGuId) ? null : $supplierGuId);
             $id = $asynchronousRequests->insert();
@@ -1444,7 +1452,7 @@ class ApiDev
     }
 
     /**
-     * Validate iADAATPA account token
+     * Validate account token
      *
      * @param $token string
      * @return bool

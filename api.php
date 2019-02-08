@@ -47,7 +47,7 @@ $app->group('/api', function () {
         $this->post('/translatebestof', 'ApiDev:translateBestOf');
         $this->post('/atranslatebestof', 'ApiDev:translateBestOf');
         $this->post('/translatefile', 'ApiDev:translateFile');
-        $this->post('/atranslatefile', 'Api:translateFile');
+        $this->post('/atranslatefile', 'ApiDev:translateFile');
         $this->post('/translatewithqes', 'ApiDev:TranslateWithQes');
     });
 

@@ -11,10 +11,10 @@ error_log("REQUEST: " . json_encode($_REQUEST));
 error_log("BODY: " . file_get_contents('php://input'));
 
 if (!empty($request)) {
-    $id = empty($request["id"]) ? null : $request["id"];
+    $guId = empty($request["id"]) ? null : $request["id"];
     $supplierGuid = empty($request["request-id"]) ? null : $request["request-id"];
 
-    $asynchronousRequest = new AsynchronousRequests($id);
+    $asynchronousRequest = new AsynchronousRequests(null, $guId);
 
     $translation = empty($request["translated-text"]) ? null : $request["translated-text"];
     $translation = empty($translation) && $asynchronousRequest->getMethodId() == UrlConfig::METHOD_ATRANSLATE_FILE_ID ? file_get_contents('php://input') : $translation;

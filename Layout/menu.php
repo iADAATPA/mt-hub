@@ -125,6 +125,15 @@
                     </a>
                 </li>
             <?php } ?>
+            <li class="header" id="mt-hub-menu">
+                <?php echo Session::t('MT-Hub'); ?>
+            </li>
+            <li class="mt-hub-menu">
+                <a href="#about">
+                    <i class="fa fa-qrcode fa-fw"></i>
+                    <span><?php echo Session::t('About'); ?></span>
+                </a>
+            </li>
             <li class="footer">
             </li>
         </ul>

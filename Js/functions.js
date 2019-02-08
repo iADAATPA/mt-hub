@@ -35,6 +35,7 @@ function getPageUrl(page) {
     var consumerPages = ['suppliers', 'consumerstatistics', 'translatebox', 'availableengines'];
     var accountPages = ['settings', 'apiconfiguration'];
     var controlPanelPages = ['accounts', 'requestlogs', 'logs', 'engines'];
+    var mtHubPages = ['about'];
 
     if ($.inArray(page, supplierPages) > -1) {
         page = page == 'supdashboard' ? 'dashboard' : page;
@@ -45,6 +46,8 @@ function getPageUrl(page) {
         url = 'Pages/Account/' + page + '.php';
     } else if ($.inArray(page, controlPanelPages) > -1) {
         url = 'Pages/ControlPanel/' + page + '.php';
+    } else if ($.inArray(page, mtHubPages) > -1) {
+        url = 'Pages/MtHub/' + page + '.php';
     }
 
     return url;

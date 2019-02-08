@@ -87,6 +87,8 @@ $(function() {
     toggleMenuStatus(controlPanelMenu, 'controlPanel-menu');
     var settingsMenu = readCookie('settings-menu');
     toggleMenuStatus(settingsMenu, 'settings-menu');
+    var mtHubMenu = readCookie('mt-hub-menu');
+    toggleMenuStatus(mtHubMenu, 'mt-hub-menu');
 
     // Logout the user and refresh the page
     $('#logout').click( function() {

@@ -134,6 +134,12 @@
                     <span><?php echo Session::t('About'); ?></span>
                 </a>
             </li>
+            <li class="mt-hub-menu">
+                <a href="#connectors">
+                    <i class="fa fa-handshake-o fa-fw"></i>
+                    <span><?php echo Session::t('Connectors'); ?></span>
+                </a>
+            </li>
             <li class="footer">
             </li>
         </ul>

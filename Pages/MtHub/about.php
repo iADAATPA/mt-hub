@@ -2,8 +2,6 @@
 
 include_once '../../functions.php';
 
-Session::authenticateUser(Groups::GROUP_ADMINISTRATOR);
-
 $header = [
     'title' => Session::t('About'),
     'breadcrumbs' => [
@@ -26,6 +24,70 @@ Helper::displayPageHeader($header);
                 <h3 class="box-title"><?php echo Session::t('About Partners'); ?></h3>
             </div>
             <div class="box-body">
+                <div class="row">
+                    <div class="col-md-3 center-content">
+                        <img src="Images/ec.jpg" width="200" height="100" alt="European Commission"/>
+                    </div>
+                    <div class="col-md-9">
+                        <div class="col-md-12">
+                            <b>
+                                The iADAATPA Project is funded by the Innovation and Networks Executive Agency (INEA),
+                                <br/>
+                                under Grant Agreement <a
+                                        href="https://ec.europa.eu/inea/en/connecting-europe-facility/cef-telecom/2016-eu-ia-0132"
+                                        target="_blank">INEA/ICT/A2016/1331703</a>
+                            </b>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-md-3 center-content">
+                        <img src="Images/Suppliers/kantanmt.png" width="200" height="200" alt="KantanMT"/>
+                    </div>
+                    <div class="col-md-9">
+                        <div class="col-md-12">
+                            <h4><b>KantanMT</b></h4>
+                        </div>
+                        <div class="col-md-12">
+                            <p>
+                                KantanMT.com is the leading SaaS-based machine translation platform that enables users
+                                to develop and manage customized machine translation engines in the cloud. The
+                                innovative technologies offered on the KantanMT.com platform enable users to easily
+                                build MT engines in over 750 language combinations; engines that will seamlessly
+                                integrate into the user’s localization workflows and web applications.
+                            </p>
+                        </div>
+                        <div class="col-md-12">
+                            <p>Contributors:</p>
+                        </div>
+                        <div class="col-md-12">
+                            <ul>
+                                <li>
+                                    Tony O'Dowd - Chef Architect. Steering Committee member. Responsible for the
+                                    technical and functioanl design.
+                                </li>
+                                <li>
+                                    Marek Mazur - Software Development Manager. Responsible for developemnt of the
+                                    MT-hub.eu platform.
+                                </li>
+                                <li>
+                                    Colin Harper - Senior Software Developer. Responsible for developemnt of the Drupal
+                                    and MemoQ connector.
+                                </li>
+                                <li>
+                                    Louise Faherty - Professional Services Team Lead. Responsible for Neural engines
+                                    training.
+                                </li>
+                                <li>
+                                    Riccardo Superbo - Senior Client Solutions Engineer. Responsible for Neural engines
+                                    training.
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <hr>
                 <div class="row">
                     <div class="col-md-3 center-content">
                         <img src="Images/Suppliers/adapt.png" width="200" height="200" alt="ADAPT"/>
@@ -112,53 +174,6 @@ Helper::displayPageHeader($header);
                     </div>
                 </div>
                 <hr/>
-                <div class="row">
-                    <div class="col-md-3 center-content">
-                        <img src="Images/Suppliers/kantanmt.png" width="200" height="200" alt="KantanMT"/>
-                    </div>
-                    <div class="col-md-9">
-                        <div class="col-md-12">
-                            <h4><b>KantanMT</b></h4>
-                        </div>
-                        <div class="col-md-12">
-                            <p>
-                                KantanMT.com is the leading SaaS-based machine translation platform that enables users
-                                to develop and manage customized machine translation engines in the cloud. The
-                                innovative technologies offered on the KantanMT.com platform enable users to easily
-                                build MT engines in over 750 language combinations; engines that will seamlessly
-                                integrate into the user’s localization workflows and web applications.
-                            </p>
-                        </div>
-                        <div class="col-md-12">
-                            <p>Contributors:</p>
-                        </div>
-                        <div class="col-md-12">
-                            <ul>
-                                <li>
-                                    Tony O'Dowd - Chef Architect. Steering Committee member. Responsible for the
-                                    technical and functioanl design.
-                                </li>
-                                <li>
-                                    Marek Mazur - Software Development Manager. Responsible for developemnt of the
-                                    MT-hub.eu platform.
-                                </li>
-                                <li>
-                                    Colin Harper - Senior Software Developer. Responsible for developemnt of the Drupal
-                                    and MemoQ connector.
-                                </li>
-                                <li>
-                                    Louise Faherty - Professional Services Team Lead. Responsible for Neural engines
-                                    training.
-                                </li>
-                                <li>
-                                    Riccardo Superbo - Senior Client Solutions Engineer. Responsible for Neural engines
-                                    training.
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <hr>
                 <div class="row">
                     <div class="col-md-3 center-content">
                         <img src="Images/Suppliers/pangeanic.jpg" width="200" height="200" alt="Pangeanic"/>
@@ -308,9 +323,12 @@ Helper::displayPageHeader($header);
                         </div>
                         <div class="col-md-12">
                             <p>
-                                Tilde develops (MT) systems that are tailor-made for each customer. Customization
-                                provides significantly higher translation quality than generic MT systems, ensuring that
-                                translations meet your organization’s individual requirements.
+                                A leading European language technology research hub, Tilde drives innovation in neural
+                                network-based speech and text processing for complex languages. With highly
+                                knowledgeable localisation services, custom machine translation systems, AI-driven smart
+                                virtual assistants, and online terminology tools Tilde allows anyone go beyond language
+                                barriers. Tilde’s innovative solutions are used by multinational corporations, EU public
+                                administrations, and major language industry companies.
                             </p>
                         </div>
                         <div class="col-md-12">
@@ -319,10 +337,25 @@ Helper::displayPageHeader($header);
                         <div class="col-md-12">
                             <ul>
                                 <li>
-                                    Valters Šics - Lead Software Developer.
+                                    Arturs Vasiļevskis - General Project Manager. Involved in the supervision of the
+                                    project finance, development and coordination.
                                 </li>
                                 <li>
-                                    Artūrs Vasiļevskis - Head of Machine Translation Solutions.
+                                    Valters Šics - Development team leader. Supervised the internal technical
+                                    development. Leaded the analysis of requirements, functional and technical
+                                    specifications.
+                                </li>
+                                <li>
+                                    Mārcis Pinnis - Lead researcher. Responsible for Neural Machine translation systems
+                                    engineering.
+                                </li>
+                                <li>
+                                    Rihards Krišlauks - Lead developer. Involved in the development of API and SDL
+                                    Trados studio plug-in.
+                                </li>
+                                <li>
+                                    Valentīns Kozlovskis - Testing team leader. Responsible for API and SDL Trados
+                                    studio plug-in quality assurance.
                                 </li>
                             </ul>
                         </div>

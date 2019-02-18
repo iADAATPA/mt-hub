@@ -32,6 +32,9 @@ $domainList = is_array($domainList) ? $domainList : [];
         <div class="box box-warning small-padding">
             <div class="box-header">
                 <h3 class="box-title"><?php echo Session::t('Translate'); ?></h3>
+                <span class="pull-right">
+                    <input id="debug" data-width="100" data-height="34" data-toggle="toggle" type="checkbox"/>
+                </span>
             </div>
             <div class="box-body">
                 <div class="row">
@@ -63,7 +66,7 @@ $domainList = is_array($domainList) ? $domainList : [];
                             </select>
                         </div>
                     </div>
-                    <div class="col-sm-4 col-xs-12">
+                    <div class="col-sm-4 col-xs-12 debug">
                         <div class="form-group">
                             <label class="control-label"><?php echo Session::t('Domain'); ?></label>
                             <select id="domain" name="domain" class="form-control" onchange="cleanForm();">
@@ -91,9 +94,9 @@ $domainList = is_array($domainList) ? $domainList : [];
                     </div>
                     <div class="col-sm-2 col-xs-12 center-content">
                         <div class="btn-group padding-top-20">
-                            <div class="btn btn-warning btn-block" id="btnTranslate"><i class="fa fa-language fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;<?php echo Session::t('Translate'); ?></div>
-                            <div class="btn btn-default btn-block" id="btnATranslate"><i class="fa fa-hourglass-start fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;<?php echo Session::t('aTranslate'); ?></div>
-                            <div class="btn btn-default btn-block" id="btnARetrieveTranslation"><i class="fa fa-hourglass-end fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;<?php echo Session::t('Retrieve Translation'); ?></div>
+                            <div class="btn btn-warning select2 btn-block" id="btnTranslate"><i class="fa fa-language fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;<?php echo Session::t('Translate'); ?></div>
+                            <div class="btn btn-default select2 btn-block debug" id="btnATranslate"><i class="fa fa-hourglass-start fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;<?php echo Session::t('aTranslate'); ?></div>
+                            <div class="btn btn-default select2 btn-block debug" id="btnARetrieveTranslation"><i class="fa fa-hourglass-end fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;<?php echo Session::t('Retrieve Translation'); ?></div>
                         </div>
                     </div>
                     <div class="col-sm-5 col-xs-12">
@@ -103,7 +106,17 @@ $domainList = is_array($domainList) ? $domainList : [];
                         </div>
                     </div>
                 </div>
-                <div class="row padding-top-10">
+                <div class="row padding-top-20">
+                    <div class="col-md-4">
+                        <label class="control-label"><?php echo Session::t('Selected Engine Name'); ?></label>
+                        <input class="form-control" id="responseEngine" type="text" readonly />
+                    </div>
+                    <div class="col-md-4">
+                        <label class="control-label"><?php echo Session::t('Selected Supplier Id'); ?></label>
+                        <input class="form-control" id="responseSupplier" type="text" readonly />
+                    </div>
+                </div>
+                <div class="row padding-top-20 debug">
                     <div class="col-md-4">
                         <label class="control-label"><?php echo Session::t('HTTP Code'); ?></label>
                         <input class="form-control curl-info" id="httpCode" type="text" readonly />
@@ -119,7 +132,7 @@ $domainList = is_array($domainList) ? $domainList : [];
 
                     </div>
                 </div>
-                <div class="row padding-top-20">
+                <div class="row padding-top-20 debug">
                     <div class="col-sm-12 col-xs-12">
                         <div class="form-group">
                             <label class="control-label"><?php echo Session::t('Raw Response'); ?></label>
@@ -127,7 +140,7 @@ $domainList = is_array($domainList) ? $domainList : [];
                         </div>
                     </div>
                 </div>
-                <div class="row padding-top-10">
+                <div class="row padding-top-10 debug">
                     <div class="col-sm-12 col-xs-12">
                         <div class="form-group">
                             <label class="control-label"><?php echo Session::t('Curl Info'); ?></label>
@@ -147,8 +160,30 @@ $domainList = is_array($domainList) ? $domainList : [];
     }
 
     $(document).ready(function() {
-        window.detectDomain = true;
-        window.detectLanguage = true;
+        window.detectDomain = false;
+        window.detectLanguage = false;
+
+        $(".debug").hide();
+
+        $("#debug").bootstrapToggle({
+            on: "Debug",
+            off: "Demo",
+            onstyle: 'success',
+            offstyle: 'warning'
+        });
+
+        $('#debug').change(function() {
+            console.log($('.debug').hide());
+            if ($(this).prop('checked')) {
+                $('.debug').show();
+                window.detectDomain = true;
+                window.detectLanguage = true;
+            } else {
+                $('.debug').hide();
+                window.detectDomain = false;
+                window.detectLanguage = false;
+            }
+        })
 
         $("#source, #target").select2({templateResult: formatState});
         $("#domain").select2();
@@ -290,6 +325,9 @@ $domainList = is_array($domainList) ? $domainList : [];
                         if(!message.success) {
                             message = JSON.stringify(message.error.message);
                         } else {
+                            console.log(message);
+                            $('#responseEngine').val(message.data.debug.engineName);
+                            $('#responseSupplier').val(message.data.debug.supplierId);
                             message = message.data.segments[0].translation;
                         }
 

@@ -51,7 +51,7 @@ $columns = [
     ['label' => '#', 'title' => Session::t('Account Id'), 'class' => 'all'],
     ['label' => Session::t('Status'), 'class' => 'all'],
     ['label' => Session::t('Name'), 'class' => 'all'],
-    ['label' => Session::t('Group')],
+    ['label' => Session::t('Account Type')],
     ['label' => Session::t('Admin Id')],
     ['label' => Session::t('Created')],
     ['label' => '', 'class' => 'all'],

@@ -19,7 +19,7 @@ $domains = new Domains();
 $allDomains = $domains->getAll();
 
 $id = 1;
-if (!empty($allAccountEngines) && is_array($allAccountEngines)){
+if (!empty($allAccountEngines)){
     foreach ($allAccountEngines as $engine) {
         if ($engine['deleted']) {
             continue;

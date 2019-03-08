@@ -35,9 +35,11 @@ function getPageUrl(page) {
     var consumerPages = ['suppliers', 'consumerstatistics', 'translatebox', 'availableengines'];
     var accountPages = ['settings', 'apiconfiguration'];
     var controlPanelPages = ['accounts', 'requestlogs', 'logs', 'engines'];
-    var mtHubPages = ['about', 'connectors'];
+    var mtHubPages = ['about'];
 
-    if ($.inArray(page, supplierPages) > -1) {
+    if (page == 'connectors') {
+        url = 'Pages/MtHub/' + page + '.php';
+    } else if ($.inArray(page, supplierPages) > -1) {
         page = page == 'supdashboard' ? 'dashboard' : page;
         url = 'Pages/Suppliers/' + page + '.php';
     } else if ($.inArray(page, consumerPages) > -1) {

@@ -49,6 +49,7 @@
                     <span><?php echo Session::t('Activity Log'); ?></span>
                 </a>
             </li>
+            <li class="suppliers-menu">
             <?php } ?>
             <?php if (in_array(Session::getGroupId(), [Groups::GROUP_CONSUMER])) { ?>
             <li class="header" id="consumers-menu">
@@ -78,6 +79,7 @@
                     <span><?php echo Session::t('Statistics'); ?></span>
                 </a>
             </li>
+            <li class="consumers-menu">
             <?php } ?>
             <?php if (in_array(Session::getGroupId(), [Groups::GROUP_ADMINISTRATOR])) { ?>
                 <li class="header" id="controlPanel-menu">
@@ -107,7 +109,13 @@
                         <span><?php echo Session::t('Activity Log'); ?></span>
                     </a>
                 </li>
+                <li class="controlPanel-menu">
             <?php } ?>
+                <a href="#connectors">
+                    <i class="fa fa-handshake-o fa-fw"></i>
+                    <span><?php echo Session::t('Connectors'); ?></span>
+                </a>
+            </li>
             <li class="header" id="settings-menu">
                 <?php echo Session::t('Account'); ?>
             </li>
@@ -132,12 +140,6 @@
                 <a href="#about">
                     <i class="fa fa-qrcode fa-fw"></i>
                     <span><?php echo Session::t('About'); ?></span>
-                </a>
-            </li>
-            <li class="mt-hub-menu">
-                <a href="#connectors">
-                    <i class="fa fa-handshake-o fa-fw"></i>
-                    <span><?php echo Session::t('Connectors'); ?></span>
                 </a>
             </li>
             <li class="footer">
